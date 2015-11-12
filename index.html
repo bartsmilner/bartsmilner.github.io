@@ -1,1 +1,1234 @@
-TEST
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>FINCLUSTER API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["json","javascript"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">JSON Request/Response</a>
+              <a href="#" data-language-name="javascript">Javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<blockquote>
+<p>https://fincluster.com:8080/api/CORE/This/function;</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"organisation"</span><span class="p">:{</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"00001"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="s2">"4601344"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//If you want to to use Nodejs for REST, with node installed for your target directory, (where the fs module is installed with Node) simply run npm install sync-request and you can test run the api functions with a json object request that must include your API key to retrieve the response. You can also include the json request object inside the request function and avoid using require fs and external json files.</span>
+
+<span class="c1">//With sync-request a simple testFincluster.js file would be:</span>
+
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'sync-request'</span><span class="p">);</span>  
+
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">This_function</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'This_function.json'</span><span class="p">));</span>
+
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'ACTION'</span><span class="p">,</span> <span class="s1">'API_Endpoint'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="nx">This_function</span><span class="p">}});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nThis_function'</span><span class="p">,</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+
+<span class="c1">//OR</span>
+
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'ACTION'</span><span class="p">,</span> <span class="s1">'API_Endpoint'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"request_object_in_JSON_format_keys"</span><span class="p">:</span><span class="s2">"values"</span><span class="p">}});</span>
+
+<span class="c1">//To run, simply type (in your target directory in your Terminal): node fincluster</span>
+</code></pre>
+
+<p>Welcome to the Fincluster API! You can use our API to access Fincluster API endpoints.</p>
+
+<p>The Fincluster API is built using REST principles which follow HTTP rules, so a wide range of HTTP clients can be used to interact with the API. Every function is exposed as a URL Endpoint and the REQUEST is always made with the <strong>POST</strong> action. Both REQUEST and RESPONSE are formatted as JSON objects. This documentation shows which parameters are obligatory or optional for the REQUEST objects and the type of key:values returned by the RESPONSE object. Required parameters are at the top of each table. </p>
+
+<p>Complex nested objects are shown preceded by an indented colon. </p>
+
+<p>For more information about options, please see the <a href="https://fincluster.com:8080/agent/#/help">Help guide</a>.</p>
+
+<h3 id="example-query-parameters">Example Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Portfolios_name</td>
+<td>TRUE</td>
+<td>String</td>
+<td>The Portfolio&rsquo;s title</td>
+</tr>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Portfolios_currency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio&rsquo;s base currency</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Counterparty info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Counterparty ID</td>
+</tr>
+</tbody></table>
+
+<p>The column on the right shows the format of a Fincluster <em>Endpoint</em>, a <em>JSON</em>  REQUEST object and a <em>JSON</em> RESPONSE object used by an http or AJAX client. You can use any AJAX wrapper, or compose the REQUEST in any language which is REST-compatible. (The <code class="prettyprint">key:values</code> shown here for <code class="prettyprint">This_function</code> are for illustration only.) </p>
+
+<h2 id="authentication">Authentication</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Auth/get</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"User Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"p*ssw*rd!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rememberme"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"surl"</span><span class="p">:</span><span class="s2">"https://dev.fincluster.com:8080/agent/#"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_role"</span><span class="p">:</span><span class="s2">"OPERATOR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_email"</span><span class="p">:</span><span class="s2">"someone@fincluster.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_name"</span><span class="p">:</span><span class="s2">"User Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_username"</span><span class="p">:</span><span class="s2">"p*ssw*rd!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_lang"</span><span class="p">:</span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_pub"</span><span class="p">:{},</span><span class="nt">"Users_prefs"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"Users_data"</span><span class="p">:{</span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Companies_name"</span><span class="p">:</span><span class="s2">"FINCLUSTER"</span><span class="p">,</span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_capabilities"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"S152d5ca85700b3056f7e02f9f60996f27587c195"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">[</span><span class="s1">'NODE_TLS_REJECT_UNAUTHORIZED'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">;</span><span class="c1">//to prevent Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;</span>
+
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Auth/get'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"username"</span><span class="p">,</span><span class="s2">"password"</span><span class="p">:</span><span class="s2">"p*ssw*rd!"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Auth_get</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Auth_get.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Auth/get'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Auth_get</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nAUTH_get'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="auth_get-query-parameters">Auth_get Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Login name</td>
+</tr>
+<tr>
+<td>password</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Valid password</td>
+</tr>
+<tr>
+<td>rememberme</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Cache login</td>
+</tr>
+<tr>
+<td>surl</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Base URL</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>https://fincluster.com/api/Developers/key</p>
+</blockquote>
+
+<p>Initial authentication using the Required parameters of <code class="prettyprint">Auth_get</code> will generate a <code class="prettyprint">new sid: value</code>. <code class="prettyprint">Auth_get</code> is required to validate any subsequent <code class="prettyprint">&quot;sid&quot;: &quot;value&quot;</code> in a REQUEST, whether generated by this Endpoint call or by a previous one. <strong>???Reconfigure for public API???</strong> <em>Fincluster uses API keys to allow access to the API. You can register a new Fincluster API key at our <a href="https://fincluster.com/api/Developers/key">developer portal</a></em>.</p>
+
+<p>After authentication, the Fincluster database expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">&quot;sid&quot; : &quot;Your_API_key&quot;</code></p>
+
+<aside class="notice">
+You must replace <code>Your_API_key</code> with your personal API key.
+</aside>
+
+<h1 id="portfolios">Portfolios</h1>
+
+<h2 id="new-portfolio">New Portfolio</h2>
+
+<blockquote>
+<p>https://fincluster.com/api/Portfolios/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001AnyName"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_data"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_setupDate"</span><span class="p">:</span><span class="s2">"2015-11-05"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_type"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"startCash"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_prefs"</span><span class="p">:{</span><span class="nt">"tz"</span><span class="p">:</span><span class="s2">"+00:00"</span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"120976"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Contacts_key"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_dossier"</span><span class="p">:</span><span class="s2">"FC001"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_iban"</span><span class="p">:</span><span class="s2">"0001"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_notes"</span><span class="p">:</span><span class="s2">"Parameter test"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"organization"</span><span class="p">:{</span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"120976"</span><span class="p">,</span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="p">,</span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="nt">"key"</span><span class="p">:</span><span class="mi">120976</span><span class="p">,</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="p">,</span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Resources_mts"</span><span class="p">:</span><span class="s2">"2015-09-05T16:36:18.888Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="s2">"4601344"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI1"</span><span class="p">,</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Sf78b111252c3b01d13f234e40fa1f42dc87d454d"</span><span class="p">,</span><span class="s2">"Portfolios_data"</span><span class="p">:{}}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Portfolios_save</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_save.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_save</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_save'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Portfolios_save</code> creates a new Portfolio, with the parameters listed in the following table. A successful request will return a new Portfolio: id as the <code class="prettyprint">&quot;Portfolios_key&quot;</code> string value. The Portfolio: id is unique, the Portfolio: name does not have to be unique.</p>
+
+<h3 id="portfolios_save-query-parameters">Portfolios_save Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Portfolios_name</td>
+<td>TRUE</td>
+<td>String</td>
+<td>The Portfolio&rsquo;s title</td>
+</tr>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Portfolios_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>{tags: []} array of shared portfolio tags</td>
+</tr>
+<tr>
+<td>Portfolios_currency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio&rsquo;s base currency</td>
+</tr>
+<tr>
+<td>Portfolios_setupDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>Portfolios_type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>DEFAULT or FUND</td>
+</tr>
+<tr>
+<td>startCash</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Initial cash in base currency</td>
+</tr>
+<tr>
+<td>Portfolios_prefs</td>
+<td>FALSE</td>
+<td>Time</td>
+<td>Time zone from GMT</td>
+</tr>
+<tr>
+<td>Accounts_OrganizationsKey</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>Contacts_key</td>
+<td>FALSE</td>
+<td>???</td>
+<td>???</td>
+</tr>
+<tr>
+<td>Accounts_iban</td>
+<td>FALSE</td>
+<td>String</td>
+<td>IBAN code</td>
+</tr>
+<tr>
+<td>Portfolios_notes</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Additional info</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Organisation info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Organisation ID</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Organisation name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Organisation type</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_CompaniesKey</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Organisation data</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Organisation key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Organisation name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Organisation type</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:notes</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Organisation info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:CompaniesKey</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Companies key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_mts???</td>
+<td>FALSE</td>
+<td>DateTime</td>
+<td>YYYY-MM-DDThh:mm:ss.sssZ (UTC)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_tags</td>
+<td>FALSE</td>
+<td>Array</td>
+<td>Shared tags???</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Share_perm</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>???</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-portfolios">List Portfolios</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Portfolios/list</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"S2f1667847932c30972205746a5b748c85d9ce693"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".data-&gt;&gt;'active')::BOOL = true"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Portfolios\".\"name\" asc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"getPerm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"getShares"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+</span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="s2">"4603708"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_type"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_dossier"</span><span class="p">:</span><span class="s2">"FC001"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_setupDate"</span><span class="p">:</span><span class="s2">"2015-11-05T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_AssetsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_rule"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_notes"</span><span class="p">:</span><span class="s2">"Parameter test"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_data"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"tseq"</span><span class="p">:</span><span class="mi">1447155832104</span><span class="p">,</span><span class="w">
+</span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_date"</span><span class="p">:</span><span class="s2">"2015-11-10T11:43:51+00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Portfolios_prefs"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"tz"</span><span class="p">:</span><span class="s2">"+00:00"</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Assets_key"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetID"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIsin"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetFeederCode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetShortName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetTypo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCurrency"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIndustrySector"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetMultiplier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetExpirationDate"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCountry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCountryName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_CompaniesKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Shares_UsersKeys"</span><span class="p">:[</span><span class="w">
+</span><span class="s2">"400180"</span><span class="p">],</span><span class="w">
+</span><span class="nt">"Shares_UsersNames"</span><span class="p">:[</span><span class="w">
+</span><span class="s2">"User Name"</span><span class="p">]</span><span class="w">
+</span><span class="p">}],</span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Sf78b111252c3b01d13f234e40fa1f42dc87d454d"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Portfolios_list</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_list.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_list</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Portfolios_list</code> lists all available portfolios, sorted by qorder values ??? (asc || desc).</p>
+
+<h3 id="portfolios_list-query-parameters">Portfolios_list Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Query of portfolio selection</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolios&rsquo; sort order</td>
+</tr>
+<tr>
+<td>getPerm</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>???</td>
+</tr>
+<tr>
+<td>getShares</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>???</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>page</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Page displayed on platform</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Rows displayed per page</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-portfolio">Delete Portfolio</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Portfolios/del</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Portfolios\".\"key\" in ('4603731', '4603729')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"S2f1667847932c30972205746a5b748c85d9ce693"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"4603731"</span><span class="p">,</span><span class="s2">"4603729"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Portfolios\".\"key\" in ("</span><span class="o">+</span> <span class="nx">oldTestID</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">+</span> <span class="nx">oldTestID1</span> <span class="o">+</span> <span class="s2">")"</span><span class="p">,</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"S2f1667847932c30972205746a5b748c85d9ce693"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Portfolios_del</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_del.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_del</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_del'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Portfolios_del</code> deletes a portfolio or portfolios, with the parameters listed in the following table. A successful request will return the deleted Portfolio: id(s) as an array of the deleted <code class="prettyprint">&quot;Portfolios_key&quot;</code> string values. If the query selection criteria (here, portfolios IDs) are not found, the RESPONSE will be an empty array <code class="prettyprint">{&quot;Portfolios_keys&quot;:[]}</code>.</p>
+
+<h3 id="portfolios_del-query-parameters">Portfolios_del Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query portfolio selection</td>
+</tr>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h2 id="report-status">Report Status</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Report/status</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"4603841"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"S2f1667847932c30972205746a5b748c85d9ce693"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"endDate"</span><span class="p">:</span><span class="s2">"2015-11-10T13:32:17+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"history"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"simulate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="nt">"report"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"endDate"</span><span class="p">:</span><span class="s2">"2015-11-10T13:32:17+00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"portfolios"</span><span class="p">:[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="s2">"4603841"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_type"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_dossier"</span><span class="p">:</span><span class="s2">"FC001"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_setupDate"</span><span class="p">:</span><span class="s2">"2015-11-05T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_AssetsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_rule"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_notes"</span><span class="p">:</span><span class="s2">"Parameter test"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_data"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"tseq"</span><span class="p">:</span><span class="mi">1447160602877</span><span class="p">,</span><span class="w">
+</span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_date"</span><span class="p">:</span><span class="s2">"2015-11-10T13:03:22+00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Portfolios_prefs"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"tz"</span><span class="p">:</span><span class="s2">"+00:00"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Assets_key"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetID"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIsin"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetFeederCode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetShortName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetTypo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCurrency"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIndustrySector"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetMultiplier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetExpirationDate"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCountry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCountryName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_CompaniesKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"views"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"AGGR"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"entries"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"CASH|EUR CURNCY|DEFAULT|4603843"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"asset"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"Assets_key"</span><span class="p">:</span><span class="mi">118685</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetID"</span><span class="p">:</span><span class="s2">"EUR CURNCY"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIsin"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetFeederCode"</span><span class="p">:</span><span class="s2">"EUR CURNCY"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetName"</span><span class="p">:</span><span class="s2">"Euro Spot"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetTypo"</span><span class="p">:</span><span class="s2">"Currency"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIndustrySector"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetExpirationDate"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCountry"</span><span class="p">:</span><span class="s2">"UNKNOWN"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetClassFocus"</span><span class="p">:</span><span class="s2">"Curncy"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_feeder"</span><span class="p">:</span><span class="s2">"BBG"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetSedol"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetTicker"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCountryName"</span><span class="p">:</span><span class="s2">"eurozone"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetSectorName"</span><span class="p">:</span><span class="s2">"Curncy"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_name"</span><span class="p">:</span><span class="s2">"Euro Spot"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCategory"</span><span class="p">:</span><span class="s2">"SPOT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetShortName"</span><span class="p">:</span><span class="s2">"Euro Spot"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetCompany"</span><span class="p">:</span><span class="s2">"Euro Spot"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetIssuer"</span><span class="p">:</span><span class="s2">"Euro Spot"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetParentCompany"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetExposureMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_data"</span><span class="p">:{</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Assets_AssetPriceMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets__minfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets__mstatus"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_AssetSearchName"</span><span class="p">:</span><span class="s2">"Euro Spot"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_custom"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Assets_cur"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"CONVERTIBLE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"CONVERTIBLE_ts"</span><span class="p">:</span><span class="s2">"2015-10-14T00:00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"LAST_PRICE"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"LAST_PRICE_ts"</span><span class="p">:</span><span class="s2">"2015-11-10T13:03:22"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"PX_OPEN"</span><span class="p">:</span><span class="mf">1.3525</span><span class="p">,</span><span class="w">
+</span><span class="nt">"PX_OPEN_ts"</span><span class="p">:</span><span class="s2">"2014-07-19T00:00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"EXCH_CODE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"EXCH_CODE_ts"</span><span class="p">:</span><span class="s2">"2015-09-04T00:00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"PX_MID"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"PX_MID_ts"</span><span class="p">:</span><span class="s2">"2015-11-10T12:38:16"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"AssetTypo"</span><span class="p">:</span><span class="s2">"Currency"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"LAST_PRICE_1D"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"LAST_CHANGE_1D"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Assets_AssetIssuerLimits"</span><span class="p">:</span><span class="s2">"euro spot"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"account"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="mi">4603843</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="mi">120976</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Accounts_iban"</span><span class="p">:</span><span class="s2">"0001"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Accounts_bank"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"portfolio"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="mi">4603841</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_dossier"</span><span class="p">:</span><span class="s2">"FC001"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"bank"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="mi">120976</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Trades_pvtag"</span><span class="p">:</span><span class="s2">"CASH|EUR CURNCY|DEFAULT|4603843"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="s2">"CASH|EUR CURNCY|DEFAULT|4603843"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"CASH|EUR CURNCY|DEFAULT|4603843"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnluBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnluBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfuBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfuNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_perfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_perfuBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_perfuNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netAmount1dNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netAmount1dBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netAmount1d"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlr1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlr1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlu1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlu1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfr1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerfu1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnlrBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnlrBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPnl1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_pnl1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_netPerf1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"calc_avgChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"quota_otc"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"__keep"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"position"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_errors"</span><span class="p">:[</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"Trades_type"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_tags"</span><span class="p">:[</span><span class="w">
+</span><span class="s2">"CASH"</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2015-11-04T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2015-11-04T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPriceDate"</span><span class="p">:</span><span class="s2">"2015-11-10T13:03:22"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curChangeDate"</span><span class="p">:</span><span class="s2">"2015-11-04T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118685"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_avgChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_avgVizChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_avgCurChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_avgCurVizChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_sign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPrice"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netPrice"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetPrice"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_accIntVal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_delta"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_undlPrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_quotaCost"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_commissionNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_commissionBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_commission"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCommissionNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCommissionBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCommission"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_interestNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_interestBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_interest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curInterestNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curInterestBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_taxNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_taxBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_tax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curTaxNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curTaxBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curTax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_amountNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_amountBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netAmountNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netAmountBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_notionalNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_notionalBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_notional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netNotionalNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netNotionalBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_netNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAmountNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAmountBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetAmountNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetAmountBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNotionalNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNotionalBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetNotionalNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetNotionalBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curExposureNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curExposureBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetExposureNC"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetExposureBs"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"4603843"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"4603841"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_BankOrganizationsKey"</span><span class="p">:</span><span class="s2">"120976"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_BrokerOrganizationsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCompanyNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAssetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCompanyNetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAssetNetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCompanyExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAssetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curCompanyNetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curAssetNetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curGWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNotionalGWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetNotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetNotionalGWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curExposureGWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curNetExposureGWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_weight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_gWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPAWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPANotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPANetNotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPAExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"Trades_curPANetExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"conf"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"pview"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"parts"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"SECURITY"</span><span class="p">:{</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"CASH"</span><span class="p">:{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netAmount1d"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPAWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANetNotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPAExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANetExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"parts"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"SECURITY"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netAmount1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNotional"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetNotional"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curExposure"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetExposure"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPAWeight"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANotionalWeight"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANetNotionalWeight"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPAExposureWeight"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANetExposureWeight"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"CASH"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netAmount1d"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnluNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"pnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPAWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANetNotionalWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPAExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curPANetExposureWeight"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"endDate"</span><span class="p">:</span><span class="s2">"2015-11-04T00:00:00+00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"conf"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="w">
+</span><span class="s2">"4603841"</span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"curAUM"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetNotional"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"curNetExposure"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"cash0d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"limitStatus"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"history"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Report/status'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"4596289"</span><span class="p">],</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Sf78b111252c3b01d13f234e40fa1f42dc87d454d"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Report_status</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Report_status.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Report/status'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Report_status</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nReport_status'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Report_status</code> shows all the properties, values, calculations, resources and assets related to a portfolio, or aggregated series of portfolios identified by their IDs (<code class="prettyprint">Portfolios_keys</code>).</p>
+
+<p>Optional REQUEST parameters allow you to show that portfolio or aggregate, with a different context, without changing the actual portfolio data permanently. It will simply show all the different values and calculations in the RESPONSE object triggered by the REQUEST object. </p>
+
+<p>For example, changing the <code class="prettyprint">currency</code> from a base currency of &lsquo;EUR&rsquo; to &#39;USD&rsquo; will show what values the portfolio would have had with a base currency of US$ (equivalent to the <code class="prettyprint">Valuation CCY</code> dropdown on the platform). </p>
+
+<p>Changing the <code class="prettyprint">endDate</code> would show the portfolio&rsquo;s positions on that date (equivalent to the <code class="prettyprint">Valuation date</code> dropdown on the platform&rsquo;s PORTFOLIO page). Setting the endDate as a date (in format YYYY-MM-DD) rather than UTC dateTime will show the closing prices for that date.</p>
+
+<p>The <code class="prettyprint">history</code> parameter set to <code class="prettyprint">1</code> (true) will show the historic daily positions if the <code class="prettyprint">Rebuild Historical Portfolio Position</code> Task has previously been run for that portfolio, or else show an empty array (&ldquo;history&rdquo;:[], as here).</p>
+
+<h3 id="report_status-query-parameters">Report_status Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Portfolios_keys</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Base currency</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>FALSE</td>
+<td>DateTime</td>
+<td>YYYY-MM-DDThh:mm:ss (UTC)</td>
+</tr>
+<tr>
+<td>history</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Show historic positions</td>
+</tr>
+<tr>
+<td>simulate</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>???</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<p>The RESPONSE object contains a <code class="prettyprint">report</code> key with a complex series of nested object values, shown in its simplest form (with one cash transaction of EUR 1000 - the base currency.) The structure of the <code class="prettyprint">report</code> object is:</p>
+
+<p>{ report: 
+   { endDate: &#39;2015-11-11T09:31:07+00:00&rsquo;,<br>
+     name: &#39;001testAPI&rsquo;,<br>
+     portfolios: [ [Object] ],<br>
+     views: { AGGR: [Object] },<br>
+     conf: { Portfolios_keys: [Object] },<br>
+     calc:<br>
+      { curAUM: 1000,<br>
+        curNotional: 1000,<br>
+        curNetNotional: 1000,<br>
+        curExposure: 1000,<br>
+        curNetExposure: 1000,<br>
+        cash0d: 0,<br>
+        netPerfu: 0,<br>
+        netPnlu: 0,<br>
+        netPerf1d: 0,<br>
+        netPnl1d: 0 },<br>
+     currency: &#39;EUR&rsquo;,<br>
+     limitStatus: true } }  </p>
+
+<p>The <code class="prettyprint">portfolios</code> key takes an array of objects in order to allow aggregate values from different portfolios. Each object shows all available information about that portfolio.</p>
+
+<p>The <code class="prettyprint">views</code> key contains an <code class="prettyprint">AGGR</code> object with an <code class="prettyprint">entries</code> object value whose keys are asset tag objects in the format ASSET TYPE | SECURITY NAME and TYPE| PORTFOLIO TYPE | PORTFOLIO ID for all assets. <code class="prettyprint">ASSET TYPE</code> is <code class="prettyprint">SECURITY</code> or <code class="prettyprint">CASH</code>, <code class="prettyprint">SECURITY TYPE</code> is <code class="prettyprint">EQUITY</code>, or <code class="prettyprint">CURNCY</code> or ???. <code class="prettyprint">PORTFOLIO TYPE</code> is <code class="prettyprint">DEFAULT</code> or <code class="prettyprint">FUND</code>, and the PORTFOLIO ID again allows for multiple portfolios to be aggregated. Typical examples are <code class="prettyprint">SECURITY|AAPL US EQUITY|DEFAULT|4603983</code> or <code class="prettyprint">CASH|EUR CURNCY|DEFAULT|4603983</code>. </p>
+
+<p>The <code class="prettyprint">report.views.AGGR</code> object also contains <code class="prettyprint">conf</code> (configuration) and <code class="prettyprint">calc</code> keys that take their own objects.</p>
+
+<p>The <code class="prettyprint">conf</code> key value is <code class="prettyprint">Portfolios_keys</code> which takes an array of IDs.</p>
+
+<p>The <code class="prettyprint">calc</code> key value is an object which contains all the totals for the asset value calculations. ???Currently these have a delta of 11 and are???:<br>
+<code class="prettyprint">curAUM</code>: current Assets Under Management - total market value of portfolio&rsquo;s assets<br>
+<code class="prettyprint">curNotional</code>: current total value of a leveraged position&rsquo;s assets<br>
+<code class="prettyprint">curNetNotional</code>: current notional value after deduction of charges (eg commission)<br>
+<code class="prettyprint">curExposure</code>: current replacement cost and credit exposure<br>
+<code class="prettyprint">curNetExposure</code>: ????<br>
+<code class="prettyprint">cash0d</code>: ????<br>
+<code class="prettyprint">netPerfu</code>: unrealized performance<br>
+<code class="prettyprint">netPnlu</code>: unrealized Pnl<br>
+<code class="prettyprint">netPerf1d</code>: performance over 1 day (since previous closing prices)<br>
+<code class="prettyprint">netPnl1d</code>: PnL over 1 day (since previous closing prices)</p>
+
+<p><code class="prettyprint">currency</code> flags the REQUEST parameter described above and the currency used in this <code class="prettyprint">Report_status</code> (which may not be the portfolio&rsquo;s)</p>
+
+<p><code class="prettyprint">limitStatus</code> is a boolean for exposure limits imposed on assets </p>
+
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="json">JSON Request/Response</a>
+                <a href="#" data-language-name="javascript">Javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
