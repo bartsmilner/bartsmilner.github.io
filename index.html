@@ -91,7 +91,7 @@
 
 <p>For more information about options, please see the <a href="https://dev.fincluster.com:8080/agent/#/help">Help guide</a>.</p>
 
-<h3 id="example-query-parameters">Example Query Parameters</h3>
+<p><strong>Example Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -185,7 +185,7 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nAUTH_get'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<h3 id="auth_get-query-parameters">Auth_get Query Parameters</h3>
+<p><strong>Auth_get Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -506,7 +506,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 </tr>
 </tbody></table>
 
-<h2 id="list-portfolios">List Portfolios</h2>
+<h2 id="list-portfolios"><a name="listPortfolios"></a>List Portfolios</h2>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080:/api/CORE/Portfolios/list</p>
@@ -580,9 +580,14 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p><code class="prettyprint">Portfolios_list</code> lists all available portfolios, sorted by qorder values ???CHK testAPI (asc || desc).</p>
+<p><code class="prettyprint">Portfolios_list</code> lists all portfolios, identified by the <code class="prettyprint">qwhere</code> parameter value and sorted by <code class="prettyprint">qorder</code> values. </p>
 
-<h3 id="portfolios_list-query-parameters">Portfolios_list Query Parameters</h3>
+<p>The value in the Request object here identifies portfolios which are active and sorts them in the ascending alphanumeric order of their names. </p>
+
+<p>The <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Portfolios\&quot;.\&quot;key\&quot; in (&#39;00000000&#39;))&quot;</code>
+parameter, used by the <a href="#positionEditor"><code class="prettyprint">Position Editor</code></a>, finds a single portfolio by its ID. </p>
+
+<p><strong>Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -602,13 +607,13 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>qwhere</td>
 <td>FALSE</td>
 <td>String</td>
-<td>Query of portfolio selection</td>
+<td>Query of portfolios selection</td>
 </tr>
 <tr>
 <td>qorder</td>
 <td>FALSE</td>
 <td>String</td>
-<td>Portfolios&rsquo; sort order</td>
+<td>Portfolios&rsquo; asc or desc sort order</td>
 </tr>
 <tr>
 <td>getPerm</td>
@@ -699,7 +704,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Users_stats</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
 <p>With <code class="prettyprint">sid</code> as the only Request parameter, <a name="resourcesList"><code class="prettyprint">Resources_list</code></a> will show all resources in use, most of which will be <code class="prettyprint">ASSET</code> type. With the Request parameter <code class="prettyprint">&quot;searchTypes&quot;:[&quot;TPL-PTF-VIEW&quot;]</code>, as  here, it will show available templates/layouts for the Portfolio poisition tables.</p>
@@ -931,7 +936,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <p>https://dev.fincluster.com:8080/api/Report/status</p>
 </blockquote>
 
-<p><strong><a href="#reportStatus"><code class="prettyprint">Report_status</code></a></strong> is used to get a specific portfolio.</p>
+<p><strong><a href="#reportStatus"><code class="prettyprint">Report_status</code></a></strong> is used to get all the available information for a specific portfolio.</p>
 
 <h1 id="portfolio">Portfolio</h1>
 
@@ -991,7 +996,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p><code class="prettyprint">Portfolios_save</code> creates a new Portfolio, with the parameters listed in the following table. A successful request will return a new Portfolio: id as the <code class="prettyprint">&quot;Portfolios_key&quot;</code> string value. The Portfolio: id is unique, the Portfolio: name does not have to be unique.</p>
 
-<h3 id="portfolios_save-query-parameters">Portfolios_save Query Parameters</h3>
+<p><strong>Portfolios_save Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -1192,7 +1197,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p><code class="prettyprint">Portfolios_del</code> deletes a portfolio or portfolios, with the parameters listed in the following table. A successful request will return the deleted Portfolio: id(s) as an array of the deleted <code class="prettyprint">&quot;Portfolios_key&quot;</code> string values. If the query selection criteria (here, portfolios IDs) are not found, the RESPONSE will be an empty array <code class="prettyprint">{&quot;Portfolios_keys&quot;:[]}</code>.</p>
 
-<h3 id="portfolios_del-query-parameters">Portfolios_del Query Parameters</h3>
+<p><strong>Portfolios_del Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -1660,7 +1665,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p>The <code class="prettyprint">history</code> parameter set to <code class="prettyprint">1</code> (true) will show the historic daily positions if the <code class="prettyprint">Rebuild Historical Portfolio Position</code> Task has previously been run for that portfolio, or else show an empty array (&ldquo;history&rdquo;:[], as here).</p>
 
-<h3 id="report_status-query-parameters">Report_status Query Parameters</h3>
+<p><strong>Report_status Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -1764,17 +1769,23 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p><code class="prettyprint">limitStatus</code> is a boolean for exposure limits imposed on assets </p>
 
-<h2 id="position-editor">Position Editor</h2>
+<h2 id="position-editor"><a name="positionEditor"></a>Position Editor</h2>
 
-<p><strong><em>Portfolios_list</em></strong></p>
+<p>Adding a position on the platform uses <code class="prettyprint">Position Editor -&gt; Insert</code>, which involves a sequence of functions. Initially <a href="#listPortfolios"><code class="prettyprint">Portfolios_list</code></a> is called with the current portfolio&rsquo;s ID to get information on the portfolio. Then <code class="prettyprint">Portfolios_listAccounts</code> is called with the portfolio ID to get all its associated accounts. </p>
 
-<p><strong><em>Resources_listRelations</em></strong></p>
+<p><code class="prettyprint">Resources_listRelations</code> returns all the relationships, organisational relations with Banks and Brokers and CRM relations with clients. <code class="prettyprint">Portfolios_listAccounts</code> is called again, this time with the default or selected account ID. Adding a security (rather than cash) calls the <code class="prettyprint">Assets_list</code> which shows search results for each character added to the search parameter, or an asset selected by its ID.</p>
 
-<p><strong><em>Portfolios_listAccounts</em></strong></p>
+<p>Automatic calculation of a security&rsquo;s values can be returned with <code class="prettyprint">Transactions_preview</code>, prior to <code class="prettyprint">Transactions_save</code> to add the asset to the portfolio, and <code class="prettyprint">Report_status</code> to update the value of the portfolio.</p>
 
-<p><strong><em>Search security</em></strong> - Assets/list</p>
+<h3 id="portfolio-list-accounts">Portfolio List Accounts</h3>
 
-<h2 id="save-new-position">Save new position</h2>
+<h3 id="resources-list-relations">Resources List Relations</h3>
+
+<h3 id="search-security-assets-list">Search security - Assets/list</h3>
+
+<h3 id="automatic-calculation">Automatic calculation</h3>
+
+<h3 id="save-new-position">Save new position</h3>
 
 <h2 id="export-portfolio-position">Export Portfolio position</h2>
 
@@ -1797,8 +1808,8 @@ You must replace <code>Your_API_key</code> with your personal API key.
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="nt">"file"</span><span class="p">:</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV_20151117.csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"file"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV_20151117.csv"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"format"</span><span class="p">:</span><span class="s2">"csv"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lEI1BPUlRGT0xJT19FWFRJRCNQT1JURk9MSU8jQkFOSyNBQ0NPVU5UX0lEI0FDQ09VTlQjREFURSNTRUNfSVNJTiNTRUNfVElDS0VSI1NFQ1VSSVRZI1NFQ19DQ1kjU0VDX1RZUEUjUVRZI1BSSUNFI1BSSUNFX05FVCNFWFJBVEUjQU1PVU5UI0FNT1VOVF9MT0MjQU1PVU5UX05FVCNBTU9VTlRfTkVUX0xPQyNDT01NSVNTSU9OX0NPU1QjSU5URVJFU1RfQ09TVCNQUklDRV9NS1QjRVhSQVRFX01LVCNBTU9VTlRfTUtUI0FNT1VOVF9ORVRfTUtUI0FNT1VOVF9NS1RfTE9DI0FNT1VOVF9ORVRfTUtUX0xPQyNJTlRFUkVTVF9NS1QjRVhQT1NVUkVfTUtUI1dFSUdIVCNQTkxfVU5STCNQRVJGX1VOUkwK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"aux"</span><span class="p">:{},</span><span class="w">
@@ -1821,7 +1832,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p>If <code class="prettyprint">endDate</code> is omitted from the Request it defaults to current, and if <code class="prettyprint">Date</code> Type is used it will be set to 23:59:59 for the closing prices for that date. The <code class="prettyprint">delimiter</code> defaults to &ldquo;,&rdquo; if omitted. The optional <code class="prettyprint">currency</code> parameter can be used to translate the results from the base currency to a different currency. </p>
 
-<p>The Response <code class="prettyprint">file.content</code> is formatted as base64. The Response <code class="prettyprint">file.name</code> is generated automatically based on the schema <code class="prettyprint">name</code> and <code class="prettyprint">endDate</code> and the returned <code class="prettyprint">file.link</code> gives the path for download from <code class="prettyprint">https://dev.fincluster.com:8080/</code>. The CSV headers generated are:</p>
+<p>The Response <code class="prettyprint">file.content</code> is formatted as base64. The Response <code class="prettyprint">file.name</code> is generated automatically based on the schema <code class="prettyprint">name</code> and <code class="prettyprint">endDate</code> and the returned <code class="prettyprint">file.link</code> gives the path for download from <code class="prettyprint">https://dev.fincluster.com:8080/</code>. The <code class="prettyprint">file.aux</code> may contain additional information about the file. The CSV headers generated are:</p>
 
 <p><code class="prettyprint">PORTFOLIO_ID,PORTFOLIO_EXTID,PORTFOLIO,BANK,ACCOUNT_ID,ACCOUNT,DATE,SEC_ISIN,SEC_TICKER,SECURITY,SEC_CCY,SEC_TYPE,QTY,PRICE,PRICE_NET,EXRATE,AMOUNT,AMOUNT_LOC,AMOUNT_NET,AMOUNT_NET_LOC,COMMISSION_COST,INTEREST_COST,PRICE_MKT,EXRATE_MKT,AMOUNT_MKT,AMOUNT_NET_MKT,AMOUNT_MKT_LOC,AMOUNT_NET_MKT_LOC,INTEREST_MKT,EXPOSURE_MKT,WEIGHT,PNL_UNRL,PERF_UNRL</code></p>
 
@@ -1843,7 +1854,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>Portfolios_keys</td>
 <td>TRUE</td>
 <td>Array of Strings</td>
-<td>Selected Portfolio ID</td>
+<td>Selected Portfolio IDs</td>
 </tr>
 <tr>
 <td>schema</td>
@@ -1890,8 +1901,8 @@ You must replace <code>Your_API_key</code> with your personal API key.
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="nt">"file"</span><span class="p">:</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV_20151117.csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"file"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV_20151117.csv"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"format"</span><span class="p">:</span><span class="s2">"csv"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELFBPUlRGT0xJT19FWFRJRCxQT1JURk9MSU8sQUNDT1VOVF9JRCxBQ0NPVU5ULERBVEUsU0VDX1RJQ0tFUixTRUNVUklUWSxTRUNfQ0NZLFFUWSxBTU9VTlQsQU1PVU5UX0xPQyxFWFJBVEVfTUtULEFNT1VOVF9NS1QsQU1PVU5UX01LVF9MT0MsV0VJR0hULFBOTF9VTlJMCjQ4MzYzOTMsRkMwMDEsMDAxdGVzdEFQSSw0ODM2Mzk1LDAwMDEsMjAxNS0xMS0xNyxFVVIgQ1VSTkNZLEV1cm8gU3BvdCxFVVIsMTAwMCwxMDAwLDEwMDAsMSwxMDAwLDEwMDAsMSwK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"aux"</span><span class="p">:{},</span><span class="w">
@@ -1912,7 +1923,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'exportCashPortfolioData'</span><span class="p">,</span> <span class="nx">exportCashPortfolioData</span><span class="p">);</span>
 </code></pre>
 
-<p>The endPoint and Require -&gt; Response objects for <code class="prettyprint">Standard Cash Position (CSV)</code> are the same as <a href="#stndSecPos"><code class="prettyprint">Standard Securities Position (CSV)</code></a>. The difference is that the schema must be: <code class="prettyprint">&quot;FINCLUSTER-POSITION_CASH_CSV&quot;</code> and the headers generated in the Response <code class="prettyprint">file.content</code> are: </p>
+<p>The endPoint and Require -&gt; Response objects for <code class="prettyprint">Standard Cash Position (CSV)</code> are almost the same as <a href="#stndSecPos"><code class="prettyprint">Standard Securities Position (CSV)</code></a>. The difference is that the schema must be: <code class="prettyprint">&quot;FINCLUSTER-POSITION_CASH_CSV&quot;</code> and the headers generated in the Response <code class="prettyprint">file.content</code> are: </p>
 
 <p><code class="prettyprint">PORTFOLIO_ID,PORTFOLIO_EXTID,PORTFOLIO,ACCOUNT_ID,ACCOUNT,DATE,SEC_TICKER,SECURITY,SEC_CCY,QTY,AMOUNT,AMOUNT_LOC,EXRATE_MKT,AMOUNT_MKT,AMOUNT_MKT_LOC,WEIGHT,PNL_UNRL</code></p>
 
@@ -1934,7 +1945,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>Portfolios_keys</td>
 <td>TRUE</td>
 <td>Array of Strings</td>
-<td>Selected Portfolio ID</td>
+<td>Selected Portfolio IDs</td>
 </tr>
 <tr>
 <td>schema</td>
@@ -1959,6 +1970,161 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>FALSE</td>
 <td>String</td>
 <td>&ldquo;,&rdquo;(default) or &ldquo;;&rdquo; or &ldquo;#&rdquo;</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="activity-statement-pdf">Activity Statement PDF</h3>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"000000"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"endDate"</span><span class="p">:</span><span class="s2">"2015-11-17"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"file"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Report_20151117_91080.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"format"</span><span class="p">:</span><span class="s2">"pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"JVBERi0xLjQKMSAwIG9iago8PAovVGl0bGUgKP7/KQovQ3JlYXRvciAo/v8pCi9Qcm9kdWNlciAo/v8AUQB0ACAANQAuADMAL..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"aux"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"link"</span><span class="p">:</span><span class="s2">"/ns/FINCLUSTER/pub/tmp/Report_20151117_91080.pdf"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"Portfolio ID"</span><span class="p">}}));</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Export_Activity_Pos_PDF</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Activity_Pos_PDF.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Activity_Pos_PDF</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nExport_Activity_Pos_PDF'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+
+<span class="c1">//The Response `file.content` in base64 is formatted to create a PDF that can be opened in Adobe Acrobat or in a browser after download.</span>
+</code></pre>
+
+<p>The endPoint and Require -&gt; Response objects for <code class="prettyprint">Activity Statement PDF</code> are very similar to <a href="#stndSecPos"><code class="prettyprint">Standard Securities Position (CSV)</code></a>. The difference is that the schema must be: <code class="prettyprint">&quot;FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF&quot;</code> and there is no delimiter. The endPoint is the same. The Response <code class="prettyprint">file.name</code> is &#39;Report_&rsquo; and  endDate as &#39;YYYYMMDD_&rsquo; plus a random number.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Portfolios_keys</td>
+<td>TRUE</td>
+<td>Array of Strings</td>
+<td>Selected Portfolio IDs</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF&rdquo;</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="analytic-report-pdf">Analytic Report PDF</h3>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"000000"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_PDF"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"startDate"</span><span class="p">:</span><span class="s2">"2015-05-17"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"endDate"</span><span class="p">:</span><span class="s2">"2015-11-17"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"file"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Report_20151117_77469.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"format"</span><span class="p">:</span><span class="s2">"pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"JVBERi0xLjQKMSAwIG9iago8PAovVGl0bGUgKP7/KQovQ3JlYXRvciAo/v8pCi9Qcm9kdWNlciAo..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"aux"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"link"</span><span class="p">:</span><span class="s2">"/ns/FINCLUSTER/pub/tmp/Report_20151117_77469.pdf"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"Portfolio ID"</span><span class="p">}}));</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Analytic_Report_PDF</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Analytic_Report_PDF.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Analytic_Report_PDF</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nExport_Activity_Pos_PDF'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+
+<span class="c1">//The Response `file.content` in base64 is formatted to create a PDF that can be opened in Adobe Acrobat or in a browser after download.</span>
+</code></pre>
+
+<p>Before generating <code class="prettyprint">Analytic Report PDF</code>, it is necessary to have run the <code class="prettyprint">Task</code>: <a href="#histPosTask"><code class="prettyprint">Rebuild Historical Portfolio Position</code></a> (which populates the Portfolio -&gt; Analytics tab on the platform) for that portfolio. If that <code class="prettyprint">Task</code> has not been run and the portfolio has no historical data, the pdf generated will show the message: <em>&ldquo;Not enough historical data to compute statistics!&rdquo;</em> and will be otherwise empty.</p>
+
+<p>The endPoint and Require -&gt; Response objects for <code class="prettyprint">Analytic Report PDF</code> are similar to <a href="#stndSecPos"><code class="prettyprint">Standard Securities Position (CSV)</code></a>. The difference is that the schema must be: <code class="prettyprint">&quot;FINCLUSTER-PORTFOLIO_PDF&quot;</code>, and a <code class="prettyprint">startDate</code> must be included or else the first page will show a <em>&ldquo;Not enough historical data to compute statistics!&rdquo;</em> message. If the <code class="prettyprint">endDate</code> is omitted it will default to the current date. There is no delimiter, the endPoint is the same as the other export portfolio position templates. The Response <code class="prettyprint">file.name</code> is &#39;Report_&rsquo; and endDate as &#39;YYYYMMDD_&rsquo; plus a random number.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Portfolios_keys</td>
+<td>TRUE</td>
+<td>Array of Strings</td>
+<td>Selected Portfolio IDs</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF&rdquo;</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>TRUE</td>
+<td>Date</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>YYYY-MM-DD</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -1996,7 +2162,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p><strong><em>Rebuild Portfolio Position ???Pairstech only</em></strong></p>
 
-<p><strong><em>Rebuild Portfolios Historical Position ???</em></strong></p>
+<p><strong><em><a name="histPosTask"></a>Rebuild Portfolios Historical Position ???</em></strong></p>
 
 <h2 id="show-portfolio-position-templates">Show Portfolio Position templates</h2>
 
