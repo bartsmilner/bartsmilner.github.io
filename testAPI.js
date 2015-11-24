@@ -1,10 +1,8 @@
 //Installation;
 //npm install sync-request;
 //Then in terminal run 
-//node testAPID 
+//node testAPI 
 //from the same directory as this file and the sync-request installation;
-
-//if it fails after AUTH, update sid: ;
 
 var request = require('sync-request');
 var fs = require('fs');
