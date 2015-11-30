@@ -1,0 +1,8 @@
+{
+  "sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+  "searchTypes":["TPL-PTF-VIEW"],
+  "qwhere":" AND (\"Resources\".\"type\" in ('TPL-PTF-VIEW'))",
+  "qorder":"\"Resources\".\"name\" asc",
+  "rows":25,
+  "Companies_key":3
+}

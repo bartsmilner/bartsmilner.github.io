@@ -1,0 +1,11 @@
+{
+	"sid":null,
+	"Portfolios_keys":null,
+	"qfilters":null,
+	"qlimit":10,
+	"qskip":0,
+	"qsort":{
+		"data.endDate":1
+	},
+	"Companies_key":3
+}

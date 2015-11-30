@@ -1,16 +1,18 @@
 //Installation;
 //npm install sync-request;
 //Then in terminal run 
-//node testAPI 
+//node testAPID 
 //from the same directory as this file and the sync-request installation;
+
+//if it fails after AUTH, update sid: ;
 
 var request = require('sync-request');
 var fs = require('fs');
 
 var Auth_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Auth_get.json')),
-	Portfolios_save = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Portfolios_save.json')),
-	Portfolios_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Portfolios_list.json')),
-	Portfolios_del = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Portfolios_del.json')),
+  Portfolios_save = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Portfolios_save.json')),
+  Portfolios_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Portfolios_list.json')),
+  Portfolios_del = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Portfolios_del.json')),
   Report_status = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Report_status.json')),
   Users_stats = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Users_stats.json')),
   Users_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Users_list.json')),
@@ -29,7 +31,11 @@ var Auth_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Auth_get.jso
   Assets_list_key = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Assets_list_key.json')),
   Transactions_preview_aapl = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_preview_aapl.json')),
   Transactions_save_aapl_100 = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_save_aapl_100.json')),
-	res, resObj, auth, newTestID, oldTestID = null, oldTestID1 = null, histTestID = null, activeAccount = null;
+  Transactions_save_ccy_USD7000 = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_save_ccy_USD7000.json')),
+  Task_reportStatusHistory = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Task_reportStatusHistory.json')),
+  Transactions_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_list.json')),
+  Assets_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Assets_list.json')),
+  res, resObj, auth, newTestID, oldTestID = null, oldTestID1 = null, histTestID = null, activeAccount = null;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';//to prevent Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;
 
@@ -63,7 +69,7 @@ console.log('\nPortfolios_list all params', resObj);
 
 //get previous portfolio tests - for housekeeping;
 for(var I = 0; I < resObj.rows.length; I++){
-	if(resObj.rows[I].Portfolios_name == "001testAPI" && resObj.rows[I].Portfolios_key != newTestID.Portfolios_key){
+  if(resObj.rows[I].Portfolios_name == "001testAPI" && resObj.rows[I].Portfolios_key != newTestID.Portfolios_key){
     oldTestID = resObj.rows[I].Portfolios_key;
   }
   if(resObj.rows[I].Portfolios_name == "001testAPI1"){
@@ -258,7 +264,7 @@ res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Assets/list', {'
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nAssets_list key all params', resObj);
 
-//function assets_list;//search Assets key;
+//function transactions_preview;//transactions;
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/preview', {'json': {"sid":auth,"Trades_AssetsKey":"118613"}});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nTransactions_preview key required params',resObj);
@@ -268,10 +274,8 @@ res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/pre
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nTransactions_preview_aapl all params', resObj);
 
-//function Transactions_save;
-res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"118613","Trades_AccountsKey": activeAccount,"Trades_quota":100,"Trades_stage":"trade","Trades_group":"SECURITY","Trades_action":"POS","Trades_status":"POSITION","Trades_currency":"USD","Trades_changeCurrency":"EUR",
-  "Trades_date":"2015-11-20T17:50:53+00:00","Trades_settleDate":"2015-11-20","Trades_data":{"validityDate":"2015-11-20"},"Trades_class":"DEFAULT",
-  "Trades_commissionType":"ABSOLUTE","Companies_key":3}});
+//function Transactions_save: equity (aapl);
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"118613","Trades_AccountsKey": activeAccount,"Trades_quota":"200","Trades_stage":"trade","Trades_group":"SECURITY","Trades_action":"POS","Trades_status":"POSITION","Trades_currency":"USD"}});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nTransactions_save_aapl_100 required params',resObj);
 Transactions_save_aapl_100.sid = auth;
@@ -280,3 +284,44 @@ Transactions_save_aapl_100.Trades_AccountsKey = activeAccount;
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': Transactions_save_aapl_100});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nTransactions_save_aapl_100 all params', resObj);
+
+//function Transactions_save: fx ccy;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"118686","Trades_AccountsKey": activeAccount,"Trades_amount":"1000","Trades_quota":"1000","Trades_stage":"trade","Trades_group":"CASH","Trades_action":"POS","Trades_status":"POSITION","Trades_currency":"USD","Trades_changeCurrency":"EUR","Trades_netAmount":null,"Trades_price":null,"Trades_change":null}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save USD$1000 required params',resObj);
+Transactions_save_ccy_USD7000.sid = auth;
+Transactions_save_ccy_USD7000.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Transactions_save_ccy_USD7000.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': Transactions_save_ccy_USD7000});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save_ccy_USD7000 all params', resObj);
+
+//function Task_push;//Task_reportStatusHistory template;
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Task/push', {'json':{"sid":auth,"task":{"action":"Task_reportStatusHistory","data":{"qwhere":" AND \"Portfolios\".key IN (" + newTestID.Portfolios_key + ")","startDate":"2015-11-24"}}}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTask_push Task_reportStatusHistory required params',resObj);
+Task_reportStatusHistory.sid = auth;
+Task_reportStatusHistory.task.data.qwhere = " AND \"Portfolios\".key IN (" + newTestID.Portfolios_key + ")";
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Task/push', {'json': Task_reportStatusHistory});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTask_push Task_reportStatusHistory all params', resObj);
+
+//function Transactions_list;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/list', {'json':{"sid":auth,"qwhere":" AND (\"Portfolios\".\"key\" = '" + newTestID.Portfolios_key + "') AND (\"Trades\".\"stage\" = 'trade') AND (\"Trades\".\"status\" in ('FILLED', 'PART-FILLED', 'CANCELED', 'ARCHIVED', 'POSITION', 'SIMULATED', 'CASH-UPDATE', 'ARCHIVED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\n Transactions_list required params',resObj);
+Transactions_list.sid = auth;
+Transactions_list.qwhere = " AND (\"Portfolios\".\"key\" = '" + newTestID.Portfolios_key + "') AND (\"Trades\".\"stage\" = 'trade') AND (\"Trades\".\"status\" in ('FILLED', 'PART-FILLED', 'CANCELED', 'ARCHIVED', 'POSITION', 'SIMULATED', 'CASH-UPDATE', 'ARCHIVED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')";
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/list', {'json': Transactions_list});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_list all params', resObj);
+
+//function Assets_list
+//show 25 of Securities all as of left nav panel
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Assets/list', {'json':{"sid":auth}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\n Assets_list Securities (all) required params',resObj);
+Assets_list.sid = auth;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Assets/list', {'json': Assets_list});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nAssets_list Securities (25) all params', resObj);

@@ -1,0 +1,9 @@
+{
+	"sid":"S8acb30ceaf23f1fbb67201c0917cb2de6e3981e8",
+	"qwhere":" AND (\"Portfolios\".\"key\" in ('0000000'))",
+	"qorder":"\"Portfolios\".\"name\" asc",
+	"Portfolios_key":"0000000",
+	"perm":1,
+	"rows":25,
+	"Companies_key":3
+}

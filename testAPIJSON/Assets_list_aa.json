@@ -1,0 +1,9 @@
+{
+  "sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+  "qwhere":" AND (\"Assets\".\"AssetID\" ilike '%aa%' or \"Assets\".\"AssetName\" ilike '%aa%' or \"Assets\".\"AssetShortName\" ilike '%aa%' or \"Assets\".\"AssetTicker\" ilike '%aa%' or \"Assets\".\"AssetFeederCode\" ilike '%aa%' or \"Assets\".\"AssetIsin\" ilike '%aa%')",
+  "qorder":"\"Assets\".\"AssetName\" asc",
+  "searchString":"aa",
+  "feedsearch":1,
+  "Companies_key":3,
+  "rows":25
+}

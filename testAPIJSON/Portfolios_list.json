@@ -1,0 +1,10 @@
+{
+	"sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+	"getPerm":1,
+	"getShares":1,
+	"page":1,
+	"qwhere":" AND (\"Portfolios\".data->>'active')::BOOL = true",
+	"qorder":"\"Portfolios\".\"name\" asc",
+	"rows":25,
+	"Companies_key":3
+}

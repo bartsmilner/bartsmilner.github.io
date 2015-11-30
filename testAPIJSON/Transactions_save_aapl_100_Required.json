@@ -1,0 +1,56 @@
+{
+	"sid":null,
+	"Trades_date":"2015-11-23T10:52:57+00:00",
+	"Trades_data":{
+		"validityDate":"2015-11-23"},
+	"Trades_stage":"trade",
+	"Trades_class":"DEFAULT",
+	"Trades_group":"SECURITY",
+	"Trades_action":"POS",
+	"Trades_commissionType":"ABSOLUTE",
+	"Trades_status":"POSITION",
+	"Trades_changeCurrency":"EUR",
+	"Trades_AssetsKey":"118613",
+	"Trades_currency":"USD",
+	"Trades_settleDate":"2015-11-18",
+	"Trades_PortfoliosKey":null,
+	"Trades_AccountsKey":null,
+	"Trades_quota":100,
+	"Trades_amount":null,
+	"Trades_netAmount":null,
+	"Trades_price":null,
+	"Trades_change":null,
+	"customerSaveProcess":1,
+	"Companies_key":3
+}
+{
+	"sid":null,
+	"Trades_stage":"trade",
+	"Trades_group":"SECURITY",
+	"Trades_action":"POS",
+	"Trades_status":"POSITION",
+	"Trades_AssetsKey":"118613",
+	"Trades_currency":"USD",
+	"Trades_quota":100
+}
+
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+sid | TRUE | String |Your API key
+Trades_PortfoliosKey | TRUE | String |Portfolio ID
+Trades_AccountsKey | TRUE | String |Account ID
+Trades_AssetsKey | TRUE | String |Assets search key
+Trades_quota | TRUE | Number |Quantity traded
+Trades_stage | TRUE | String |trade
+Trades_group | TRUE | String |??? SECURITY, CASH or FUND
+Trades_action | TRUE | String |POS, BUY or SELL
+Trades_status | TRUE | String |POSITION, BUY or SELL
+Trades_AssetsKey | TRUE | String |Assets_key from 
+Trades_currency | TRUE | String |Asset trade currency
+Trades_changeCurrency | FALSE | String |Base currency
+Trades_date | FALSE | DateTime |YYYY-MM-DDThh:mm:ss+hh:mm (UTC)
+Trades_settleDate | FALSE | Date |??? YYYY-MM-DD Settlement Date
+Trades_data | FALSE | Object | data
+&nbsp;&nbsp;:validityDate | FALSE | Date |??? YYYY-MM-DD
+Trades_commissionType | FALSE | String |??? ABSOLUTE or ...
+Companies_key | FALSE | Number |Company ID

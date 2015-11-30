@@ -1,0 +1,9 @@
+{
+	"sid":null,
+	"getPerm":1,
+	"page":1,
+	"qwhere":"",
+	"qorder":"\"Assets\".\"AssetName\" asc",
+	"rows":25,
+	"Companies_key":3
+}	

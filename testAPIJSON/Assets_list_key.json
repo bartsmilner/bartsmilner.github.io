@@ -1,0 +1,8 @@
+{
+	"sid":"Sf64194e032ed1b0a3b4e3267611a3e2c1978c4b5",
+	"qwhere":" AND (\"Assets\".\"key\" = '118613')",
+	"qorder":"\"Assets\".\"AssetName\" asc",
+	"Assets_key":"118613",
+	"Companies_key":3,
+	"rows":25
+}

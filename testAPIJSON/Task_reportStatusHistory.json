@@ -1,0 +1,11 @@
+{
+	"sid":null,
+	"task":{
+		"data":{
+			"qwhere":" AND \"Portfolios\".key IN (0000000)",
+			"startDate":"2015-06-25"
+		},
+		"action":"Task_reportStatusHistory"
+	},
+	"Companies_key":3
+}

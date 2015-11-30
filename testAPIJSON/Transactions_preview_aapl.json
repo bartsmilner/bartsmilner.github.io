@@ -1,0 +1,19 @@
+{
+	"sid":null,
+	"Trades_AssetsKey":"118613",
+	"Trades_date":"2015-11-20T17:50:53+00:00",
+	"Trades_data":{"validityDate":"2015-11-20"},
+	"Trades_stage":"trade",
+	"Trades_class":"DEFAULT",
+	"Trades_group":"SECURITY",
+	"Trades_action":"POS",
+	"Trades_commissionType":"ABSOLUTE",
+	"Trades_status":"POSITION",
+	"Trades_changeCurrency":"EUR",
+	"Trades_currency":"USD",
+	"Trades_settleDate":"2015-11-20",
+	"Trades_PortfoliosKey":"0000000",
+	"Trades_AccountsKey":"4971698",
+	"Trades_quota":"100",
+	"Companies_key":3
+}	

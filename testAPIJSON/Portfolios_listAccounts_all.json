@@ -1,0 +1,8 @@
+{
+	"sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+	"Accounts_PortfoliosKey":"4836520",
+	"qwhere":" AND (\"Accounts\".\"PortfoliosKey\" = '4836520')",
+	"qorder":"\"Accounts\".\"iban\" asc",
+	"rows":25,
+	"Companies_key":3
+}

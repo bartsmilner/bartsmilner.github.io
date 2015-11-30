@@ -1,0 +1,23 @@
+{
+	"sid":null,
+	"Trades_date":"2015-11-26T15:06:02+00:00",
+	"Trades_data":{
+		"validityDate":"2015-11-26"
+		},
+	"Trades_stage":"trade",
+	"Trades_class":"DEFAULT",
+	"Trades_group":"CASH",
+	"Trades_action":"POS",
+	"Trades_commissionType":"ABSOLUTE",
+	"Trades_status":"POSITION",
+	"Trades_changeCurrency":"EUR",
+	"Trades_AssetsKey":"118686",
+	"Trades_currency":"USD",
+	"Trades_settleDate":"2015-11-26",
+	"Trades_PortfoliosKey":null,
+	"Trades_AccountsKey":"5003437",
+	"Trades_amount":"7000",
+	"customerSaveProcess":1,
+	"Trades_quota":"7000",
+	"Companies_key":3
+}

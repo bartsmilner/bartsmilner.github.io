@@ -1,0 +1,9 @@
+{
+	"sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+	"Portfolios_keys":["4836348"],
+	"schema":"FINCLUSTER-POSITION_SEC_CSV",
+	"currency":"EUR",
+	"endDate":"2015-11-17T09:56:07+00:00",
+	"delimiter":",",
+	"Companies_key":3
+}

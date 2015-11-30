@@ -1,0 +1,10 @@
+{
+	"sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+	"qfilters":{
+		"lev":{
+			"$gte":5
+		}
+	},
+	"rows":10,
+	"Companies_key":3
+}

@@ -1,0 +1,9 @@
+{
+	"sid":"S308f4352d354a7e29c9c2cb85675c02eb4f9a382",
+	"Relations_Resources1Key": "0000000",
+	"searchTypes":["PORTFOLIO-ORGANIZATION","PORTFOLIO-CRM"],
+	"qwhere":" AND (\"Relations\".\"Resources1Key\" = null) AND (\"Relations\".\"type\" in ('PORTFOLIO-ORGANIZATION','PORTFOLIO-CRM'))",
+	"qorder":"\"Resources2\".\"name\" asc",
+	"rows":25,
+	"Companies_key":3
+}
