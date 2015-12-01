@@ -1987,10 +1987,10 @@ parameters, used by the <code class="prettyprint">Position Editor</code>, find a
   </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".\"key\" in ('0000000'))"</span><span class="p">}});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/listAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">,</span><span class="s2">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Accounts\".\"PortfoliosKey\" = '0000000')"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
-<span class="kd">var</span> <span class="nx">Portfolios_list_pos_ed</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_list_pos_ed.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_list_pos_ed</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">Portfolios_listAccounts_all</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_listAccounts_all.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/listAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_listAccounts_all</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3069,6 +3069,99 @@ The sort order here will be ascending by the IBAN name. </p>
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
 </blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">0000005</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="nx">newTestID</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Close_position_aapl_118613</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Close_position_aapl_118613.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Close_position_aapl_118613</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save aapl close position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>If the <code class="prettyprint">Transactions_save</code> function is used with the Required parameters listed below, it will close the position for that asset (in this case <code class="prettyprint">aapl</code> which has an asset key of 118613). The differences between closing an equity or currency position are in the <code class="prettyprint">Trades_group</code>, the <code class="prettyprint">Trades_AssetsKey</code> (and possibly the <code class="prettyprint">Trades_currency</code>).</p>
+
+<p>The <code class="prettyprint">Trades_quota</code> parameter can also be set to 0, but if it is omitted the default for the required parameters (listed below) will still close that position.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Trades_PortfoliosKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Trades_stage</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;trade&rdquo; value</td>
+</tr>
+<tr>
+<td>Trades_action</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;POS&rdquo; value</td>
+</tr>
+<tr>
+<td>Trades_status</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;POSITION&rdquo; value</td>
+</tr>
+<tr>
+<td>Trades_group</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;SECURITY&rdquo; or &ldquo;CASH&rdquo; value</td>
+</tr>
+<tr>
+<td>Trades_currency</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Asset&rsquo;s trading currency</td>
+</tr>
+<tr>
+<td>Trades_AssetsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Asset ID</td>
+</tr>
+<tr>
+<td>Trades_quota</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>0</td>
+</tr>
+</tbody></table>
 
 <h2 id="export-portfolio-position">Export Portfolio position</h2>
 
@@ -4175,7 +4268,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nSecurities Assets_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>Calling <code class="prettyprint">Assets_list</code> with the <code class="prettyprint">sid</code> as sole parameter or with the <code class="prettyprint">qwhere</code> parameter containing an empty string, will return all <code class="prettyprint">Securities</code> in available portfolios, configured as the <code class="prettyprint">rows</code> object, whose value are an array of Assets objects. (???CHK new and available)</p>
+<p>Calling <code class="prettyprint">Assets_list</code> with the <code class="prettyprint">sid</code> as sole parameter or with the <code class="prettyprint">qwhere</code> parameter containing an empty string, will return all <code class="prettyprint">Securities</code> in available portfolios, configured as the <code class="prettyprint">rows</code> object, whose value is an array of Assets objects. (???CHK new and available)</p>
 
 <p>Optional parameters can be used to organise the returned <code class="prettyprint">rows</code> object, sorting and limiting the number of results. The <code class="prettyprint">qwhere</code> parameter can be used to search for a new security which is not currently included in a portfolio, using a <a href="#assetsListByCharacter"><code class="prettyprint">character string</code></a> or <a href="#assetsListByAssetsKey"><code class="prettyprint">asset key</code></a></p>
 

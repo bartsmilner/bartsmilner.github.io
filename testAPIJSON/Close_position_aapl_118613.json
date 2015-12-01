@@ -1,0 +1,10 @@
+{
+	"sid":null,	
+	"Trades_PortfoliosKey":null,
+	"Trades_stage":"trade",
+	"Trades_action":"POS",
+	"Trades_status":"POSITION",
+	"Trades_group":"SECURITY",
+	"Trades_currency":"USD",
+	"Trades_AssetsKey":"118613"
+}
