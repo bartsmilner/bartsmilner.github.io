@@ -784,7 +784,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
   </span><span class="err">99</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/count'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"S308f4352d354a7e29c9c2cb85675c02eb4f9a382"</span><span class="p">}});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/count'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Notify_count</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Notify_count.json'</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Notify/count'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_count</span><span class="p">});</span>
@@ -3086,7 +3086,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">0000005</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="nx">newTestID</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">}});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Close_position_aapl_118613</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Close_position_aapl_118613.json'</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Close_position_aapl_118613</span><span class="p">});</span>
@@ -3195,7 +3195,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"Portfolio ID"</span><span class="p">}}));</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Export_Sec_Pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Sec_Pos.json'</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Sec_Pos</span><span class="p">});</span>
@@ -3288,7 +3288,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"Portfolio ID"</span><span class="p">}}));</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Export_Cash_Pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Cash_Pos.json'</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Cash_Pos</span><span class="p">});</span>
@@ -3377,7 +3377,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"Portfolio ID"</span><span class="p">}}));</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Export_Activity_Pos_PDF</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Activity_Pos_PDF.json'</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Activity_Pos_PDF</span><span class="p">});</span>
@@ -3451,7 +3451,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"Portfolio ID"</span><span class="p">}}));</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Analytic_Report_PDF</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Analytic_Report_PDF.json'</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Analytic_Report_PDF</span><span class="p">});</span>
@@ -3515,18 +3515,242 @@ The sort order here will be ascending by the IBAN name. </p>
 <h2 id="import-portfolio-position-data">Import Portfolio position data</h2>
 
 <blockquote>
-<p>https://dev.fincluster.com:8080/api/Import/run ???CORE</p>
+<p>https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run</p>
 </blockquote>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Import_standard_sec_pos</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/importCSV/FINCLUSTER-POSITION_SEC_CSV_sample_453756.csv'</span><span class="p">,</span><span class="s1">'utf8'</span><span class="p">);</span>
+
+<span class="c1">//Replace example portfolio ID with current portfolio ID ['0000000']</span>
+<span class="nx">Import_standard_sec_pos</span> <span class="o">=</span> <span class="nx">Import_standard_sec_pos</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'453756'</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">'0000000'</span><span class="p">);</span>
+
+<span class="c1">//convert to base64</span>
+<span class="kd">var</span> <span class="nx">Import_standard_sec_pos_Base64</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">Import_standard_sec_pos</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">);</span>
+</code></pre>
+
+<p>Using the <code class="prettyprint">Import_run</code> function to import a position file in CSV format requires two specific interventions: i) the imported file requires the current portfolio ID as the first field of each row, or it will throw a fatal error, and ii) the imported content has to be converted into base64 format.</p>
+
+<p>For <code class="prettyprint">nodejs</code> (<code class="prettyprint">fs</code> required) javascript, there are a couple of additional functions shown here, to convert a CSV file into base64 with the current portfolio ID.</p>
+
+<p>The <code class="prettyprint">content</code> parameter value, shown below as base64 in the JSON Requests, is for the CSV table headers only. Column sequence is strict, although some fields can be empty or null. </p>
+
+<p>Parameter keys are the same for both Securities and Cash positions. The possible values for <code class="prettyprint">&quot;fmtnum&quot;</code> (Number Format) are <code class="prettyprint">&quot;std&quot;</code> (Standard: 10000000.00), which will work with all three delimiters and English <code class="prettyprint">&quot;en&quot;</code> (10,000,000.00), Italian <code class="prettyprint">&quot;it&quot;</code> (10.000.000,00), German <code class="prettyprint">&quot;de&quot;</code> (10000.000,00) and Other 1 <code class="prettyprint">&quot;other1&quot;</code> (10000000,00) which will only work with the &ldquo;;&rdquo; (semi-colon) or &ldquo;#&rdquo; (hash) delimiters, to avoid conflicts between numbers and the comma(&ldquo;,&rdquo;) field delimiter.</p>
+
+<p>The Date Format choices are &ldquo;MM/DD/YYYY&rdquo; (default), &ldquo;YYYY/MM/DD&rdquo;, &ldquo;DD-MM-YYYY&rdquo;, &ldquo;MM/DD/YY&rdquo;, &ldquo;DD/MM/YYYY&rdquo;, &ldquo;DD/MM/YY&rdquo;, &ldquo;MM-DD-YYYY&rdquo;.</p>
 
 <h3 id="standard-cash-position">Standard Cash Position</h3>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">cash</span><span class="w"> </span><span class="err">headers</span><span class="w"> </span><span class="err">only</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"000000"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"delimiter"</span><span class="p">:</span><span class="s2">","</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fmtdate"</span><span class="p">:</span><span class="s2">"YYYY-MM-DD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fmtnum"</span><span class="p">:</span><span class="s2">"std"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NDWSxEQVRFLEFNT1VOVA=="</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV_headers.csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"delayed"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">rows</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">data</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//cash header only;</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">,</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NDWSxEQVRFLEFNT1VOVA=="</span><span class="p">}}));</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Import_run_cash_pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Import_run_cash_pos.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Import_run_cash_pos</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nImport_run cash position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>A small cash import file in CSV format:</p>
+
+<p><code class="prettyprint">PORTFOLIO_ID,ACCOUNT_ID,SEC_CCY,DATE,AMOUNT
+453756,123456,EUR,2014-01-03,150000
+453756,123456,USD,2013-11-24,220000
+453756,123456,GBP,2015-06-05,365000</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Portfolios_keys</td>
+<td>TRUE</td>
+<td>Array of Strings</td>
+<td>Selected Portfolio IDs</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;FINCLUSTER-POSITION_CASH_CSV&rdquo;</td>
+</tr>
+<tr>
+<td>content</td>
+<td>TRUE</td>
+<td>Date</td>
+<td>CSV file in base64 format</td>
+</tr>
+<tr>
+<td>delimiter</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;,&rdquo; or &ldquo;;&rdquo; or &ldquo;#&rdquo;</td>
+</tr>
+<tr>
+<td>fmtdate</td>
+<td>FALSE</td>
+<td>Date format</td>
+<td>eg &ldquo;YYYY-MM-DD&rdquo; (default)</td>
+</tr>
+<tr>
+<td>fmtdate</td>
+<td>FALSE</td>
+<td>String</td>
+<td>format eg &ldquo;std&rdquo; (default: 1000.01)</td>
+</tr>
+<tr>
+<td>fileName</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>File to import ???</td>
+</tr>
+<tr>
+<td>delayed</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>???</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
 
 <h3 id="standard-securities-position">Standard Securities Position</h3>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">security</span><span class="w"> </span><span class="err">headers</span><span class="w"> </span><span class="err">only</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"000000"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"delimiter"</span><span class="p">:</span><span class="s2">","</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fmtdate"</span><span class="p">:</span><span class="s2">"YYYY-MM-DD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fmtnum"</span><span class="p">:</span><span class="s2">"std"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NPREUsU0VDX0NDWSwgREFURSxRVFksUFJJQ0UsRVhSQVRFLEFNT1VOVCxBTU9VTlRfTkVULENPTU1JU1NJT05fQ09TVA=="</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV_headers.csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"delayed"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">rows</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">data</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//cash securities only;</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">,</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NPREUsU0VDX0NDWSwgREFURSxRVFksUFJJQ0UsRVhSQVRFLEFNT1VOVCxBTU9VTlRfTkVULENPTU1JU1NJT05fQ09TVA=="</span><span class="p">}}));</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Import_run_sec_pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Import_run_sec_pos.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Import_run_sec_pos</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nImport_run securities position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>The <code class="prettyprint">FINCLUSTER-POSITION_SEC_CSV_sample_453756.csv</code> file in <code class="prettyprint">ascii/utf8</code>:</p>
+
+<p>PORTFOLIO_ID,ACCOUNT_ID,SEC_CODE,SEC_CCY, DATE,QTY,PRICE,EXRATE,AMOUNT,AMOUNT_NET,COMMISSION_COST<br>
+453756,434846,AAPL US EQUITY,USD,2013-02-03,100,86.57,1.345,8657,8652,5<br>
+453756,434846,FR0010869578,EUR,2014-05-21,250,41.75,1,10437.5,10435.5,2<br>
+453756,434846,GB00B1H05486,GBP,2015-09-29,10000,183.46,0.734,18346,18342,4</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Portfolios_keys</td>
+<td>TRUE</td>
+<td>Array of Strings</td>
+<td>Selected Portfolio IDs</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;FINCLUSTER-POSITION_SEC_CSV&rdquo;</td>
+</tr>
+<tr>
+<td>content</td>
+<td>TRUE</td>
+<td>Date</td>
+<td>CSV file in base64 format</td>
+</tr>
+<tr>
+<td>delimiter</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;,&rdquo; or &ldquo;;&rdquo; or &ldquo;#&rdquo;</td>
+</tr>
+<tr>
+<td>fmtdate</td>
+<td>FALSE</td>
+<td>Date format</td>
+<td>eg &ldquo;YYYY-MM-DD&rdquo; (default)</td>
+</tr>
+<tr>
+<td>fmtdate</td>
+<td>FALSE</td>
+<td>String</td>
+<td>format eg &ldquo;std&rdquo; (default: 1000.01)</td>
+</tr>
+<tr>
+<td>fileName</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>File to import ???</td>
+</tr>
+<tr>
+<td>delayed</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>???</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
 
 <h2 id="update-portfolio-position">Update Portfolio position</h2>
-
-<blockquote>
-<p>https://dev.fincluster.com:8080/api/CORE/Report/status</p>
-</blockquote>
 
 <p><strong><a href="#reportStatus"><code class="prettyprint">Report_status</code></a></strong> Run history &ldquo;rtf&rdquo;:3600 ???</p>
 
@@ -3561,7 +3785,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTask_push Task_reportStatusHistory'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>The <code class="prettyprint">Task_push</code> function can be used with the <code class="prettyprint">Task_reportStatusHistory</code> action to create a portfolio&rsquo;s transactions history. The <code class="prettyprint">startDate</code> needs to be at least one day behind the current date. </p>
+<p>The <code class="prettyprint">Task_push</code> function can be used with the <code class="prettyprint">Task_reportStatusHistory</code> action to create or rebuild a portfolio&rsquo;s transactions history. The <code class="prettyprint">startDate</code> needs to be at least one day behind the current date. </p>
 
 <p>The operation runs in the background and, depending on the number of transactions, it can take several minutes. To view the results, call the <a href="#reportHistory"><code class="prettyprint">Report_history</code></a>. If the first transaction shown has yesterday&rsquo;s date, the task has completed. </p>
 

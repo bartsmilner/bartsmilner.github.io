@@ -1,0 +1,12 @@
+{
+  "sid":"Your_API_key",
+  "Portfolios_keys":["000000"],
+  "delimiter":",",
+  "fmtdate":"YYYY-MM-DD",
+  "fmtnum":"std",
+  "schema":"FINCLUSTER-POSITION_SEC_CSV",
+  "content":"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NPREUsU0VDX0NDWSwgREFURSxRVFksUFJJQ0UsRVhSQVRFLEFNT1VOVCxBTU9VTlRfTkVULENPTU1JU1NJT05fQ09TVA==",
+  "fileName":"FINCLUSTER-POSITION_SEC_CSV_headers.csv",
+  "delayed":1,
+  "Companies_key":3
+}

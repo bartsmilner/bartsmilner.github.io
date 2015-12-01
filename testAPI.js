@@ -1,7 +1,7 @@
 //Installation;
 //npm install sync-request;
 //Then in terminal run 
-//node testAPID 
+//node testAPI
 //from the same directory as this file and the sync-request installation;
 
 //if it fails after AUTH, update sid: ;
@@ -36,6 +36,12 @@ var Auth_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Auth_get.jso
   Transactions_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_list.json')),
   Assets_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Assets_list.json')),
   Close_position_aapl_118613 = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Close_position_aapl_118613.json')),
+  Import_standard_sec_pos = fs.readFileSync(__dirname + '/importCSV/FINCLUSTER-POSITION_SEC_CSV_sample_453756.csv','utf8'),
+  Import_standard_cash_pos = fs.readFileSync(__dirname + '/importCSV/FINCLUSTER-POSITION_CASH_CSV_sample_453756.csv','utf8'),
+  IMPORT_POSITION_SEC_CSV_headers = fs.readFileSync(__dirname + '/importCSV/FINCLUSTER-POSITION_SEC_CSV_headers.csv','utf8'),
+  IMPORT_POSITION_CASH_CSV_headers = fs.readFileSync(__dirname + '/importCSV/FINCLUSTER-POSITION_CASH_CSV_headers.csv','utf8'),
+  Import_run_sec_pos = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Import_run_sec_pos.json')),
+  Import_run_cash_pos = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Import_run_cash_pos.json')),
   res, resObj, auth, newTestID, oldTestID = null, oldTestID1 = null, histTestID = null, activeAccount = null;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';//to prevent Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;
@@ -347,3 +353,44 @@ console.log('\nTransactions_save USD close position',resObj);
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_stage":"trade","Trades_action":"POS","Trades_status":"POSITION","Trades_group":"CASH","Trades_currency":"EUR","Trades_AssetsKey":"118685","sid":auth}});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nTransactions_save EUR close position',resObj);
+
+//function Import_run Standard Security Position CSV;
+//console.log('\nImport_standard_sec_pos', Import_standard_sec_pos);
+Import_standard_sec_pos = Import_standard_sec_pos.split('453756').join(newTestID.Portfolios_key);
+//console.log('\nImport_standard_sec_pos + this portfolio id', Import_standard_sec_pos);
+var IMPORT_POSITION_SEC_CSV_headers_Base64 = new Buffer(IMPORT_POSITION_SEC_CSV_headers).toString('base64');
+console.log('\nIMPORT_POSITION_SEC_CSV_headers_Base64', IMPORT_POSITION_SEC_CSV_headers_Base64);
+var IMPORT_POSITION_CASH_CSV_headers_Base64 = new Buffer(IMPORT_POSITION_CASH_CSV_headers).toString('base64');
+console.log('\nIMPORT_POSITION_CASH_CSV_headers_Base64', IMPORT_POSITION_CASH_CSV_headers_Base64);
+
+var importSecPortfolioDataBase64 = new Buffer(Import_standard_sec_pos).toString('base64');
+console.log('\nimportSecPortfolioDataBase64', importSecPortfolioDataBase64);
+
+/*res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importSecPortfolioDataBase64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-POSITION_SEC_CSV","fileName":"FINCLUSTER-POSITION_SEC_CSV_sample.csv","delayed":1,"Companies_key":3}});*/
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importSecPortfolioDataBase64,"schema":"FINCLUSTER-POSITION_SEC_CSV"}});
+
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nImport_run sample standard security position  req params',resObj);
+
+Import_run_sec_pos.sid = auth;
+Import_run_sec_pos.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Import_run_sec_pos.content = importSecPortfolioDataBase64;
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': Import_run_sec_pos});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nImport_run sec position all params', resObj);
+
+//function Import_run Standard Cash Position CSV;
+Import_standard_cash_pos = Import_standard_cash_pos.split('453756').join(newTestID.Portfolios_key);
+var importCashPortfolioDataBase64 = new Buffer(Import_standard_cash_pos).toString('base64');
+//console.log('\nimportCashPortfolioDataBase64', importCashPortfolioDataBase64);
+
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importCashPortfolioDataBase64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-POSITION_CASH_CSV","fileName":"FINCLUSTER-POSITION_CASH_CSV_sample.csv","delayed":1,"Companies_key":3}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nImport_run sample standard cash position req params',resObj);
+
+Import_run_cash_pos.sid = auth;
+Import_run_cash_pos.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Import_run_cash_pos.content = importCashPortfolioDataBase64;
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': Import_run_cash_pos});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nImport_run cash position all params', resObj);
