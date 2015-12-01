@@ -35,6 +35,7 @@ var Auth_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Auth_get.jso
   Task_reportStatusHistory = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Task_reportStatusHistory.json')),
   Transactions_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_list.json')),
   Assets_list = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Assets_list.json')),
+  Close_position_aapl_118613 = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Close_position_aapl_118613.json')),
   res, resObj, auth, newTestID, oldTestID = null, oldTestID1 = null, histTestID = null, activeAccount = null;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';//to prevent Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;
@@ -49,7 +50,7 @@ console.log('\nAUTH_get all params;',resObj);
 auth = resObj.sid;
 
 //function Portfolios_save;
-res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/save', {'json': {"Portfolios_name":"001testAPI1","sid":auth,"Portfolios_data":{}}});
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/save', {'json': {"Portfolios_name":"001testAPI1","sid":auth}});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nPortfolio_save required only;',resObj);
 Portfolios_save.sid = auth;
@@ -325,3 +326,24 @@ Assets_list.sid = auth;
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Assets/list', {'json': Assets_list});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nAssets_list Securities (25) all params', resObj);
+
+
+//function Transactions_save;//Close position equity -aapl
+/*res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"Trades_PortfoliosKey":newTestID,"Trades_stage":"trade","Trades_action":"POS","Trades_status":"POSITION","Trades_group":"SECURITY","Trades_currency":"USD","Trades_AssetsKey":"118613","sid":auth}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save aapl close position',resObj);*/
+Close_position_aapl_118613.sid = auth;
+Close_position_aapl_118613.Trades_PortfoliosKey = newTestID.Portfolios_key;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': Close_position_aapl_118613});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save aapl close position req params', resObj);
+
+//Close position USD
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_stage":"trade","Trades_action":"POS","Trades_status":"POSITION","Trades_group":"CASH","Trades_currency":"USD","Trades_AssetsKey":"118686","sid":auth}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save USD close position',resObj);
+
+//Close position EUR
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_stage":"trade","Trades_action":"POS","Trades_status":"POSITION","Trades_group":"CASH","Trades_currency":"EUR","Trades_AssetsKey":"118685","sid":auth}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save EUR close position',resObj);
