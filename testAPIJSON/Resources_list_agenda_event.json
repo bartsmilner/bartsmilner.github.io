@@ -1,0 +1,8 @@
+{
+	"sid":null,
+	"Resources_key":null,
+	"qwhere":" AND (\"Resources\".\"key\" = null)",
+	"qorder":"\"Resources\".\"name\" asc",
+	"Companies_key":3,
+	"rows":25
+}

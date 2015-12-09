@@ -1,0 +1,9 @@
+{
+	"sid": null,
+	"qwhere":" AND (\"Portfolios\".\"key\" = '0000000') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')",
+	"qorder":"\"Trades\".\"key\" desc",
+	"getPerm":1,
+	"Companies_key": 3,
+	"page": 1,	
+	"rows": 25
+}

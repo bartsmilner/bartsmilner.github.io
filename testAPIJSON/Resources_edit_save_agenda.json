@@ -1,0 +1,20 @@
+{
+	"sid":null,
+	"Resources_type":"EVENT",
+	"Resources_data":{
+		"type":"info",
+		"endsAt":"2015-12-09T16:47:32+00:00",
+		"startsAt":"2015-12-09T12:47:32+00:00"
+	},
+	"relations":[{
+		"type":"RESOURCE-EVENT",
+		"Resources1_key":"5100253"
+	}],
+	"Resources_key":"5100293",
+	"Resources_name":"TestAgenda edit2",
+	"Resources_CompaniesKey":3,
+	"Resources_mts":"2015-12-08T10:33:14.953Z",
+	"Resources_tags":[],
+	"Share_perm":10,
+	"Companies_key":3
+}

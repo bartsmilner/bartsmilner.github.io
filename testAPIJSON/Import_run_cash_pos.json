@@ -7,6 +7,6 @@
   "schema":"FINCLUSTER-POSITION_CASH_CSV",
   "content":"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NDWSxEQVRFLEFNT1VOVA==",
   "fileName":"FINCLUSTER-POSITION_CASH_CSV_headers.csv",
-  "delayed":1,
+  "delayed":0,
   "Companies_key":3
 }

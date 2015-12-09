@@ -93,8 +93,6 @@
 
 <p>For more information about options, please see the <a href="https://dev.fincluster.com:8080/agent/#/help">Help guide</a>.</p>
 
-<p><strong>Example Query Parameters</strong></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -154,8 +152,8 @@
   </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Users_role"</span><span class="p">:</span><span class="s2">"OPERATOR"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Users_email"</span><span class="p">:</span><span class="s2">"someone@dev.fincluster.com:8080"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"Users_name"</span><span class="p">:</span><span class="s2">"User Name"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"Users_username"</span><span class="p">:</span><span class="s2">"p*ssw*rd!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_name"</span><span class="p">:</span><span class="s2">"Full name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_username"</span><span class="p">:</span><span class="s2">"username"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Users_lang"</span><span class="p">:</span><span class="s2">"en"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Users_pub"</span><span class="p">:{},</span><span class="w">
   </span><span class="nt">"Users_prefs"</span><span class="p">:{},</span><span class="w">
@@ -187,8 +185,6 @@
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nAUTH_get'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
-
-<p><strong>Auth_get Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -589,8 +585,6 @@ You must replace <code>Your_API_key</code> with your personal API key.
 
 <p>The <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Portfolios\&quot;.\&quot;key\&quot; in (&#39;00000000&#39;))&quot;</code>
 parameter, used by the <a href="#positionEditor"><code class="prettyprint">Position Editor</code></a>, finds a single portfolio by its ID. </p>
-
-<p><strong>Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -1032,8 +1026,6 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 
 <p><code class="prettyprint">Portfolios_save</code> creates a new Portfolio, with the parameters listed in the following table. A successful request will return a new Portfolio: id as the <code class="prettyprint">&quot;Portfolios_key&quot;</code> string value. The Portfolio: id is unique, the Portfolio: name does not have to be unique.</p>
 
-<p><strong>Portfolios_save Query Parameters</strong></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1232,8 +1224,6 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 </code></pre>
 
 <p><code class="prettyprint">Portfolios_del</code> deletes a portfolio or portfolios, with the parameters listed in the following table. A successful request will return the deleted Portfolio: id(s) as an array of the deleted <code class="prettyprint">&quot;Portfolios_key&quot;</code> string values. If the query selection criteria (here, portfolios IDs) are not found, the RESPONSE will be an empty array <code class="prettyprint">{&quot;Portfolios_keys&quot;:[]}</code>.</p>
-
-<p><strong>Portfolios_del Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -1701,8 +1691,6 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 
 <p>The <code class="prettyprint">history</code> parameter set to <code class="prettyprint">1</code> (true) will show the historic daily positions if the <code class="prettyprint">Rebuild Historical Portfolio Position</code> Task has previously been run for that portfolio, or else show an empty array (&ldquo;history&rdquo;:[], as here).</p>
 
-<p><strong>Query Parameters</strong></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1887,9 +1875,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 </code></pre>
 
 <p>The <code class="prettyprint">&quot;Portfolios_key&quot;</code> and <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Portfolios\&quot;.\&quot;key\&quot; in (&#39;00000000&#39;))&quot;</code>
-parameters, used by the <code class="prettyprint">Position Editor</code>, find a single portfolio by its ID. </p>
-
-<p><strong>Query Parameters</strong></p>
+parameters, used by the <code class="prettyprint">Position Editor</code>, find a single portfolio by its ID.</p>
 
 <table><thead>
 <tr>
@@ -2003,8 +1989,6 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>If no Bank has been added to <code class="prettyprint">Accounts</code> by <a href="#portfoliosSave"><code class="prettyprint">Portfolios_save</code></a> or <code class="prettyprint">Resources_list</code> [???Accounts Insert Link] the <code class="prettyprint">rows.Accounts_iban</code> returned will be <code class="prettyprint">&quot;DEFAULT&quot;</code> and the <code class="prettyprint">rows.Banks_Name&quot;</code> will be <code class="prettyprint">&quot;GENERIC&quot;</code>, in an object which will always be included and available.</p>
 
-<p><strong>Query Parameters</strong></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2082,8 +2066,6 @@ The sort order here will be ascending by the IBAN name. </p>
 </code></pre>
 
 <p>The <a href="#Relations"><code class="prettyprint">Resources_listRelations</code></a> call used here searches for the <code class="prettyprint">&#39;PORTFOLIO-ORGANIZATION&#39;</code> type. If no new Banks or Brokers have have been added to the Portfolio&rsquo;s Relations it will return the empty JSON object shown here.</p>
-
-<p><strong>Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -2188,8 +2170,6 @@ The sort order here will be ascending by the IBAN name. </p>
 <p>The Position Editor&rsquo;s second Request to <code class="prettyprint">&quot;Portfolios_listAccounts&quot;</code> uses an <code class="prettyprint">&quot;Accounts_key&quot;</code> from the previous call and includes it in a different <code class="prettyprint">&quot;qwhere:&quot;</code> parameter, in order to return the current account, rather than the list of all associated accounts generated by the first call to <a href="#listAccounts"><code class="prettyprint">Portfolios_listAccounts</code></a>.</p>
 
 <p>The Response shown here uses the <code class="prettyprint">&quot;Accounts_isDefault&quot;:1</code> in the first call&rsquo;s Response to flag that an account with [&ldquo;Allianz Bank&rdquo;] is included in the portfolio&rsquo;s available [??? link] Accounts and is being used as the active account.</p>
-
-<p><strong>Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -2313,8 +2293,6 @@ The sort order here will be ascending by the IBAN name. </p>
 <p>The 
 <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Assets\&quot;.\&quot;AssetID\&quot; ilike &#39;%aa%&#39; or \&quot;Assets\&quot;.\&quot;AssetName\&quot; ilike &#39;%aa%&#39; or \&quot;Assets\&quot;.\&quot;AssetShortName\&quot; ilike &#39;%aa%&#39; or \&quot;Assets\&quot;.\&quot;AssetTicker\&quot; ilike &#39;%aa%&#39; or \&quot;Assets\&quot;.\&quot;AssetFeederCode\&quot; ilike &#39;%aa%&#39; or \&quot;Assets\&quot;.\&quot;AssetIsin\&quot; ilike &#39;%aa%&#39;)&quot;</code> searches for any security which contains the characters of eg [aa]. The object returned contains an array of security objects with an <code class="prettyprint">&quot;Assets_key&quot;:</code> for each. </p>
 
-<p><strong>Query Parameters</strong></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2429,8 +2407,6 @@ The sort order here will be ascending by the IBAN name. </p>
 </code></pre>
 
 <p>You can also use the <code class="prettyprint">Assets_list</code> function with an asset key returned by the <code class="prettyprint">Assets_list</code> character search, so that eg <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Assets\&quot;.\&quot;key\&quot; = &#39;118613&#39;)&quot;</code> will show all the asset attributes of, in this case, <code class="prettyprint">&quot;AAPL US EQUITY&quot;</code>. </p>
-
-<p><strong>Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -2627,8 +2603,6 @@ The sort order here will be ascending by the IBAN name. </p>
 <p>The <code class="prettyprint">Transactions_preview</code> function provides an Automatic Calculation of the current value of an asset using the <code class="prettyprint">Assets_key</code> from the <code class="prettyprint">Assets_list</code> function  as the <code class="prettyprint">Trades_AssetsKey</code> in the <code class="prettyprint">Transactions_preview</code> request and a quantity requested as <code class="prettyprint">Trades_quota</code>. The example here is for 100 shares of <code class="prettyprint">&quot;AAPL US EQUITY&quot;</code>. </p>
 
 <p>If only the <code class="prettyprint">sid</code> and <code class="prettyprint">Assets_key</code> are used, the current price and asset reference data (such as the ISIN) will be returned. Making the Requesting a <code class="prettyprint">Trades_quota</code> will generate the current exchange rate, if the asset&rsquo;s trading currency is not the same as the portfolio&rsquo;s base currency, and other values will be calculated automatically.</p>
-
-<p><strong>Query Parameters</strong></p>
 
 <table><thead>
 <tr>
@@ -3170,9 +3144,14 @@ The sort order here will be ascending by the IBAN name. </p>
 <p>https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file</p>
 </blockquote>
 
-<p>There are four schemas available for exporting a Portfolio page, all with same <code class="prettyprint">endPoint</code>: <code class="prettyprint">https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file</code>. </p>
+<p>The <code class="prettyprint">endPoint</code>: <code class="prettyprint">https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file</code> has four schemas available for exporting a Portfolio page.:</p>
 
-<p>Two schemas generate history and activity PDFs and two generate the security and cash position CSVs, which have a default comma (&ldquo;,&rdquo;) delimiter, but will also accept semicolon (&ldquo;;&rdquo;) and hash (&ldquo;#&rdquo;) delimiters.</p>
+<p><code class="prettyprint">FINCLUSTER-POSITION_CASH_CSV</code><br>
+<code class="prettyprint">FINCLUSTER-POSITION_SEC_CSV</code><br>
+<code class="prettyprint">FINCLUSTER-PORTFOLIO_PDF</code><br>
+<code class="prettyprint">FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF</code>  </p>
+
+<p>Two schemas generate the security and cash positions in CSV format, with a default comma (&ldquo;,&rdquo;) delimiter, but will also accept semicolon (&ldquo;;&rdquo;) and hash (&ldquo;#&rdquo;) delimiters. The other two schemas generate history and activity PDFs.</p>
 
 <h3 id="standard-securities-position-csv"><a name="stndSecPos"></a>Standard Securities Position (CSV)</h3>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
@@ -3211,7 +3190,9 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>If <code class="prettyprint">endDate</code> is omitted from the Request it defaults to current, and if <code class="prettyprint">Date</code> Type is used it will be set to 23:59:59 for the closing prices for that date. The <code class="prettyprint">delimiter</code> defaults to &ldquo;,&rdquo; if omitted. The optional <code class="prettyprint">currency</code> parameter can be used to translate the results from the base currency to a different currency. </p>
 
-<p>The Response <code class="prettyprint">file.content</code> is formatted as base64. The Response <code class="prettyprint">file.name</code> is generated automatically based on the schema <code class="prettyprint">name</code> and <code class="prettyprint">endDate</code> and the returned <code class="prettyprint">file.link</code> gives the path for download from <code class="prettyprint">https://dev.fincluster.com:8080/</code>. The <code class="prettyprint">file.aux</code> may contain additional information about the file. The CSV headers generated are:</p>
+<p>The Response <code class="prettyprint">file.content</code> is formatted as <a name="base64"></a>base64. The Response <code class="prettyprint">file.name</code> is generated automatically based on the schema <code class="prettyprint">name</code> and <code class="prettyprint">endDate</code> and the returned <code class="prettyprint">file.link</code> gives the path for download from <code class="prettyprint">https://dev.fincluster.com:8080/</code>. The <code class="prettyprint">file.aux</code> may contain additional information about the file. </p>
+
+<p>The CSV headers used are:</p>
 
 <p><code class="prettyprint">PORTFOLIO_ID,PORTFOLIO_EXTID,PORTFOLIO,BANK,ACCOUNT_ID,ACCOUNT,DATE,SEC_ISIN,SEC_TICKER,SECURITY,SEC_CCY,SEC_TYPE,QTY,PRICE,PRICE_NET,EXRATE,AMOUNT,AMOUNT_LOC,AMOUNT_NET,AMOUNT_NET_LOC,COMMISSION_COST,INTEREST_COST,PRICE_MKT,EXRATE_MKT,AMOUNT_MKT,AMOUNT_NET_MKT,AMOUNT_MKT_LOC,AMOUNT_NET_MKT_LOC,INTEREST_MKT,EXPOSURE_MKT,WEIGHT,PNL_UNRL,PERF_UNRL</code></p>
 
@@ -3302,7 +3283,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'exportCashPortfolioData'</span><span class="p">,</span> <span class="nx">exportCashPortfolioData</span><span class="p">);</span>
 </code></pre>
 
-<p>The endPoint and Require -&gt; Response objects for <code class="prettyprint">Standard Cash Position (CSV)</code> are almost the same as <a href="#stndSecPos"><code class="prettyprint">Standard Securities Position (CSV)</code></a>. The difference is that the schema must be: <code class="prettyprint">&quot;FINCLUSTER-POSITION_CASH_CSV&quot;</code> and the headers generated in the Response <code class="prettyprint">file.content</code> are: </p>
+<p>The endPoint and Require -&gt; Response objects for <code class="prettyprint">Standard Cash Position (CSV)</code> are almost the same as <a href="#stndSecPos"><code class="prettyprint">Standard Securities Position (CSV)</code></a>. The difference is that the schema must be: <code class="prettyprint">&quot;FINCLUSTER-POSITION_CASH_CSV&quot;</code> and the headers used (shown here in <code class="prettyprint">base64</code>) are: </p>
 
 <p><code class="prettyprint">PORTFOLIO_ID,PORTFOLIO_EXTID,PORTFOLIO,ACCOUNT_ID,ACCOUNT,DATE,SEC_TICKER,SECURITY,SEC_CCY,QTY,AMOUNT,AMOUNT_LOC,EXRATE_MKT,AMOUNT_MKT,AMOUNT_MKT_LOC,WEIGHT,PNL_UNRL</code></p>
 
@@ -3529,9 +3510,14 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>Using the <code class="prettyprint">Import_run</code> function to import a position file in CSV format requires two specific interventions: i) the imported file requires the current portfolio ID as the first field of each row, or it will throw a fatal error, and ii) the imported content has to be converted into base64 format.</p>
 
-<p>For <code class="prettyprint">nodejs</code> (<code class="prettyprint">fs</code> required) javascript, there are a couple of additional functions shown here, to convert a CSV file into base64 with the current portfolio ID.</p>
+<p>For <code class="prettyprint">nodejs</code> (<code class="prettyprint">fs</code> required), there are a couple of additional functions shown under the javascript tab, to convert a CSV file into base64 with the current, rather than the example, portfolio ID.</p>
 
-<p>The <code class="prettyprint">content</code> parameter value, shown below as base64 in the JSON Requests, is for the CSV table headers only. Column sequence is strict, although some fields can be empty or null. </p>
+<p>The <code class="prettyprint">content</code> parameter value shown below in the JSON Requests, is for the CSV table headers only, (as base64). Column sequence is strict, although fields can sometimes be empty or null.</p>
+
+<p>The two schemas available are for Cash and Security imports:  </p>
+
+<p><code class="prettyprint">FINCLUSTER-POSITION_CASH_CSV</code><br>
+<code class="prettyprint">FINCLUSTER-POSITION_SEC_CSV</code>  </p>
 
 <p>Parameter keys are the same for both Securities and Cash positions. The possible values for <code class="prettyprint">&quot;fmtnum&quot;</code> (Number Format) are <code class="prettyprint">&quot;std&quot;</code> (Standard: 10000000.00), which will work with all three delimiters and English <code class="prettyprint">&quot;en&quot;</code> (10,000,000.00), Italian <code class="prettyprint">&quot;it&quot;</code> (10.000.000,00), German <code class="prettyprint">&quot;de&quot;</code> (10000.000,00) and Other 1 <code class="prettyprint">&quot;other1&quot;</code> (10000000,00) which will only work with the &ldquo;;&rdquo; (semi-colon) or &ldquo;#&rdquo; (hash) delimiters, to avoid conflicts between numbers and the comma(&ldquo;,&rdquo;) field delimiter.</p>
 
@@ -3548,7 +3534,6 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="nt">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NDWSxEQVRFLEFNT1VOVA=="</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV_headers.csv"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"delayed"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">rows</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">data</span><span class="w">
@@ -3567,12 +3552,12 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nImport_run cash position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>A small cash import file in CSV format:</p>
+<p><code class="prettyprint">FINCLUSTER-POSITION_SEC_CSV_sample_453756.csv</code> as an example of a very small cash import file in CSV format would be:</p>
 
-<p><code class="prettyprint">PORTFOLIO_ID,ACCOUNT_ID,SEC_CCY,DATE,AMOUNT
-453756,123456,EUR,2014-01-03,150000
-453756,123456,USD,2013-11-24,220000
-453756,123456,GBP,2015-06-05,365000</code></p>
+<p><code class="prettyprint">PORTFOLIO_ID,ACCOUNT_ID,SEC_CCY,DATE,AMOUNT</code><br>
+<code class="prettyprint">453756,123456,EUR,2014-01-03,150000</code><br>
+<code class="prettyprint">453756,123456,USD,2013-11-24,220000</code><br>
+<code class="prettyprint">453756,123456,GBP,2015-06-05,365000</code>  </p>
 
 <table><thead>
 <tr>
@@ -3631,12 +3616,6 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>File to import ???</td>
 </tr>
 <tr>
-<td>delayed</td>
-<td>FALSE</td>
-<td>Boolean</td>
-<td>???</td>
-</tr>
-<tr>
 <td>Companies_key</td>
 <td>FALSE</td>
 <td>Number</td>
@@ -3655,7 +3634,6 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="nt">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NPREUsU0VDX0NDWSwgREFURSxRVFksUFJJQ0UsRVhSQVRFLEFNT1VOVCxBTU9VTlRfTkVULENPTU1JU1NJT05fQ09TVA=="</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV_headers.csv"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"delayed"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">rows</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">data</span><span class="w">
@@ -3674,12 +3652,13 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nImport_run securities position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>The <code class="prettyprint">FINCLUSTER-POSITION_SEC_CSV_sample_453756.csv</code> file in <code class="prettyprint">ascii/utf8</code>:</p>
+<p>The <code class="prettyprint">FINCLUSTER-POSITION_SEC_CSV_sample_453756.csv</code> file as an example of very small securities import file in <code class="prettyprint">ascii/utf8</code>. (The header line is broken only for readability):</p>
 
-<p>PORTFOLIO_ID,ACCOUNT_ID,SEC_CODE,SEC_CCY, DATE,QTY,PRICE,EXRATE,AMOUNT,AMOUNT_NET,COMMISSION_COST<br>
-453756,434846,AAPL US EQUITY,USD,2013-02-03,100,86.57,1.345,8657,8652,5<br>
-453756,434846,FR0010869578,EUR,2014-05-21,250,41.75,1,10437.5,10435.5,2<br>
-453756,434846,GB00B1H05486,GBP,2015-09-29,10000,183.46,0.734,18346,18342,4</p>
+<p><code class="prettyprint">PORTFOLIO_ID,ACCOUNT_ID,SEC_CODE,SEC_CCY,</code><br>
+<code class="prettyprint">DATE,QTY,PRICE,EXRATE,AMOUNT,AMOUNT_NET,COMMISSION_COST</code><br>
+<code class="prettyprint">453756,434846,AAPL US EQUITY,USD,2013-02-03,100,86.57,1.345,8657,8652,5</code><br>
+<code class="prettyprint">453756,434846,FR0010869578,EUR,2014-05-21,250,41.75,1,10437.5,10435.5,2</code><br>
+<code class="prettyprint">453756,434846,GB00B1H05486,GBP,2015-09-29,10000,183.46,0.734,18346,18342,4</code>  </p>
 
 <table><thead>
 <tr>
@@ -3738,22 +3717,12 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>File to import ???</td>
 </tr>
 <tr>
-<td>delayed</td>
-<td>FALSE</td>
-<td>Boolean</td>
-<td>???</td>
-</tr>
-<tr>
 <td>Companies_key</td>
 <td>FALSE</td>
 <td>Number</td>
 <td>Company ID</td>
 </tr>
 </tbody></table>
-
-<h2 id="update-portfolio-position">Update Portfolio position</h2>
-
-<p><strong><a href="#reportStatus"><code class="prettyprint">Report_status</code></a></strong> Run history &ldquo;rtf&rdquo;:3600 ???</p>
 
 <h2 id="rebuild-portfolios-historical-position"><a name="histPosTask"></a>Rebuild Portfolios Historical Position</h2>
 
@@ -3812,7 +3781,7 @@ The sort order here will be ascending by the IBAN name. </p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;action</td>
-<td>True</td>
+<td>TRUE</td>
 <td>String</td>
 <td>Calls Task_reportStatusHistory</td>
 </tr>
@@ -3841,8 +3810,6 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Company ID</td>
 </tr>
 </tbody></table>
-
-<h2 id="show-position-templates">Show Position templates</h2>
 
 <h2 id="transactions"><a name="portfolioTransactions"></a>TRANSACTIONS</h2>
 
@@ -4050,24 +4017,796 @@ The sort order here will be ascending by the IBAN name. </p>
 </tr>
 </tbody></table>
 
-<h2 id="orders-advices"><a name="ordersAdvices"></a>ORDERS/ADVICES</h2>
+<h2 id="orders-advices-portfolio"><a name="ordersAdvices"></a>ORDERS/ADVICES (portfolio)</h2>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Transactions/list</p>
 </blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".\"key\" = '0000000') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" &gt;= '2014-11-26' AND \"Trades\".\"date\" &lt;= '2015-12-04')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Trades\".\"key\" desc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"getPerm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">  
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w"> 
+    </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5066342"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5066260"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-30T11:03:58.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_commission"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_currencyDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-30T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="w"> </span><span class="mi">219</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORDER-FILLED"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-30T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_CompaniesKey"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"Trades_TradersKey"</span><span class="p">:</span><span class="w"> </span><span class="mi">400073</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5066261"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5066341"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_BankOrganizationsKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3366290"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_BrokerOrganizationsKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_aID"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_mts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-02T09:32:46.871Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Trades_AssetID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CON GY EQUITY"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"portfolio"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"asset"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"trader"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+    </span><span class="nt">"broker"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w"> 
+    </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="err">...</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".\"key\" = '"</span><span class="mi">0000000</span><span class="s2">"') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" &gt;= '2014-11-26' AND \"Trades\".\"date\" &lt;= '2015-12-04')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">portfolioOrders</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/portfolioOrders.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">portfolioOrders</span><span class="p">});</span>
 
-<h2 id="relations"><a name="Relations"></a>RELATIONS</h2>
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_list portfolio ORDERS/ADVICES'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>The <code class="prettyprint">Transactions_list</code> function will return a portfolio&rsquo;s Orders if the <code class="prettyprint">qwhere</code> parameter is set to <code class="prettyprint">Trades.stage = &#39;order&#39;</code> and its <code class="prettyprint">Trades.status</code> is order-related (ie: <code class="prettyprint">PENDING</code>, <code class="prettyprint">ORDER-FILLED</code>, <code class="prettyprint">ORDER-CANCELED</code>, <code class="prettyprint">COMMITTED</code>). The Response returned is an object whose <code class="prettyprint">rows</code> key holds an array of Orders objects. If the rows parameter is omitted, all Orders will be shown.  </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query with Portfolio ID</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Sort asc or desc by an order key</td>
+</tr>
+<tr>
+<td>getPerm</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Permission</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Max rows to display</td>
+</tr>
+<tr>
+<td>page</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Page displayed on platform</td>
+</tr>
+</tbody></table>
+
+<h2 id="agenda"><a name="agenda"></a>AGENDA</h2>
+
+<p>On the platform, events are shown in a monthly diary, but they can also be created, edited and deleted in the API an <code class="prettyprint">EVENT</code> is a <code class="prettyprint">Resources_type</code> and uses the <a href="#resources"><code class="prettyprint">Resources</code></a> functions.</p>
+
+<h3 id="event-save"><a name="eventSave"></a>Event save</h3>
 
 <blockquote>
-<p>https://dev.fincluster.com:8080/api/CORE/Resources/listRelations</p>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"EVENT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"TestAgenda"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"endsAt"</span><span class="p">:</span><span class="s2">"2015-12-10T16:47:32+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"startsAt"</span><span class="p">:</span><span class="s2">"2015-12-10T12:47:32+00:00"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"relations"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"RESOURCE-EVENT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5100145"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Resources_type"</span><span class="p">:</span><span class="s2">"EVENT"</span><span class="p">,</span><span class="s2">"Resources_data"</span><span class="p">:{</span><span class="s2">"endsAt"</span><span class="p">:</span><span class="s2">"2015-12-10T16:47:32+00:00"</span><span class="p">,</span><span class="s2">"startsAt"</span><span class="p">:</span><span class="s2">"2015-12-10T12:47:32+00:00"</span><span class="p">},</span><span class="s2">"relations"</span><span class="err">:</span><span class="p">[{</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"RESOURCE-EVENT"</span><span class="p">,</span><span class="s2">"Resources1_key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">}]}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_save_agenda</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_save_agenda.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_save_agenda</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_save Agenda'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Resources_save</code> will save an <code class="prettyprint">AGENDA</code> item as an <code class="prettyprint">EVENT</code>, when the Required parameters (listed below) are specified.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Resources_type</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;EVENT&rdquo;</td>
+</tr>
+<tr>
+<td>Resources_data</td>
+<td>TRUE</td>
+<td>Object</td>
+<td>end and start dateTimes</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:endsAt</td>
+<td>TRUE</td>
+<td>dateTime</td>
+<td>end date time (UMC)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:startsAt</td>
+<td>TRUE</td>
+<td>dateTime</td>
+<td>start date time (UMC)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;info&rdquo;</td>
+</tr>
+<tr>
+<td>relations</td>
+<td>TRUE</td>
+<td>Array of Objects</td>
+<td>type and Portfolio ID</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:type</td>
+<td>TRUE</td>
+<td>String</td>
+<td>&ldquo;RESOURCE-EVENT&rdquo;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources1_Key</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Resources_name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Event name</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="events-list"><a name="eventsList"></a>Events list</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Relations\".\"Resources1Key\" = '0000000') AND \"Relations\".\"type\" in ('PORTFOLIO-ORGANIZATION', 'PORTFOLIO-CRM')"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources2\".\"name\" asc"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"searchTypes"</span><span class="p">:[</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="s2">"PORTFOLIO-CRM"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"type\" in ('EVENT'))"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"searchTypes"</span><span class="p">:[</span><span class="s2">"EVENT"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources\".\"name\" asc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5097727"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"eventTest"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"EVENT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"endsAt"</span><span class="p">:</span><span class="s2">"2015-12-09T13:47:32+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"startsAt"</span><span class="p">:</span><span class="s2">"2015-12-09T12:47:32+00:00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_mts"</span><span class="p">:</span><span class="s2">"2015-12-07T12:48:30.198Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"type\" in ('EVENT'))"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_list_agenda</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_list_agenda.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_list_agenda</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list Agenda'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Resources_list</code> will show all <code class="prettyprint">AGENDA EVENT</code>s, when the <code class="prettyprint">qwhere</code> parameter is set to <code class="prettyprint">Resources.type in (&#39;EVENT&#39;)</code> and the <code class="prettyprint">Relations_Resources1Key</code> value is omitted or set to null. </p>
+
+<p>If the value of the <code class="prettyprint">Relations_Resources1Key</code> parameter is a Portfolio ID, it will return all the events for that portfolio.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query with Resources.type</td>
+</tr>
+<tr>
+<td>Relations_Resources1Key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>searchTypes</td>
+<td>FALSE</td>
+<td>Array of Strings</td>
+<td>Resources types</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Sort asc or desc by a Resources key</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Max rows to display</td>
+</tr>
+</tbody></table>
+
+<h3 id="event-get"><a name="eventGet"></a>Event get</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"type\" in ('EVENT'))"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"searchTypes"</span><span class="p">:[</span><span class="s2">"EVENT"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources\".\"name\" asc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5097727"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"eventTest"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"EVENT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"endsAt"</span><span class="p">:</span><span class="s2">"2015-12-09T13:47:32+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"startsAt"</span><span class="p">:</span><span class="s2">"2015-12-09T12:47:32+00:00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_mts"</span><span class="p">:</span><span class="s2">"2015-12-07T12:48:30.198Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Resources_key"</span><span class="p">:</span><span class="s2">"0000007"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"key\" = '0000007')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_list_agenda_event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_list_agenda_event.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_list_agenda_event</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list Agenda Event'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Resources_list</code> can also be used to call a single <code class="prettyprint">EVENT</code>, by using its <code class="prettyprint">Resources_key</code> in the <code class="prettyprint">qwhere</code> query parameter.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query with Resources.key</td>
+</tr>
+<tr>
+<td>Resources_key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Sort asc or desc by a Resources key</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Max rows to display</td>
+</tr>
+</tbody></table>
+
+<h3 id="event-edit-save"><a name="eventEdit"></a>Event edit-save</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"EVENT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"endsAt"</span><span class="p">:</span><span class="s2">"2015-12-09T16:47:32+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"startsAt"</span><span class="p">:</span><span class="s2">"2015-12-09T12:47:32+00:00"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"relations"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"RESOURCE-EVENT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_key"</span><span class="p">:</span><span class="s2">"5100253"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5100293"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"TestAgenda edit2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_mts"</span><span class="p">:</span><span class="s2">"2015-12-08T10:33:14.953Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5100253"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Resources_type"</span><span class="p">:</span><span class="s2">"EVENT"</span><span class="p">,</span><span class="s2">"Resources_data"</span><span class="p">:{</span><span class="s2">"endsAt"</span><span class="p">:</span><span class="s2">"2015-12-10T16:47:32+00:00"</span><span class="p">,</span><span class="s2">"startsAt"</span><span class="p">:</span><span class="s2">"2015-12-10T12:47:32+00:00"</span><span class="p">},</span><span class="s2">"relations"</span><span class="err">:</span><span class="p">[{</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"RESOURCE-EVENT"</span><span class="p">,</span><span class="s2">"Resources1_key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">}]}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_save_agenda</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_save_agenda.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_save_agenda</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_save Agenda'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Resources_save</code> can also be used to edit and save an <code class="prettyprint">AGENDA</code> item as an <code class="prettyprint">EVENT</code>, by specifying a <code class="prettyprint">Resources_key</code> and changing other parameter values.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Resources_key</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>Resources_type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;EVENT&rdquo;</td>
+</tr>
+<tr>
+<td>Resources_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>end and start dateTimes</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:endsAt</td>
+<td>FALSE</td>
+<td>dateTime</td>
+<td>end date time (UMC)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:startsAt</td>
+<td>FALSE</td>
+<td>dateTime</td>
+<td>start date time (UMC)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;info&rdquo;</td>
+</tr>
+<tr>
+<td>relations</td>
+<td>FALSE</td>
+<td>Array of Objects</td>
+<td>type and Portfolio ID</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;RESOURCE-EVENT&rdquo;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources1_Key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Resources_name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Event name</td>
+</tr>
+<tr>
+<td>Resources_mts</td>
+<td>FALSE</td>
+<td>dateTime</td>
+<td>current date and time (UMC)</td>
+</tr>
+<tr>
+<td>Resources_tags</td>
+<td>FALSE</td>
+<td>Array</td>
+<td>???</td>
+</tr>
+<tr>
+<td>Share_perm</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Sharing permission</td>
+</tr>
+<tr>
+<td>Resources_CompaniesKey</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="event-delete"><a name="eventDelete"></a>Event delete</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/del</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Resources\".\"key\" = '5100293'"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5100293"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Resources\".\"key\" = '5100293'"</span><span class="p">,</span><span class="s2">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">}]}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_del_event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_del_event.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_del_event</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_del Agenda Event'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>An <code class="prettyprint">EVENT</code> can be permanently deleted from the <code class="prettyprint">AGENDA</code>, by specifying a <code class="prettyprint">Resources_key</code> in the <code class="prettyprint">qwhere</code> parameter. The <code class="prettyprint">Resources_key</code> is returned, but it no longer exists in the database.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query with Resources.key</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h2 id="documents"><a name="documents"></a>DOCUMENTS</h2>
+
+<p>Files are generally associated with a portfolio and handled using the <a href="#resources"><code class="prettyprint">Resources</code></a> methods, apart from the specific <code class="prettyprint">File_save</code> function which enables file upload, and <code class="prettyprint">File_download</code>, a customisable function with <code class="prettyprint">NS-FINCLUSTER</code> as its core location.</p>
+
+<h3 id="file-save"><a name="fileSave"></a>File save</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/File/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"files"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"london_rent_map.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"/9j/4AAQSkZJRgABAQAAAQABAAD/2...
+      ...QKlTpGgRpUGigVI0GlQFFFFB/9k="</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">[</span><span class="kc">null</span><span class="p">],</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"resource"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5094556"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/File/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"files"</span><span class="p">:[{</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"london_rent_map.jpg"</span><span class="p">,</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"/9j/4AAQSkZJRgABAQAAAQABAAD/2... ...QKlTpGgRpUGigVI0GlQFFFFB/9k="</span><span class="p">,</span><span class="s2">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"5086959"</span><span class="p">}]}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">File_save_jpeg</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/File_save_jpeg.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/File/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">File_save_jpeg</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nFile_save Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">File_save</code> can be used to upload a file into a portfolio&rsquo;s DOCUMENTS, with formats ??? The <code class="prettyprint">Content</code> value is coded in <a href="#base64"><code class="prettyprint">base64</code></a> and is truncated here. The Response is an array (not an object).</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>files</td>
+<td>TRUE</td>
+<td>Array of Objects</td>
+<td>file name, content and Portfolio ID</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>file name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:content</td>
+<td>FALSE</td>
+<td>String</td>
+<td>file in base64</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Relations_Resources1Key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="file-download"><a name="fileDownload"></a>File download</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/NS-FINCLUSTER/File/download</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5094556"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"london_rent_map2.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"link"</span><span class="p">:</span><span class="s2">"/ns/FINCLUSTER/pub/tmp/dd2178c2-ed56-4483-8f0a-180070db60be/london_rent_map2.jpg"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/File/download'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Resources_key"</span><span class="p">:</span><span class="s2">"5094556"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">File_save_jpeg</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/File_download_jpeg.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/File/download'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">File_download_jpeg</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nFile_download Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>Files can be downloaded simply by using <code class="prettyprint">File_download</code> and the <code class="prettyprint">Resources_key</code> value returned by the <code class="prettyprint">File_save</code> or <code class="prettyprint">Resources_list</code> functions. The Response <code class="prettyprint">link</code> parameter shows file <code class="prettyprint">name</code> and the path where the downloaded file is stored in <code class="prettyprint">/ns/FINCLUSTER/pub/tmp/</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Resources_key</td>
+<td>TRUE</td>
+<td>String</td>
+<td>file ID</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="file-get"><a name="fileGet"></a>File get</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"name\"::text ilike '%london_rent_map2.jpg%')"</span><span class="p">,</span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources\".\"name\" asc"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
   </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
@@ -4075,86 +4814,112 @@ The sort order here will be ascending by the IBAN name. </p>
 </span><span class="err">//response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57804</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"121247"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">121247</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"5094556"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"london_rent_map2.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"FILE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"fhash"</span><span class="p">:</span><span class="s2">"b79be344d47d490d339c7606275db6b278e6cccb"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_mts"</span><span class="p">:</span><span class="s2">"2015-12-08T16:10:42.231Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
     </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57805</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"121248"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">121248</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BROKER"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57806</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-CRM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"4836484"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"test test"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"CRM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"base"</span><span class="p">:{},</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tpls"</span><span class="p">:[</span><span class="s2">"base"</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"test@test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"surname"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">{</span><span class="w"> </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="w">
   </span><span class="p">}],</span><span class="w">
   </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/listRelations'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"name\"::text ilike '%london_rent_map2.jpg%')"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
-<span class="kd">var</span> <span class="nx">Resources_listRelations</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_listRelations.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/listRelations'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_listRelations</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">Resources_list_file_get</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_list_file_get.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_list_file_get</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_listRelations'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list get file - Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>Calling <code class="prettyprint">Resources_listRelations</code> with the <code class="prettyprint">sid</code> as sole parameter will return all <code class="prettyprint">Resources</code> configured as an array of <code class="prettyprint">Relations</code> objects.</p>
+<p>You can get an individual file by using a qualifier on the <code class="prettyprint">qwhere</code> parameter of the <code class="prettyprint">Resources_list</code> function, and including the file name as <code class="prettyprint">&quot;Resources&quot;.&quot;name&quot;::text ilike &#39;%&lt;FILENAME&gt;%&#39;</code>. (???permissions beyond auth???) Using an empty string with <code class="prettyprint">qwhere</code> will return all available <a href="#resources"><code class="prettyprint">Resources</code></a>.</p>
 
-<p>Relations can be searched by <code class="prettyprint">Relations_type</code> which can be <code class="prettyprint">PORTFOLIO-ORGANIZATION</code> (usually Banks/Brokers), <code class="prettyprint">PORTFOLIO-CRM</code> (clients associated with the portfolio), <code class="prettyprint">USER-PARENT</code> and <code class="prettyprint">SHARE</code> (???).</p>
+<p>The Response object key <code class="prettyprint">rows</code> returns an array of objects for each file found.</p>
 
-<p><strong>Query Parameters</strong></p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>query with filename</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Sort asc or desc by a Resources key</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Max rows to display</td>
+</tr>
+<tr>
+<td>page</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Page displayed on platform</td>
+</tr>
+</tbody></table>
+
+<h3 id="file-share"><a name="fileShare"></a>File share</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/saveRelations</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"20000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"SHARE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">30000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/saveRelations'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"10000"</span><span class="p">,</span><span class="s2">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"20000"</span><span class="p">,</span><span class="s2">"Relations_type"</span><span class="p">:</span><span class="s2">"SHARE"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_saveRelations_share_file</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_saveRelations_share_file.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/saveRelations'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_saveRelations_share_file</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_saveRelations share file - Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>You can share a file by using the file&rsquo;s ID and the sharer&rsquo;s ID in the <code class="prettyprint">Resources_saveRelations</code> function and specifying the <code class="prettyprint">Relations_type</code>. On the platform this Relation is shown in the <a href="#resShare"><code class="prettyprint">Resources</code></a> page when both the Resource and the Share icon are selected.</p>
+
+<p>The <code class="prettyprint">Relations_key</code> that is returned can be used by the <a href="#resDelRel"><code class="prettyprint">Resources_delRelations</code></a> function to remove the Relation created here.</p>
 
 <table><thead>
 <tr>
@@ -4172,27 +4937,27 @@ The sort order here will be ascending by the IBAN name. </p>
 </tr>
 <tr>
 <td>Relations_Resources1Key</td>
-<td>FALSE</td>
+<td>TRUE</td>
 <td>String</td>
-<td>Portfolio ID</td>
+<td>User ID to share with</td>
 </tr>
 <tr>
-<td>qwhere</td>
-<td>FALSE</td>
+<td>Relations_Resources2Key</td>
+<td>TRUE</td>
 <td>String</td>
-<td>Query of Relations.type using portfolio&rsquo;s ID as Relations.Resources1Key</td>
+<td>File ID to share</td>
 </tr>
 <tr>
-<td>qorder</td>
-<td>FALSE</td>
+<td>Relations_type</td>
+<td>TRUE</td>
 <td>String</td>
-<td>Resources2.name asc or desc sort order</td>
+<td>&ldquo;SHARE&rdquo;</td>
 </tr>
 <tr>
-<td>searchTypes</td>
+<td>Relations_perm</td>
 <td>FALSE</td>
-<td>Array of Strings</td>
-<td>List of Relations_type</td>
+<td>Number</td>
+<td>Permission level</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -4200,21 +4965,66 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Number</td>
 <td>Company ID</td>
 </tr>
+</tbody></table>
+
+<h3 id="file-delete"><a name="fileDelete"></a>File delete</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/del</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Resources\".\"key\" in ('5094556')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Resources_keys"</span><span class="p">:[</span><span class="s2">"5094556"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/del'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Resources\".\"key\" in ('5102443')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_del_file</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_del_file.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_del_file</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_del delete file - required only - Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>You can delete a file or files simply by using their <code class="prettyprint">Resources.key</code> in the <code class="prettyprint">qwhere</code> parameter.</p>
+
+<p>The Response returns an array of all the <code class="prettyprint">Resources_keys</code> deleted.</p>
+
+<table><thead>
 <tr>
-<td>rows</td>
-<td>FALSE</td>
-<td>Number</td>
-<td>Rows displayed</td>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
 </tr>
 <tr>
-<td>page</td>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>query with Resources key(s)</td>
+</tr>
+<tr>
+<td>Companies_key</td>
 <td>FALSE</td>
 <td>Number</td>
-<td>Page displayed on the platform</td>
+<td>Company ID</td>
 </tr>
 </tbody></table>
 
-<h2 id="analytics-portfolio-history"><a name="reportHistory"></a>ANALYTICS: portfolio history</h2>
+<h2 id="analytics-portfolio-history"><a name="reportHistory"></a>ANALYTICS: (portfolio history)</h2>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Report/history</p>
@@ -4370,8 +5180,6 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>The value of <code class="prettyprint">qskip</code> is the number of rows to hide and <code class="prettyprint">qsort</code> will order the entries, descending (default) or ascending by the specified column, with a value which takes an object whose values are in the form of, for example, <code class="prettyprint">data.calc.curAUM: 1</code>, where <code class="prettyprint">1</code> = <code class="prettyprint">asc</code> and <code class="prettyprint">-1</code> = <code class="prettyprint">desc</code>. </p>
 
-<p><strong>Query Parameters</strong></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4423,6 +5231,186 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Company ID</td>
 </tr>
 </tbody></table>
+
+<h2 id="setup"><a name="setup"></a>SETUP</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+</blockquote>
+
+<h2 id="relations"><a name="Relations"></a>RELATIONS</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/listRelations</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Relations\".\"Resources1Key\" = '0000000') AND \"Relations\".\"type\" in ('PORTFOLIO-ORGANIZATION', 'PORTFOLIO-CRM')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources2\".\"name\" asc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"searchTypes"</span><span class="p">:[</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="s2">"PORTFOLIO-CRM"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57804</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"121247"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">121247</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57805</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"121248"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">121248</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BROKER"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57806</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-CRM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"4836484"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
+    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"test test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"CRM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"base"</span><span class="p">:{},</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tpls"</span><span class="p">:[</span><span class="s2">"base"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"test@test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"surname"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/listRelations'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_listRelations</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_listRelations.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/listRelations'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_listRelations</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_listRelations'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>Calling <code class="prettyprint">Resources_listRelations</code> with the <code class="prettyprint">sid</code> as sole parameter will return all <code class="prettyprint">Resources</code> configured as an array of <code class="prettyprint">Relations</code> objects.</p>
+
+<p>Relations can be searched by <code class="prettyprint">Relations_type</code> which can be <code class="prettyprint">PORTFOLIO-ORGANIZATION</code> (usually Banks/Brokers), <code class="prettyprint">PORTFOLIO-CRM</code> (clients associated with the portfolio), <code class="prettyprint">USER-PARENT</code> and <code class="prettyprint">SHARE</code> (???).</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Relations_Resources1Key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Query of Relations.type using portfolio&rsquo;s ID as Relations.Resources1Key</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources2.name asc or desc sort order</td>
+</tr>
+<tr>
+<td>searchTypes</td>
+<td>FALSE</td>
+<td>Array of Strings</td>
+<td>List of Relations_type</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Rows displayed</td>
+</tr>
+<tr>
+<td>page</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Page displayed on the platform</td>
+</tr>
+</tbody></table>
+
+<h2 id="accounts"><a name="accounts"></a>ACCOUNTS</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Portfolios/listAccounts</p>
+</blockquote>
+
+<h1 id="crm"><a name="CRM"></a>CRM</h1>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+</blockquote>
+
+<h1 id="orders-advices"><a name="ordersAdvices"></a>Orders/Advices</h1>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/list</p>
+</blockquote>
 
 <h1 id="securities"><a name="Securities"></a>Securities</h1>
 
@@ -4495,9 +5483,7 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>Calling <code class="prettyprint">Assets_list</code> with the <code class="prettyprint">sid</code> as sole parameter or with the <code class="prettyprint">qwhere</code> parameter containing an empty string, will return all <code class="prettyprint">Securities</code> in available portfolios, configured as the <code class="prettyprint">rows</code> object, whose value is an array of Assets objects. (???CHK new and available)</p>
 
-<p>Optional parameters can be used to organise the returned <code class="prettyprint">rows</code> object, sorting and limiting the number of results. The <code class="prettyprint">qwhere</code> parameter can be used to search for a new security which is not currently included in a portfolio, using a <a href="#assetsListByCharacter"><code class="prettyprint">character string</code></a> or <a href="#assetsListByAssetsKey"><code class="prettyprint">asset key</code></a></p>
-
-<p><strong>Query Parameters</strong></p>
+<p>Optional parameters can be used to organise the returned <code class="prettyprint">rows</code> object, sorting and limiting the number of results. The <code class="prettyprint">qwhere</code> parameter can be used to search for a new security which is not currently included in a portfolio, using a <a href="#assetsListByCharacter"><code class="prettyprint">character string</code></a> or <a href="#assetsListByAssetsKey"><code class="prettyprint">asset key</code></a>.</p>
 
 <table><thead>
 <tr>
@@ -4550,6 +5536,80 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Page displayed on the platform</td>
 </tr>
 </tbody></table>
+
+<h1 id="import"><a name="import"></a>Import</h1>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run</p>
+</blockquote>
+
+<p>Schemas for:   </p>
+
+<p>Standard Cash Position RBC<br>
+Standard Cash Position (CSV)<br>
+Standard Cash Position UBS<br>
+Standard Securities Position (CSV)<br>
+Standard Title Position UBS<br>
+Standard Trades Berkeley<br>
+tpl.FINCLUSTER-TRADES_ICBI<br>
+tpl.FINCLUSTER-TRADES_ROTHSCHILD<br>
+Standard Trades UBS  </p>
+
+<h1 id="help"><a name="help"></a>Help</h1>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Utils/help</p>
+</blockquote>
+
+<h1 id="settings"><a name="settings"></a>Settings</h1>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Users/save</p>
+</blockquote>
+
+<h1 id="admin"><a name="admin"></a>Admin</h1>
+
+<h2 id="resources"><a name="resources"></a>Resources</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+</blockquote>
+
+<h3 id="resource-insert"><a name="resInsert"></a>Resource insert</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/save</p>
+</blockquote>
+
+<h3 id="resource-share"><a name="resShare"></a>Resource share</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/saveRelations</p>
+</blockquote>
+
+<h3 id="delete-relations"><a name="resDelRel"></a>Delete relations</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/delRelations</p>
+</blockquote>
+
+<h3 id="resource-delete"><a name="resDelete"></a>Resource delete</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/del</p>
+</blockquote>
+
+<h2 id="tasks"><a name="tasks"></a>Tasks</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+</blockquote>
+
+<h2 id="users"><a name="users"></a>Users</h2>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Users/list</p>
+</blockquote>
 
           <h1 id="errors">Errors</h1>
 

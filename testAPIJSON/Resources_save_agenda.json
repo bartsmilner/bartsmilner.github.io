@@ -1,0 +1,15 @@
+{
+	"sid":null,
+	"Resources_type":"EVENT",
+	"Resources_name":"TestAgenda2",
+	"Resources_data":{
+		"type":"info",
+		"endsAt":"2015-12-10T16:47:32+00:00",
+		"startsAt":"2015-12-10T12:47:32+00:00"
+	},
+	"relations":[{
+		"type":"RESOURCE-EVENT",
+		"Resources1_key":null
+	}],
+	"Companies_key":3
+}

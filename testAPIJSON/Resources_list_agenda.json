@@ -1,0 +1,9 @@
+{
+	"sid":null,
+	"Relations_Resources1Key":null,
+	"searchTypes":["EVENT"],
+	"rows":25,
+	"qwhere":" AND (\"Resources\".\"type\" in ('EVENT'))",
+	"qorder":"\"Resources\".\"name\" asc",
+	"Companies_key":3
+}

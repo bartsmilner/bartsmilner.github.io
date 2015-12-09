@@ -42,6 +42,14 @@ var Auth_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Auth_get.jso
   IMPORT_POSITION_CASH_CSV_headers = fs.readFileSync(__dirname + '/importCSV/FINCLUSTER-POSITION_CASH_CSV_headers.csv','utf8'),
   Import_run_sec_pos = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Import_run_sec_pos.json')),
   Import_run_cash_pos = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Import_run_cash_pos.json')),
+  Resources_list_agenda = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Resources_list_agenda.json')),
+  portfolioOrders = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/portfolioOrders.json')),
+  Resources_save_agenda = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Resources_save_agenda.json')),
+  Resources_list_agenda_event = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Resources_list_agenda_event.json')),
+  Resources_edit_save_agenda = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Resources_edit_save_agenda.json')),
+  File_save_jpeg = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/File_save_jpeg.json')),
+  Resources_list_file_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Resources_list_file_get.json')),
+  Resources_saveRelations_share_file = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Resources_saveRelations_share_file.json')),
   res, resObj, auth, newTestID, oldTestID = null, oldTestID1 = null, histTestID = null, activeAccount = null;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';//to prevent Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;
@@ -84,17 +92,23 @@ for(var I = 0; I < resObj.rows.length; I++){
   }
   if(resObj.rows[I].Portfolios_name == "001testMochaIOHist"){
     histTestID = resObj.rows[I].Portfolios_key;
+    //console.log('histTestID', histTestID);
   }
 }
 
 //function Portfolios_del;//keep current 001testAPI only;
-res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/del', {'json': {"qwhere":" AND \"Portfolios\".\"key\" in ("+ oldTestID + ", "+ oldTestID1 + ")","sid":auth}});
+//delete 001testAPI1;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/del', {'json': {"qwhere":" AND \"Portfolios\".\"key\" in ("+ oldTestID1 + ")","sid":auth}});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nPortfolio_del required only;',resObj);
+console.log('\nPortfolios_del required only;',resObj);
+//delete previous 001testAPI;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/del', {'json': {"qwhere":" AND \"Portfolios\".\"key\" in ("+ oldTestID + ")","sid":auth}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nPortfolios_del required only;',resObj);
 Portfolios_del.sid = auth;
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/del', {'json': Portfolios_del});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nPortfolio_del all params;',resObj);
+console.log('\nPortfolios_del all params;',resObj);
 
 //function Report_status;
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Report/status', {'json': {"Portfolios_keys":[ newTestID.Portfolios_key],"sid":auth}});
@@ -153,7 +167,6 @@ console.log('\nNotify_list all params', resObj);
 
 //function Export_file: schema FINCLUSTER-POSITION_SEC_CSV
 newTestID.Portfolios_key = [newTestID.Portfolios_key];
-//console.log('newTestID.Portfolios_key', newTestID.Portfolios_key);
 res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file', {'json': {"sid":auth, "schema":"FINCLUSTER-POSITION_SEC_CSV","Portfolios_keys":newTestID.Portfolios_key}});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nExport_file required only',resObj);
@@ -232,7 +245,6 @@ res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/listRe
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nResources_listRelations required for this portfolio only',resObj);
 //"Relations_Resources1Key": histTestID,
-//Resources_listRelations.Accounts_PortfoliosKey = newTestID.Portfolios_key;
 Resources_listRelations.sid = auth;
 Resources_listRelations.qwhere = " AND (\"Relations\".\"Resources1Key\" = " + histTestID + ") AND (\"Relations\".\"type\" in ('PORTFOLIO-ORGANIZATION','PORTFOLIO-CRM'))";
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/listRelations', {'json': Resources_listRelations});
@@ -248,7 +260,6 @@ Portfolios_listAccounts_active.Portfolios_Key = newTestID.Portfolios_key;
 Portfolios_listAccounts_active.Accounts_key  = activeAccount;
 Portfolios_listAccounts_active.qwhere = " AND (\"Accounts\".\"key\" = " + activeAccount + ")";
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Portfolios/listAccounts', {'json': Portfolios_listAccounts_active});
-//console.log('res', res);
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nPortfolios_listAccounts all params', resObj);
 
@@ -333,11 +344,6 @@ res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Assets/list', {'
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nAssets_list Securities (25) all params', resObj);
 
-
-//function Transactions_save;//Close position equity -aapl
-/*res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': {"Trades_PortfoliosKey":newTestID,"Trades_stage":"trade","Trades_action":"POS","Trades_status":"POSITION","Trades_group":"SECURITY","Trades_currency":"USD","Trades_AssetsKey":"118613","sid":auth}});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save aapl close position',resObj);*/
 Close_position_aapl_118613.sid = auth;
 Close_position_aapl_118613.Trades_PortfoliosKey = newTestID.Portfolios_key;
 res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/save', {'json': Close_position_aapl_118613});
@@ -355,36 +361,29 @@ resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nTransactions_save EUR close position',resObj);
 
 //function Import_run Standard Security Position CSV;
-//console.log('\nImport_standard_sec_pos', Import_standard_sec_pos);
 Import_standard_sec_pos = Import_standard_sec_pos.split('453756').join(newTestID.Portfolios_key);
-//console.log('\nImport_standard_sec_pos + this portfolio id', Import_standard_sec_pos);
 var IMPORT_POSITION_SEC_CSV_headers_Base64 = new Buffer(IMPORT_POSITION_SEC_CSV_headers).toString('base64');
-console.log('\nIMPORT_POSITION_SEC_CSV_headers_Base64', IMPORT_POSITION_SEC_CSV_headers_Base64);
-var IMPORT_POSITION_CASH_CSV_headers_Base64 = new Buffer(IMPORT_POSITION_CASH_CSV_headers).toString('base64');
-console.log('\nIMPORT_POSITION_CASH_CSV_headers_Base64', IMPORT_POSITION_CASH_CSV_headers_Base64);
 
 var importSecPortfolioDataBase64 = new Buffer(Import_standard_sec_pos).toString('base64');
-console.log('\nimportSecPortfolioDataBase64', importSecPortfolioDataBase64);
 
-/*res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importSecPortfolioDataBase64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-POSITION_SEC_CSV","fileName":"FINCLUSTER-POSITION_SEC_CSV_sample.csv","delayed":1,"Companies_key":3}});*/
 res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importSecPortfolioDataBase64,"schema":"FINCLUSTER-POSITION_SEC_CSV"}});
 
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nImport_run sample standard security position  req params',resObj);
+console.log('\nImport_run sample standard security position req params',resObj);
 
 Import_run_sec_pos.sid = auth;
-Import_run_sec_pos.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Import_run_sec_pos.Portfolios_keys = newTestID.Portfolios_key;
 Import_run_sec_pos.content = importSecPortfolioDataBase64;
 res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': Import_run_sec_pos});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nImport_run sec position all params', resObj);
+console.log('\ndelayed: 1 - omitted');
 
 //function Import_run Standard Cash Position CSV;
 Import_standard_cash_pos = Import_standard_cash_pos.split('453756').join(newTestID.Portfolios_key);
 var importCashPortfolioDataBase64 = new Buffer(Import_standard_cash_pos).toString('base64');
-//console.log('\nimportCashPortfolioDataBase64', importCashPortfolioDataBase64);
 
-res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importCashPortfolioDataBase64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-POSITION_CASH_CSV","fileName":"FINCLUSTER-POSITION_CASH_CSV_sample.csv","delayed":1,"Companies_key":3}});
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":importCashPortfolioDataBase64,"schema":"FINCLUSTER-POSITION_CASH_CSV"}});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nImport_run sample standard cash position req params',resObj);
 
@@ -394,3 +393,107 @@ Import_run_cash_pos.content = importCashPortfolioDataBase64;
 res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run', {'json': Import_run_cash_pos});
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nImport_run cash position all params', resObj);
+
+//function Transactions_list ORDERS/ADVICES;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/list', {'json':{"sid":auth,"qwhere":" AND (\"Portfolios\".\"key\" = '" + histTestID + "') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\n Transactions_list required params',resObj);
+
+portfolioOrders.sid = auth;
+portfolioOrders.qwhere = " AND (\"Portfolios\".\"key\" = '" + histTestID + "') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')";
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Transactions/list', {'json': portfolioOrders});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_list all params', resObj);
+
+//function Resources_save AGENDA
+//newTestID.Portfolios_key is not parsed without toString();
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/save', {'json': {"Resources_type":"EVENT","Resources_data":{"type":"info","endsAt":"2015-12-09T16:47:32+00:00","startsAt":"2015-12-09T12:47:32+00:00"},"relations":[{"type":"RESOURCE-EVENT","Resources1_key":newTestID.Portfolios_key.toString()}],"Resources_name":"TestAgenda","Companies_key":3,"sid":auth}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_save AGENDA -> EVENT (1) req only',resObj);
+
+Resources_save_agenda.sid = auth;
+Resources_save_agenda.relations[0].Resources1_key = newTestID.Portfolios_key.toString();
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/save', {'json': Resources_save_agenda});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_save all params', resObj);
+
+//function Resources_list AGENDA: all Events; 
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/list', {'json': {"sid":auth,"qwhere":" AND (\"Resources\".\"type\" in ('EVENT'))"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_list (all EVENTs) required only',resObj);
+
+//Agenda: two new events;
+Resources_list_agenda.sid = auth;
+Resources_list_agenda.Relations_Resources1Key = newTestID.Portfolios_key.toString();
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/list', {'json': Resources_list_agenda});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_list Agenda (1 event) all params', resObj);
+var event0 = resObj.rows[0].Resources_key;
+var event1 = resObj.rows[1].Resources_key;
+
+//function Resources_list AGENDA: one Event; 
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/list', {'json': {"sid":auth,"qwhere":" AND (\"Resources\".\"key\" = " + event0 + ")"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_list Agenda with Resources_key - required only',resObj);
+
+Resources_list_agenda_event.sid = auth;
+Resources_list_agenda_event.Resources_key = event1;
+Resources_list_agenda_event.qwhere = " AND (\"Resources\".\"key\" = " + event1 + ")";
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/list', {'json': Resources_list_agenda_event});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_list Agenda with Resources_key all params', resObj);
+
+//Resources_save EVENT edit and save
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/save', {'json': {"sid":auth,"Resources_key":event0,"Resources_name":"TestAgenda - edit"}});
+console.log('res', res);
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_save AGENDA save from edit - required only',resObj);
+
+Resources_edit_save_agenda.sid = auth;
+Resources_edit_save_agenda.relations[0].Resources1_key = newTestID.Portfolios_key.toString();
+Resources_edit_save_agenda.Resources_key = event1;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/save', {'json': Resources_edit_save_agenda});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_save edit Agenda Event all params', resObj);
+
+//Resources_del EVENT delete
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/del', {'json': {"sid":auth,"qwhere":" AND \"Resources\".\"key\" = " + event1}});
+console.log('\nResources_del AGENDA Event - required only',resObj);
+
+File_save_jpeg.sid = auth;
+File_save_jpeg.files[0].Relations_Resources1Key = newTestID.Portfolios_key.toString();
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/File/save', {'json': File_save_jpeg});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nFile_save jpeg all params', resObj);
+var file1ID = resObj[1].resource.Resources_key;
+
+//function File_download DOCUMENTS jpeg;
+res = request('POST', 'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/File/download', {'json': {"sid":auth,"Resources_key":file1ID}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nFile_download - required only',resObj);
+
+//Resources_list get file
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/list', {'json': {"sid":auth,"qwhere":" AND (\"Resources\".\"name\"::text ilike '%london_rent_map2.jpg%')"}});
+console.log('\nResources_list get jpeg file - required only',resObj);
+Resources_list_file_get.sid = auth;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/list', {'json': Resources_list_file_get});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_list get jpeg file all params', resObj);
+
+//Resources_saveRelations file share
+//Andrea
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/saveRelations', {'json': {"sid":auth,"Relations_Resources1Key":"400182","Relations_Resources2Key":file1ID,"Relations_type":"SHARE"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_saveRelations share file - required only',resObj);
+//Agent1
+Resources_saveRelations_share_file.sid = auth;
+Resources_saveRelations_share_file.Relations_Resources1Key = "400088";
+Resources_saveRelations_share_file.Relations_Resources2Key = file1ID;
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/saveRelations', {'json': Resources_saveRelations_share_file});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_saveRelations share file all params', resObj);
+
+//Resources_del file
+res = request('POST', 'https://dev.fincluster.com:8080/api/CORE/Resources/del', {'json': {"sid":auth,"qwhere":" AND \"Resources\".\"key\" in (" + file1ID + ")"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nResources_del delete file - required only',resObj);
