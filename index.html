@@ -50,20 +50,23 @@
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/This/function;</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+<pre class="highlight json"><code><span class="err">//request</span><span class="w"> </span><span class="err">example</span><span class="w"> </span><span class="err">(non-functional)</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"organisation"</span><span class="p">:{</span><span class="w">
-  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"00001"</span><span class="p">}</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"00001"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="s2">"4601344"</span><span class="w">
+  </span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="c1">//If you want to to use Nodejs for REST, with node installed for your target directory, (where the fs module is installed with Node) simply run npm install sync-request and you can test run the api functions with a json object request that must include your API key to retrieve the response. You can also include the json request object inside the request function and avoid using require fs and external json files.</span>
+<pre class="highlight javascript"><code><span class="c1">//If you want to to use Nodejs for REST, with node installed for your target directory, (where the fs module is installed with Node) simply run npm install sync-request and you can test run the api functions with a json object request that must include your API key to retrieve the response. </span>
+
+<span class="c1">//You can also include the json request object inside the request function and avoid using require fs and external json files. Both types of requests are shown in this guide, the visible json for required parameters and the external json file for all parameters.</span>
 
 <span class="c1">//With sync-request a simple testFincluster.js file would be:</span>
 
@@ -71,33 +74,42 @@
 
 <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">This_function</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'This_function.json'</span><span class="p">));</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">[</span><span class="s1">'NODE_TLS_REJECT_UNAUTHORIZED'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">;</span>
+<span class="c1">//to prevent Node Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;</span>
 
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'ACTION'</span><span class="p">,</span> <span class="s1">'API_Endpoint'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="nx">This_function</span><span class="p">}});</span>
+<span class="kd">var</span> <span class="nx">This_function_request</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'This_function_request.json'</span><span class="p">));</span>
+
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/This/function'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="nx">This_function_request</span><span class="p">}});</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nThis_function'</span><span class="p">,</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 
 <span class="c1">//OR</span>
 
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'ACTION'</span><span class="p">,</span> <span class="s1">'API_Endpoint'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"request_object_in_JSON_format_keys"</span><span class="p">:</span><span class="s2">"values"</span><span class="p">}});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/This/function'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"request_object_in_JSON_format_keys"</span><span class="p">:</span><span class="s2">"values"</span><span class="p">}});</span>
 
-<span class="c1">//The "request_object_in_JSON_format_keys" are shown under the JSON tab, and usually only need to be updated with your API key and sometimes the  ID of the Portfolio that you have created.</span>
+<span class="c1">//Almost all the Request Actions are POST;</span>
+
+<span class="c1">//The "request_object_in_JSON_format_keys" are shown under the JSON tab, and usually need to be updated with your API key and sometimes the  ID of the Portfolio that you have created. Many values are for illustration only and will be specific to your Request object.</span>
 
 <span class="c1">//To run, simply type (in your target directory in your Terminal): node testFincluster</span>
 </code></pre>
 
 <p>Welcome to the Fincluster API! You can use our API to access Fincluster functions.</p>
 
-<p>The Fincluster API is built using REST principles which follow HTTP rules, so a wide range of HTTP clients can be used to interact with the API. Every function is exposed as a URL Endpoint <strong>???Reconfigure with new URL for public API???</strong> The REQUEST is always made with the <strong>POST</strong> action. Both REQUEST and RESPONSE are formatted as JSON objects. This documentation shows which parameters are obligatory or optional for the REQUEST objects and the type of key:values returned by the RESPONSE object. Required parameters are at the top of each table. </p>
+<p>The Fincluster API is built using REST principles which follow HTTP rules, so a wide range of HTTP clients can be used to interact with the API. Every function is exposed as a URL Endpoint <strong>???Reconfigure with new URL for public API???</strong> </p>
+
+<p>The REQUEST is almost always made with the <strong>POST</strong> action. Both REQUEST and RESPONSE are formatted as JSON objects. This documentation shows which parameters are obligatory or optional for the REQUEST objects and the type of key:values returned by the RESPONSE object. Required parameters are at the top of each table. </p>
 
 <p>Complex nested objects are shown preceded by an indented colon. </p>
 
 <p>For more information about options, please see the <a href="https://dev.fincluster.com:8080/agent/#/help">Help guide</a>.</p>
 
+<p><strong>Example of Request parameters</strong></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -133,7 +145,11 @@
 </tr>
 </tbody></table>
 
-<p>The column on the right shows the format of a Fincluster <em>Endpoint</em>, a <em>JSON</em>  REQUEST object and a <em>JSON</em> RESPONSE object used by an http or AJAX client. You can use any AJAX wrapper, or compose the REQUEST in any language which is REST-compatible. (The <code class="prettyprint">key:values</code> shown here for <code class="prettyprint">This_function</code> are for illustration only.) </p>
+<p>The panel on the right shows the format of a Fincluster <em>Endpoint</em>, a tab with a <em>JSON</em>  REQUEST object and a <em>JSON</em> RESPONSE object used by an http or AJAX client. You can use any AJAX wrapper, or compose the REQUEST in any language which is REST-compatible. (The <code class="prettyprint">key:values</code> shown here for <code class="prettyprint">This_function</code> are for illustration only.)</p>
+
+<p>Required parameters for a javascript request are shown under the <em>Javascript</em> tab, together with the syntax for an external json file Request in javascript which could use any or all of the optional parameters shown in the <em>JSON</em> tab.</p>
+
+<p>Both JSON and javascript have been tested repeatedly during development, and if either fail, re-check that your syntax is the same as that shown and that your parameter values are valid.</p>
 
 <h2 id="authentication">Authentication</h2>
 
@@ -190,7 +206,7 @@
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -226,7 +242,7 @@
 
 <p>Initial authentication using the Required parameters of <code class="prettyprint">Auth_get</code> will generate a new <code class="prettyprint">sid: value</code>, which you need to replace the &ldquo;Your_API_key&rdquo; value in the <code class="prettyprint">&quot;sid&quot; : &quot;Your_API_key&quot;</code> parameters shown here. <code class="prettyprint">Auth_get</code> is required to validate any subsequent <code class="prettyprint">&quot;sid&quot;: &quot;value&quot;</code> in a REQUEST, (whether generated by the current Endpoint call or by a previous one; all sid values are destoyed when the database is rebooted). <strong>???Reconfigure for public API???</strong> <em>Fincluster uses API keys to allow access to the API. You can register a new Fincluster API key at our <a href="https://dev.fincluster.com:8080/api/Developers/key">developer portal</a></em>.</p>
 
-<p>After authentication, the Fincluster database expects the API key to be included in all API requests to the server in a header.</p>
+<p>After authentication, the Fincluster database expects the API key to be included as the value in all API requests to the server in a header that uses the <code class="prettyprint">sid</code> key.</p>
 
 <aside class="notice">
 You must replace <code>Your_API_key</code> with your personal API key.
@@ -249,20 +265,6 @@ You must replace <code>Your_API_key</code> with your personal API key.
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"history"</span><span class="p">:[{</span><span class="w">
     </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mf">27575.330151102746</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mf">9475.6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mf">18099.730151102747</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mf">-924.9053463805094</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mf">-0.032452551013558595</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mf">-262.7113321833731</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mf">-0.009437134158345906</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-10-27"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
       </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mf">27575.330151102746</span><span class="p">,</span><span class="w">
       </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mf">9475.6</span><span class="p">,</span><span class="w">
@@ -277,88 +279,9 @@ You must replace <code>Your_API_key</code> with your personal API key.
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-10-28"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-10-29"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-10-30"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-10-31"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-11-01"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"calc"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"curNetCashAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-11-02"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
+      </span><span class="nt">"numPortfolios"</span><span class="p">:</span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.dev.fincluster.com:8080:8080/api/CORE/Users/stats'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
@@ -370,13 +293,13 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p><code class="prettyprint">Users_stats</code> gets summary information about the current user&rsquo;s Portfolio(s???). ???startDate, other params -&gt;  json Response structure??? </p>
+<p><code class="prettyprint">Users_stats</code> gets summary information about the current user&rsquo;s Portfolio history (shown on the platform as the PORTFOLIO ANALYTICS tab). </p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -408,17 +331,17 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Users\".\"key\" = '400180')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Users\".\"key\" = '100000')"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Users\".\"name\" asc"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"isProfile"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"Users_name"</span><span class="p">:</span><span class="s2">"User Name"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"Users_username"</span><span class="p">:</span><span class="s2">"username"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"Users_pub"</span><span class="p">:{},</span><span class="w">
@@ -451,13 +374,13 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p><code class="prettyprint">Users_list</code> with only the sid parameter gets summary information about all users. With the optional parameters shown here, it gets the current user.</p>
+<p><code class="prettyprint">Users_list</code> with only the sid parameter gets profile information about all users. With the optional <code class="prettyprint">isProfile</code> parameter shown here, it will return the current user. The <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Users\&quot;.\&quot;key\&quot; = &#39;100000&#39;)&quot;</code>, with a valid <code class="prettyprint">Users_key</code>, will return that user&rsquo;s profile. </p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -471,7 +394,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>qwhere</td>
 <td>FALSE</td>
 <td>String</td>
-<td>Query of user&rsquo;s ID</td>
+<td>Query with user&rsquo;s ID</td>
 </tr>
 <tr>
 <td>qorder</td>
@@ -483,7 +406,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>isProfile</td>
 <td>FALSE</td>
 <td>Boolean</td>
-<td>???</td>
+<td>Current user</td>
 </tr>
 <tr>
 <td>Users_key</td>
@@ -495,7 +418,7 @@ You must replace <code>Your_API_key</code> with your personal API key.
 <td>rows</td>
 <td>FALSE</td>
 <td>Number</td>
-<td>???</td>
+<td>Number of rows shown</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -590,7 +513,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -704,13 +627,15 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>With <code class="prettyprint">sid</code> as the only Request parameter, <a name="resourcesList"><code class="prettyprint">Resources_list</code></a> will show all resources in use, most of which will be <code class="prettyprint">ASSET</code> type, but may also include <code class="prettyprint">USER</code>,<code class="prettyprint">PORTFOLIO</code>,<code class="prettyprint">ORGANIZATION</code>,<code class="prettyprint">TPL-IMPORT</code>, and <code class="prettyprint">TPL-EXPORT</code> (any more???). With the Request parameter <code class="prettyprint">&quot;searchTypes&quot;:[&quot;TPL-PTF-VIEW&quot;]</code>, as  here, it will show available templates/layouts for the Portfolio position tables.</p>
+<p>With <code class="prettyprint">sid</code> as the only Request parameter, <a name="resourcesList"><code class="prettyprint">Resources_list</code></a> will show all resources in use, most of which will be <code class="prettyprint">ASSET</code> type, but may also include <code class="prettyprint">USER</code>,<code class="prettyprint">PORTFOLIO</code>,<code class="prettyprint">ORGANIZATION</code>, <code class="prettyprint">FILE</code>, <code class="prettyprint">TPL-IMPORT</code> and <code class="prettyprint">TPL-EXPORT</code> (any more???). </p>
+
+<p>With the Request parameter <code class="prettyprint">&quot;searchTypes&quot;</code> set to <code class="prettyprint">[&quot;TPL-PTF-VIEW&quot;]</code>, as  here, it will show available templates/layouts for the Portfolio position tables which provide a custom display of selected columns on the portfolio page table.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -758,43 +683,45 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 </tr>
 </tbody></table>
 
-<h2 id="notify-count">Notify count</h2>
+<h2 id="notify-list">Notify list</h2>
+
+<h3 id="count-notifications">Count notifications</h3>
 
 <blockquote>
-<p>https://dev.fincluster.com:8080/api/CORE/Notify/count</p>
+<p>https://dev.fincluster.com:8080/api/CORE/Notify/list</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"qfilters"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"lev"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"$gte"</span><span class="p">:</span><span class="mi">4</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"qcnt"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Notify\".read = 0 AND \"Notify\".lev &gt;= 4 "</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="err">99</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"count"</span><span class="p">:</span><span class="s2">"30"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/count'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"qcnt"</span><span class="p">:</span><span class="mi">1</span><span class="p">}});</span>
 <span class="c1">//OR</span>
-<span class="kd">var</span> <span class="nx">Notify_count</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Notify_count.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Notify/count'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_count</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">Notify_list</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Notify_list.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_list</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nNotify_count'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nNotify_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>With only the <code class="prettyprint">sid</code> parameter, <code class="prettyprint">Notify_count</code> gives the total number of all notifications. With the optional parameters shown here, it gets the total number of unread notifications for the current user.</p>
+<p><code class="prettyprint">Notify_list</code> can be used to count the total number of notifications if the boolean <code class="prettyprint">qcount</code> parameter is set to 1. With the optional <code class="prettyprint">qwhere</code> parameter shown here, it returns a rows[0].count value of unread notifications.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -805,28 +732,22 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <td>Your API key</td>
 </tr>
 <tr>
-<td>qfilters</td>
-<td>FALSE</td>
-<td>Object</td>
-<td>Query filters</td>
+<td>qcnt</td>
+<td>TRUE</td>
+<td>Boolean</td>
+<td>Count notifications</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;:status</td>
+<td>qwhere</td>
 <td>FALSE</td>
-<td>Number???Boolean</td>
-<td>???</td>
+<td>String</td>
+<td>Query filter for unread notifications</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;:lev</td>
-<td>FALSE</td>
-<td>Object</td>
-<td>???</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;:$gte</td>
+<td>rows</td>
 <td>FALSE</td>
 <td>Number</td>
-<td>More than Number???</td>
+<td>Number of rows displayed</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -836,7 +757,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 </tr>
 </tbody></table>
 
-<h2 id="notify-list">Notify list</h2>
+<h3 id="read-notifications">Read notifications</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Notify/list</p>
@@ -844,48 +765,39 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"qfilters"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"lev"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"$gte"</span><span class="p">:</span><span class="mi">5</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"qcnt"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Notify\".read = 0 AND \"Notify\".lev &gt;= 4 "</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">//response</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"564f437cd20873b4629e2b87"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"from"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"User Name"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"default"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"delete"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"portfolio"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"content"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">4971662</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w"> 
+    </span><span class="nt">"Notify_key"</span><span class="p">:</span><span class="mi">15206904</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_content"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">5075392</span><span class="p">,</span><span class="w">
       </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"tseq"</span><span class="p">:</span><span class="mi">1448034535730</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tseq"</span><span class="p">:</span><span class="mi">1450182389027</span><span class="p">,</span><span class="w">
         </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"calc_date"</span><span class="p">:</span><span class="s2">"2015-11-20T15:48:55+00:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"calc_curNetAmount"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+        </span><span class="nt">"calc_date"</span><span class="p">:</span><span class="s2">"2015-12-15T12:26:28+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"calc_netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">"calc_netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"calc_curNetAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"calc_curNetSecAmount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"calc_curNetCashAmount"</span><span class="p">:</span><span class="mi">1000</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rule"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"notes"</span><span class="p">:</span><span class="s2">"Parameter test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"prefs"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"tz"</span><span class="p">:</span><span class="s2">"+00:00"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"prefs"</span><span class="p">:{</span><span class="nt">"tz"</span><span class="p">:</span><span class="s2">"+00:00"</span><span class="p">},</span><span class="w">
       </span><span class="nt">"_minfo"</span><span class="p">:{</span><span class="w">
         </span><span class="nt">"op"</span><span class="p">:</span><span class="s2">"delete"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"notify"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"_search"</span><span class="p">:</span><span class="s2">"User Name 4971662 001testAPI 4971662"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"_search"</span><span class="p">:</span><span class="s2">"User Name 5075392 001testAPI 5075392"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"dossier"</span><span class="p">:</span><span class="s2">"FC001"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"_mstatus"</span><span class="p">:</span><span class="s2">"delete-pending"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
@@ -893,15 +805,25 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
       </span><span class="nt">"setupDate"</span><span class="p">:</span><span class="s2">"2015-11-05T00:00:00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="mi">400180</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"lev"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2015-11-20T15:59:56+00:00"</span><span class="w">
+    </span><span class="nt">"Notify_action"</span><span class="p">:</span><span class="s2">"delete"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_UsersKey"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_type"</span><span class="p">:</span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_channel"</span><span class="p">:</span><span class="s2">"portfolio"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_minfo"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"op"</span><span class="p">:</span><span class="s2">"delete"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ts"</span><span class="p">:</span><span class="s2">"2015-12-15T12:57:05.53379"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notify"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Users_key"</span><span class="p">:</span><span class="s2">"400180"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Users_name"</span><span class="p">:</span><span class="s2">"User Name"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Notify_ts"</span><span class="p">:</span><span class="s2">"2015-12-15T12:57:05.533Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_lev"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Notify_read"</span><span class="p">:</span><span class="mi">0</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"_id"</span><span class="p">:</span><span class="err">...</span><span class="w">
+    </span><span class="nt">"Notify_key"</span><span class="p">:</span><span class="err">...</span><span class="w">
   </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">  
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
@@ -912,13 +834,13 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nNotify_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>With only the <code class="prettyprint">sid</code> parameter, <code class="prettyprint">Notify_list</code> gives the total number of notifications. With the optional parameters shown here, it returns an array of unread notifications. If there are no unread notifications it returns <code class="prettyprint">rows</code> with an empty array.</p>
+<p><code class="prettyprint">Notify_list</code> will return a <code class="prettyprint">rows</code> object value as an array of objects for all the available notifications, if the boolean <code class="prettyprint">qcount</code> parameter is set to 0 or omitted. With the optional <code class="prettyprint">qwhere</code> parameter shown here, it returns only the unread notifications.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -929,28 +851,22 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <td>Your API key</td>
 </tr>
 <tr>
-<td>qfilters</td>
+<td>qcnt</td>
 <td>FALSE</td>
-<td>Object</td>
-<td>Query filters</td>
+<td>Boolean</td>
+<td>Count notifications</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;:lev</td>
+<td>qwhere</td>
 <td>FALSE</td>
-<td>Object</td>
-<td>???</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;:$gte</td>
-<td>FALSE</td>
-<td>Number</td>
-<td>More than Number???</td>
+<td>String</td>
+<td>Query filter for unread notifications</td>
 </tr>
 <tr>
 <td>rows</td>
 <td>FALSE</td>
 <td>Number</td>
-<td>Number of rows displayed in platform</td>
+<td>Number of rows displayed</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -1030,7 +946,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1194,7 +1110,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <td>&nbsp;&nbsp;:Share_perm</td>
 <td>FALSE</td>
 <td>Number</td>
-<td>???</td>
+<td>Permission level</td>
 </tr>
 </tbody></table>
 
@@ -1229,7 +1145,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1695,7 +1611,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1795,6 +1711,8 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 
 <h2 id="position-editor"><a name="positionEditor"></a>Position Editor</h2>
 
+<h3 id="insert"><a name="posEdInsert"></a>INSERT</h3>
+
 <p>Adding a position on the platform uses <code class="prettyprint">Position Editor -&gt; Insert</code>, which involves a sequence of functions. Initially <a href="#listPortfolios"><code class="prettyprint">Portfolios_list</code></a> is called with the current portfolio&rsquo;s ID to get information on the portfolio. Then <code class="prettyprint">Portfolios_listAccounts</code> is called with the portfolio ID to get all its associated accounts. </p>
 
 <p><code class="prettyprint">Resources_listRelations</code> returns all the relationships, organisational relations with Banks and Brokers and CRM relations with clients. <code class="prettyprint">Portfolios_listAccounts</code> is called again, this time with the default or selected account ID. Adding a security (rather than cash) calls the <code class="prettyprint">Assets_list</code> which shows search results for each character added to the search parameter, or an asset selected by its ID.</p>
@@ -1803,7 +1721,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 
 <p>If a new position is added for an asset which already exists as a position in the portfolio, it will overwrite the existing position, but only if it has a later <code class="prettyprint">Trades_date</code> than the existing position. Both transactions, with their respective <code class="prettyprint">Trades_date</code>, will be shown in the portfolio&rsquo;s <a href="#portfolioTransactions"><code class="prettyprint">TRANSACTIONS</code></a> page. </p>
 
-<h3 id="portfolios-list-this-portfolio">Portfolios List: this portfolio</h3>
+<h3 id="portfolios-list-this-portfolio"><a name="portfoliosListOne"></a>Portfolios List: this portfolio</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Portfolios/list</p>
@@ -1874,14 +1792,14 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>The <code class="prettyprint">&quot;Portfolios_key&quot;</code> and <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Portfolios\&quot;.\&quot;key\&quot; in (&#39;00000000&#39;))&quot;</code>
-parameters, used by the <code class="prettyprint">Position Editor</code>, find a single portfolio by its ID.</p>
+<p>The <code class="prettyprint">Portfolios_list</code> function with <code class="prettyprint">&quot;Portfolios_key&quot;</code> and <code class="prettyprint">&quot;qwhere&quot;:&quot; AND (\&quot;Portfolios\&quot;.\&quot;key\&quot; in (&#39;00000000&#39;))&quot;</code>
+parameters, find a single portfolio by its ID. This is used by the <code class="prettyprint">Position Editor</code> to get more specific information about a portfolio.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1987,13 +1905,15 @@ parameters, used by the <code class="prettyprint">Position Editor</code>, find a
 parameters, used by the <code class="prettyprint">Position Editor</code>, find all the accounts associated with a single portfolio by its ID. 
 The sort order here will be ascending by the IBAN name. </p>
 
-<p>If no Bank has been added to <code class="prettyprint">Accounts</code> by <a href="#portfoliosSave"><code class="prettyprint">Portfolios_save</code></a> or <code class="prettyprint">Resources_list</code> [???Accounts Insert Link] the <code class="prettyprint">rows.Accounts_iban</code> returned will be <code class="prettyprint">&quot;DEFAULT&quot;</code> and the <code class="prettyprint">rows.Banks_Name&quot;</code> will be <code class="prettyprint">&quot;GENERIC&quot;</code>, in an object which will always be included and available.</p>
+<p>If no Bank has been added to <code class="prettyprint">Accounts</code> by <a href="#portfoliosSave"><code class="prettyprint">Portfolios_save</code></a> or <a href="#saveAccounts"><code class="prettyprint">Portfolios_saveAccounts</code></a> the <code class="prettyprint">rows.Accounts_iban</code> returned will be <code class="prettyprint">&quot;DEFAULT&quot;</code> and the <code class="prettyprint">rows.Banks_Name&quot;</code> will be <code class="prettyprint">&quot;GENERIC&quot;</code>, in an object which will always be included and available if there are no other accounts. </p>
+
+<p>For convenience, the generic account can be deleted with <a href="#delAccounts"><code class="prettyprint">Portfolios_delAccounts</code></a>, but the application will only allow an account to be deleted, if it is not the <code class="prettyprint">default</code> and it is not being used.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2071,7 +1991,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2125,7 +2045,7 @@ The sort order here will be ascending by the IBAN name. </p>
 </tr>
 </tbody></table>
 
-<h3 id="list-accounts-active">List Accounts: active</h3>
+<h3 id="list-accounts-default">List Accounts: default</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Portfolios/listAccounts</p>
@@ -2167,15 +2087,13 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_listAccounts'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>The Position Editor&rsquo;s second Request to <code class="prettyprint">&quot;Portfolios_listAccounts&quot;</code> uses an <code class="prettyprint">&quot;Accounts_key&quot;</code> from the previous call and includes it in a different <code class="prettyprint">&quot;qwhere:&quot;</code> parameter, in order to return the current account, rather than the list of all associated accounts generated by the first call to <a href="#listAccounts"><code class="prettyprint">Portfolios_listAccounts</code></a>.</p>
-
-<p>The Response shown here uses the <code class="prettyprint">&quot;Accounts_isDefault&quot;:1</code> in the first call&rsquo;s Response to flag that an account with [&ldquo;Allianz Bank&rdquo;] is included in the portfolio&rsquo;s available [??? link] Accounts and is being used as the active account.</p>
+<p>The Position Editor&rsquo;s second Request to <code class="prettyprint">&quot;Portfolios_listAccounts&quot;</code> uses the <code class="prettyprint">&quot;Accounts_key&quot;</code> from the previous call where the <code class="prettyprint">&quot;Accounts_isDefault&quot;</code> is set to true (1) and includes it in a different <code class="prettyprint">&quot;qwhere:&quot;</code> parameter, in order to return the default account, rather than the list of all associated accounts generated by the first call to <a href="#listAccounts"><code class="prettyprint">Portfolios_listAccounts</code></a>.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2297,7 +2215,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2412,7 +2330,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2608,7 +2526,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2765,7 +2683,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2925,7 +2843,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3078,7 +2996,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3200,7 +3118,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3291,7 +3209,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3376,7 +3294,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3452,7 +3370,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3563,7 +3481,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3664,7 +3582,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3763,7 +3681,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3969,7 +3887,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4096,7 +4014,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4189,7 +4107,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4312,7 +4230,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4409,7 +4327,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4497,7 +4415,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4630,7 +4548,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4700,7 +4618,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4774,7 +4692,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4847,7 +4765,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4925,7 +4843,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -4989,7 +4907,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_del_file</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_del delete file - required only - Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_del delete file - Documents'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
 <p>You can delete a file or files simply by using their <code class="prettyprint">Resources.key</code> in the <code class="prettyprint">qwhere</code> parameter.</p>
@@ -5000,7 +4918,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -5184,7 +5102,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -5235,8 +5153,10 @@ The sort order here will be ascending by the IBAN name. </p>
 <h2 id="setup"><a name="setup"></a>SETUP</h2>
 
 <blockquote>
-<p>https://dev.fincluster.com:8080/api/CORE/Resources/list</p>
+<p>https://dev.fincluster.com:8080/api/CORE/Portfolios/list</p>
 </blockquote>
+
+<p>On the platform, the Portfolio SETUP tab uses the same <code class="prettyprint">Portfolios_list</code> function as the <a href="#portfoliosListOne"><code class="prettyprint">Position Editor</code></a> to identify and return the organisation of a portfolio. Both use that portfolio&rsquo;s <code class="prettyprint">Portfolios_key</code> in a <code class="prettyprint">qwhere</code> parameter to return all its attributes. </p>
 
 <h2 id="relations"><a name="Relations"></a>RELATIONS</h2>
 
@@ -5277,48 +5197,7 @@ The sort order here will be ascending by the IBAN name. </p>
     </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57805</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-ORGANIZATION"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"121248"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">121248</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BROKER"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="mi">57806</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO-CRM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_perm"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources1Key"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_Resources2Key"</span><span class="p">:</span><span class="s2">"4836484"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Relations_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources1_name"</span><span class="p">:</span><span class="s2">"001testAPI"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_type"</span><span class="p">:</span><span class="s2">"PORTFOLIO"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources1_data"</span><span class="p">:{},</span><span class="w">
-    </span><span class="nt">"Resources2_name"</span><span class="p">:</span><span class="s2">"test test"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_type"</span><span class="p">:</span><span class="s2">"CRM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Resources2_data"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"base"</span><span class="p">:{},</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tpls"</span><span class="p">:[</span><span class="s2">"base"</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"test@test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"surname"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+    </span><span class="nt">"Relations_key"</span><span class="p">:</span><span class="err">...</span><span class="w">
   </span><span class="p">}],</span><span class="w">
   </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5336,11 +5215,13 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>Relations can be searched by <code class="prettyprint">Relations_type</code> which can be <code class="prettyprint">PORTFOLIO-ORGANIZATION</code> (usually Banks/Brokers), <code class="prettyprint">PORTFOLIO-CRM</code> (clients associated with the portfolio), <code class="prettyprint">USER-PARENT</code> and <code class="prettyprint">SHARE</code> (???).</p>
 
+<p>The Response returns an object whose <code class="prettyprint">rows</code> value is the array of <code class="prettyprint">Relations</code> objects found. </p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -5399,6 +5280,620 @@ The sort order here will be ascending by the IBAN name. </p>
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Portfolios/listAccounts</p>
 </blockquote>
+
+<p>Accounts are displayed in the PORTFOLIO&rsquo;s ACCOUNTS tab on the platform. This uses the same <a href="#listAccounts"><code class="prettyprint">Portfolios_listAccounts</code></a> as the PORTFOLIO&rsquo;s <code class="prettyprint">Position Editor</code> INSERT. </p>
+
+<p>New accounts can be added, existing accounts can be deleted (if they are not in use or are not the <code class="prettyprint">default</code> for that portfolio) and edited (including their <code class="prettyprint">default</code> status).</p>
+
+<h3 id="find-account-by-chars"><a name="findAccount"></a>Find Account by chars</h3>
+
+<blockquote>
+<p>https://paolo.fincluster.com:8081/api/CORE/Resources/list</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"searchString"</span><span class="p">:</span><span class="s2">"ba"</span><span class="p">,</span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Resources\".\"type\" in ('ORGANIZATION') AND (\"Resources\".\"name\" ilike '%ba%')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources\".\"name\" asc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"120976"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">120976</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="err">...</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="err">\</span><span class="s2">"type\" in ('ORGANIZATION') AND (\"Resources\".\"name\" ilike '%ba%')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_list_search_ACCOUNTS_by_chars</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_list_search_ACCOUNTS_by_chars.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_list_search_ACCOUNTS_by_chars</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list_search_ACCOUNTS_by_chars'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>An account listed in <code class="prettyprint">Resources</code> can be found with <code class="prettyprint">Resources_list</code> and the <code class="prettyprint">qwhere</code> parameter using  the <code class="prettyprint">Resources.type in (&#39;ORGANISATION&#39;)</code> and a search string. This will return an object whose <code class="prettyprint">rows</code> keys is an array of all the Resources objects that contain that string of two or more  characters.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query using search string and Resources.type in (&#39;ORGANIZATION&rsquo;)</td>
+</tr>
+<tr>
+<td>searchString</td>
+<td>FALSE</td>
+<td>Array of Strings</td>
+<td>2+ chars</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.name asc or desc sort order</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Rows displayed</td>
+</tr>
+</tbody></table>
+
+<h3 id="find-account-by-key"><a name="findAccountByKey"></a>Find Account by key</h3>
+
+<blockquote>
+<p>https://paolo.fincluster.com:8081/api/CORE/Resources/list</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Resources\".\"key\" = '120976')"</span><span class="p">,</span><span class="w">   
+  </span><span class="nt">"qorder"</span><span class="p">:</span><span class="s2">"\"Resources\".\"name\" asc"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"120976"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"rows"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"120976"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">120976</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Allianz Bank"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="err">...</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"page"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="err">\</span><span class="s2">"type\" in ('ORGANIZATION') AND (\"Resources\".\"name\" ilike '%ba%')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Resources_list_search_ACCOUNTS_by_key</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Resources_list_search_ACCOUNTS_by_key.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Resources/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Resources_list_search_ACCOUNTS_by_key</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nResources_list_search_ACCOUNTS_by_key'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>An account listed in <code class="prettyprint">Resources</code> can also be found with <code class="prettyprint">Resources_list</code> and the <code class="prettyprint">qwhere</code> parameter using  the <code class="prettyprint">Resources.key</code>. This will return an object whose <code class="prettyprint">rows</code> key&rsquo;s value is an array of the single account object that matches the key.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query using Resources.key</td>
+</tr>
+<tr>
+<td>Resources_key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>qorder</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.name asc or desc sort order</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Rows displayed</td>
+</tr>
+</tbody></table>
+
+<h3 id="save-account-new"><a name="saveAccounts"></a>Save Account - New</h3>
+
+<blockquote>
+<p>https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"organization"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"Banca Fideuram"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">2661301</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Banca Fideuram"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Accounts_iban"</span><span class="p">:</span><span class="s2">"000112"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_isDefault"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5078292"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
+<span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="s2">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="s2">"Accounts_iban"</span><span class="p">:</span><span class="s2">"000111"</span><span class="p">,</span><span class="s2">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Portfolios_saveAccounts_ACCOUNTS</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_saveAccounts_ACCOUNTS.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_saveAccounts_ACCOUNTS</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_saveAccounts ACCOUNTS add new account'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>The <code class="prettyprint">Portfolios_saveAccounts</code> function will save a new Bank account for a portfolio from the accounts listed in <code class="prettyprint">Resources</code> (???link), using the account&rsquo;s <code class="prettyprint">Resources_key</code>. A currency and IBAN code number are also required. </p>
+
+<p>The <code class="prettyprint">Accounts_key</code> returned is the ID for that Account in that Portfolio. The <code class="prettyprint">Accounts_key</code> is subsequently returned by <code class="prettyprint">Portfolios_listAccounts</code> and can be used to edit or delete an existing function.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Accounts_PortfoliosKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Accounts_OrganizationsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Account Resources.key</td>
+</tr>
+<tr>
+<td>Accounts_iban</td>
+<td>TRUE</td>
+<td>String</td>
+<td>IBAN code</td>
+</tr>
+<tr>
+<td>Accounts_currency</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Base currency code</td>
+</tr>
+<tr>
+<td>Accounts_isDefault</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Default account</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Account resource key:value pairs</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Bank name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;ORGANIZATION&rdquo;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_CompaniesKey</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_tags</td>
+<td>FALSE</td>
+<td>Array</td>
+<td>Tags</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Share_perm</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Permission level</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Resource data</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Bank name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;BANK&rdquo;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:notes</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Custom info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:CompaniesKey</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="save-account-edit"><a name="saveAccountsEdit"></a>Save Account - Edit</h3>
+
+<blockquote>
+<p>https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5078292"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"organization"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"Banca Fideuram"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_type"</span><span class="p">:</span><span class="s2">"ORGANIZATION"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"key"</span><span class="p">:</span><span class="mi">2661301</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Banca Fideuram"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"BANK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Resources_tags"</span><span class="p">:[],</span><span class="w">
+    </span><span class="nt">"Share_perm"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Accounts_iban"</span><span class="p">:</span><span class="s2">"000112"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Accounts_isDefault"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5078292"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
+<span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Accounts_key"</span><span class="p">:</span><span class="s2">"5078292"</span><span class="p">,</span><span class="s2">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="s2">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="s2">"Accounts_iban"</span><span class="p">:</span><span class="s2">"000111000"</span><span class="p">,</span><span class="s2">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Portfolios_saveAccounts_ACCOUNTS</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_saveAccounts_ACCOUNTS.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_saveAccounts_ACCOUNTS</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_saveAccounts ACCOUNTS Edit - Accounts_key'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>Editing an existing account uses the same <code class="prettyprint">Portfolios_saveAccounts</code> function as creating a new account, but it MUST include the <code class="prettyprint">Accounts_key</code> for that Account in that Portfolio, or a fatal error will be thrown.
+The same <code class="prettyprint">Accounts_key</code> will be returned after a successful edit.</p>
+
+<p>The <code class="prettyprint">Accounts_currency</code> parameter value cannot be changed once an account has been created. Attempting to do so will throw a fatal error.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Accounts_key</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>Accounts_PortfoliosKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Accounts_OrganizationsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Account Resources.key</td>
+</tr>
+<tr>
+<td>Accounts_iban</td>
+<td>TRUE</td>
+<td>String</td>
+<td>IBAN code</td>
+</tr>
+<tr>
+<td>Accounts_currency</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Base currency code</td>
+</tr>
+<tr>
+<td>Accounts_isDefault</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Default account</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>organization</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Account resource key:value pairs</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Bank name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;ORGANIZATION&rdquo;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_CompaniesKey</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_tags</td>
+<td>FALSE</td>
+<td>Array</td>
+<td>Tags</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Share_perm</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Permission level</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:Resources_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Resource data</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:key</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Resources.key</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:name</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Bank name</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:type</td>
+<td>FALSE</td>
+<td>String</td>
+<td>&ldquo;BANK&rdquo;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:notes</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Custom info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;:CompaniesKey</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-account"><a name="delAccounts"></a>Delete Account</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Portfolios/delAccounts</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Accounts\".\"key\" in ('5078292')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5078292"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/delAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Accounts\".\"key\" in ('5078292')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Portfolios_delAccounts_ACCOUNTS</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_delAccounts_ACCOUNTS.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Portfolios/delAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Portfolios_delAccounts_ACCOUNTS</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nPortfolios_delAccounts ACCOUNTS find by Accounts_key'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>You can delete an account which is not in use and is not set as the default and is not the only account for that portfolio simply by using its <code class="prettyprint">Accounts_key</code> in the <code class="prettyprint">qwhere</code> parameter of the <code class="prettyprint">Portfolios_delAccounts</code> function.</p>
+
+<p>After an account has been deleted its (now invalid) <code class="prettyprint">Accounts_key</code> is returned in the Response.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>qwhere</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Query using Accounts.key in (&#39;5078292&rsquo;)</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
 
 <h1 id="crm"><a name="CRM"></a>CRM</h1>
 
@@ -5489,7 +5984,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
-<th>Type</th>
+<th>Val&nbsp;Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>

@@ -13,8 +13,20 @@
   "Accounts_iban":"0001",
   "Portfolios_notes":"Parameter test",
   "Companies_key":3,
-  "organization":{"Resources_key":"120976","Resources_name":"Allianz Bank","Resources_type":"ORGANIZATION","Resources_CompaniesKey":3,"Resources_data":{"key":120976,"name":"Allianz Bank","type":"BANK","notes":null,"CompaniesKey":3},
-  "Resources_mts":"2015-09-05T16:36:18.888Z",
-  "Resources_tags":[],
-  "Share_perm":10}
+  "organization":{
+    "Resources_key":"120976",
+    "Resources_name":"Allianz Bank",
+    "Resources_type":"ORGANIZATION",
+    "Resources_CompaniesKey":3,
+    "Resources_data":{
+      "key":120976,
+      "name":"Allianz Bank",
+      "type":"BANK",
+      "notes":null,
+      "CompaniesKey":3
+    },
+    "Resources_mts":"2015-09-05T16:36:18.888Z",
+    "Resources_tags":[],
+    "Share_perm":10
+  }
 }
