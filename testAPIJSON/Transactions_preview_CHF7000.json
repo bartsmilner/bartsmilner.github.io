@@ -1,0 +1,22 @@
+{
+  "sid": null,
+  "Portfolios_keys": null,
+  "Trades_date":"2016-01-14T12:50:31+00:00",
+  "Trades_data":{
+    "validityDate":"2016-01-14",
+    "updateCash":true
+  },
+  "Trades_stage":"trade",
+  "Trades_class":"DEFAULT",
+  "Trades_group":"SECURITY",
+  "Trades_action":"BUY",
+  "Trades_commissionType":"ABSOLUTE",
+  "Trades_changeCurrency":"EUR",
+  "Trades_AssetsKey":"3367103",
+  "Trades_currency":"CHF",
+  "Trades_settleDate":"2016-01-14",
+  "Trades_status":"FILLED",
+  "Trades_AccountsKey": null,
+  "Trades_quota":"70000",
+  "Companies_key":3
+}

@@ -1,0 +1,27 @@
+{
+	"sid": "Your_API_key",
+	"Trades_date":null,
+	"Trades_data":{
+		"validityDate":"2016-01-07",
+		"updateCash":true
+		},
+	"Trades_stage":"trade",
+	"Trades_class":"DEFAULT",
+	"Trades_group":"SECURITY",
+	"Trades_action":"SELL",
+	"Trades_commissionType":"ABSOLUTE",
+	"Trades_changeCurrency":"EUR",
+	"Trades_AssetsKey":"5071079",
+	"Trades_currency":"EUR",
+	"Trades_settleDate":"2016-01-07",
+	"Trades_status":"FILLED",
+	"Trades_PortfoliosKey":"5084467",
+	"Trades_AccountsKey":"5084469",
+	"Trades_quota":50,
+	"Trades_amount":4272,
+	"Trades_netAmount":4272,
+	"Trades_price":85.44,
+	"Trades_change":1,
+	"customerSaveProcess":1,
+	"Companies_key":3
+}

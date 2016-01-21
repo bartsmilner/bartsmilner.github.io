@@ -709,7 +709,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"qcnt"</span><span class="p">:</span><span class="mi">1</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Notify_list</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Notify_list.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_list</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_list</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nNotify_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -828,7 +828,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Notify_list</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Notify_list.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_list</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Notify/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Notify_list</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nNotify_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -2372,7 +2372,7 @@ The sort order here will be ascending by the IBAN name. </p>
 </tr>
 </tbody></table>
 
-<h3 id="automatic-calculation">Automatic calculation</h3>
+<h3 id="automatic-calculation"><a name="autoCalc"></a>Automatic calculation</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Transactions/preview</p>
@@ -2520,7 +2520,7 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>The <code class="prettyprint">Transactions_preview</code> function provides an Automatic Calculation of the current value of an asset using the <code class="prettyprint">Assets_key</code> from the <code class="prettyprint">Assets_list</code> function  as the <code class="prettyprint">Trades_AssetsKey</code> in the <code class="prettyprint">Transactions_preview</code> request and a quantity requested as <code class="prettyprint">Trades_quota</code>. The example here is for 100 shares of <code class="prettyprint">&quot;AAPL US EQUITY&quot;</code>. </p>
 
-<p>If only the <code class="prettyprint">sid</code> and <code class="prettyprint">Assets_key</code> are used, the current price and asset reference data (such as the ISIN) will be returned. Making the Requesting a <code class="prettyprint">Trades_quota</code> will generate the current exchange rate, if the asset&rsquo;s trading currency is not the same as the portfolio&rsquo;s base currency, and other values will be calculated automatically.</p>
+<p>If only the <code class="prettyprint">sid</code> and <code class="prettyprint">Trades_AssetsKey</code> are used, the current price and asset reference data (such as the ISIN) will be returned. Requesting a <code class="prettyprint">Trades_quota</code> will generate the current exchange rate, if the asset&rsquo;s trading currency is not the same as the portfolio&rsquo;s base currency, and other values will be calculated automatically.</p>
 
 <table><thead>
 <tr>
@@ -2576,7 +2576,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Trades_group</td>
 <td>FALSE</td>
 <td>String</td>
-<td>??? SECURITY, CASH or FUND</td>
+<td>SECURITY or CASH</td>
 </tr>
 <tr>
 <td>Trades_action</td>
@@ -2588,13 +2588,13 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Trades_commissionType</td>
 <td>FALSE</td>
 <td>String</td>
-<td>??? ABSOLUTE or &hellip;</td>
+<td>ABSOLUTE or PERCENT</td>
 </tr>
 <tr>
 <td>Trades_status</td>
 <td>FALSE</td>
 <td>String</td>
-<td>??? POSITION or &hellip;</td>
+<td>FILLED, POSITION or CASH-UPDATE</td>
 </tr>
 <tr>
 <td>Trades_changeCurrency</td>
@@ -2675,7 +2675,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save_aapl_100'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p><code class="prettyprint">Transactions_save</code> has a relatively large number of Required parameters (listed below). All of these can be retrieved from the <code class="prettyprint">Transactions_preview</code> function which normally precedes <code class="prettyprint">Transactions_save</code>.</p>
+<p><code class="prettyprint">Transactions_save</code> has a relatively large number of Required parameters (listed below). All of these can be retrieved from the <code class="prettyprint">Transactions_preview</code> function which can precede <code class="prettyprint">Transactions_save</code>.</p>
 
 <p>The example here is for 100 shares of <code class="prettyprint">&quot;AAPL US EQUITY&quot;</code> with the <code class="prettyprint">Trades_AssetsKey</code> of &ldquo;118613&rdquo;. The Response returns the <code class="prettyprint">Trades_key</code> which is the <code class="prettyprint">ID</code> for the equivalent <a href="#portfolioTransactions"><code class="prettyprint">TRANSACTIONS</code></a> entry.</p>
 
@@ -2727,19 +2727,19 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Trades_group</td>
 <td>TRUE</td>
 <td>String</td>
-<td>??? SECURITY, CASH or FUND</td>
+<td>SECURITY</td>
 </tr>
 <tr>
 <td>Trades_action</td>
 <td>TRUE</td>
 <td>String</td>
-<td>POS, BUY or SELL</td>
+<td>POS</td>
 </tr>
 <tr>
 <td>Trades_status</td>
 <td>TRUE</td>
 <td>String</td>
-<td>POSITION, BUY or SELL</td>
+<td>POSITION</td>
 </tr>
 <tr>
 <td>Trades_currency</td>
@@ -2781,7 +2781,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Trades_commissionType</td>
 <td>FALSE</td>
 <td>String</td>
-<td>??? ABSOLUTE or &hellip;</td>
+<td>ABSOLUTE or PERCENT</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -2791,7 +2791,7 @@ The sort order here will be ascending by the IBAN name. </p>
 </tr>
 </tbody></table>
 
-<h3 id="new-position-ccy">New position: ccy</h3>
+<h3 id="new-position-ccy"><a name="newPosCCY"></a>New position: ccy</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
@@ -2893,13 +2893,13 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Trades_action</td>
 <td>TRUE</td>
 <td>String</td>
-<td>POS, BUY or SELL</td>
+<td>POS</td>
 </tr>
 <tr>
 <td>Trades_status</td>
 <td>TRUE</td>
 <td>String</td>
-<td>POSITION, BUY or SELL</td>
+<td>POSITION</td>
 </tr>
 <tr>
 <td>Trades_currency</td>
@@ -2947,7 +2947,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Trades_commissionType</td>
 <td>FALSE</td>
 <td>String</td>
-<td>??? ABSOLUTE or &hellip;</td>
+<td>ABSOLUTE or PERCENT</td>
 </tr>
 <tr>
 <td>Companies_key</td>
@@ -2982,7 +2982,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Close_position_aapl_118613</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Close_position_aapl_118613.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Close_position_aapl_118613</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Close_position_aapl_118613</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save aapl close position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3096,7 +3096,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Export_Sec_Pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Sec_Pos.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Sec_Pos</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Sec_Pos</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nExport_Sec_Pos'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3191,7 +3191,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Export_Cash_Pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Cash_Pos.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Cash_Pos</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Cash_Pos</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nExport_Sec_Pos'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3280,7 +3280,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_POSITION_NEW_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Export_Activity_Pos_PDF</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Export_Activity_Pos_PDF.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Activity_Pos_PDF</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Export_Activity_Pos_PDF</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nExport_Activity_Pos_PDF'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3354,7 +3354,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-PORTFOLIO_PDF"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Analytic_Report_PDF</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Analytic_Report_PDF.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Analytic_Report_PDF</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Export/file'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Analytic_Report_PDF</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nExport_Activity_Pos_PDF'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3464,7 +3464,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_CASH_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">,</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NDWSxEQVRFLEFNT1VOVA=="</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Import_run_cash_pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Import_run_cash_pos.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Import_run_cash_pos</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Import_run_cash_pos</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nImport_run cash position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3564,7 +3564,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"schema"</span><span class="p">:</span><span class="s2">"FINCLUSTER-POSITION_SEC_CSV"</span><span class="p">,</span><span class="s2">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"00000000"</span><span class="p">,</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"UE9SVEZPTElPX0lELEFDQ09VTlRfSUQsU0VDX0NPREUsU0VDX0NDWSwgREFURSxRVFksUFJJQ0UsRVhSQVRFLEFNT1VOVCxBTU9VTlRfTkVULENPTU1JU1NJT05fQ09TVA=="</span><span class="p">}}));</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Import_run_sec_pos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Import_run_sec_pos.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Import_run_sec_pos</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Import/run'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Import_run_sec_pos</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nImport_run securities position'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3667,7 +3667,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/NS-FINCLUSTER/Task/push'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"task"</span><span class="p">:{</span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"Task_reportStatusHistory"</span><span class="p">,</span><span class="s2">"data"</span><span class="p">:{</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND \"Portfolios\".key IN (0000000)"</span><span class="p">,</span><span class="s2">"startDate"</span><span class="p">:</span><span class="s2">"2015-11-24"</span><span class="p">}}}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Task_reportStatusHistory</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Task_reportStatusHistory.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/NS-FINCLUSTER/Task/push'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Task_reportStatusHistory</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/NS-FINCLUSTER/Task/push'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Task_reportStatusHistory</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTask_push Task_reportStatusHistory'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3730,6 +3730,10 @@ The sort order here will be ascending by the IBAN name. </p>
 </tbody></table>
 
 <h2 id="transactions"><a name="portfolioTransactions"></a>TRANSACTIONS</h2>
+
+<p>Four API functions are used to insert, edit, display and delete transactions. <code class="prettyprint">Transactions_list</code> shows existing transactions for that portfolio. <code class="prettyprint">Transactions_save</code> will insert a new or edited transaction in the database. <code class="prettyprint">Transactions_delete</code> will permanently delete a transaction from the portfolio (but will not delete its associated <code class="prettyprint">ASSET</code> from <a href="#resources"><code class="prettyprint">Admin -&gt; Resources</code></a>) and <code class="prettyprint">Transaction_preview</code> will retrieve a security&rsquo;s price data for an <a href="#autoCalc"><code class="prettyprint">automatic calculation</code></a> of its value/cost including its historic cost price.</p>
+
+<h3 id="transactions-list"><a name="portfolioTransactionsSave"></a>Transactions List</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Transactions/list</p>
@@ -3873,7 +3877,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".\"key\" = '0000000') AND (\"Trades\".\"stage\" = 'trade') AND (\"Trades\".\"status\" in ('FILLED', 'PART-FILLED', 'CANCELED', 'ARCHIVED', 'POSITION', 'SIMULATED', 'CASH-UPDATE', 'ARCHIVED')) AND (\"Trades\".\"date\" &gt;= '2014-11-26' AND \"Trades\".\"date\" &lt;= '2015-12-04')"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Transactions_list</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_list.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_list</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_list</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_list'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -3881,7 +3885,7 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>A portfolio&rsquo;s <code class="prettyprint">Transactions_list</code> function will show all the transactions in a portfolio, between the start and end dates set in the <code class="prettyprint">qwhere</code> parameter.</p>
 
-<p>The Response object returns <code class="prettyprint">rows</code> as an array of complex objects, only one of which is shown in the JSON Response (right). This is a transaction where initial cash of €1000 has been increased to €2000.</p>
+<p>The Response object returns <code class="prettyprint">rows</code> as an array of complex objects. The example on the right shows <code class="prettyprint">rows[0]</code> for a transaction where initial cash of €1000 has been increased to €2000.</p>
 
 <table><thead>
 <tr>
@@ -3934,6 +3938,599 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>Page displayed on platform</td>
 </tr>
 </tbody></table>
+
+<h3 id="transactions-preview"><a name="portfolioTransactionsPreview"></a>Transactions Preview</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/preview</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"5003360"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-14T12:50:31+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-14"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionType"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"3367103"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"CHF"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-14"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5003362"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="s2">"70000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"asset"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"Assets_key"</span><span class="p">:</span><span class="mi">3367103</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetID"</span><span class="p">:</span><span class="s2">"EURCHF CURNCY"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetIsin"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetFeederCode"</span><span class="p">:</span><span class="s2">"EURCHF Curncy"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetName"</span><span class="p">:</span><span class="s2">"Eurchf Spot Exchange Rate - Price Of 1 Eur In Chf CHF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetTypo"</span><span class="p">:</span><span class="s2">"FX"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCurrency"</span><span class="p">:</span><span class="s2">"CHF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetIndustrySector"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetExpirationDate"</span><span class="p">:</span><span class="s2">"2015-06-17T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCountry"</span><span class="p">:</span><span class="s2">"CH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetClassFocus"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_feeder"</span><span class="p">:</span><span class="s2">"BBG"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetSedol"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetTicker"</span><span class="p">:</span><span class="s2">"EURCHF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCountryName"</span><span class="p">:</span><span class="s2">"switzerland"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetSectorName"</span><span class="p">:</span><span class="s2">"Curncy"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_name"</span><span class="p">:</span><span class="s2">"Eurchf Spot Exchange Rate - Price Of 1 Eur In Chf CHF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCategory"</span><span class="p">:</span><span class="s2">"UNKNOWN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetShortName"</span><span class="p">:</span><span class="s2">"Eur-Chf X-Rate CHF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCompany"</span><span class="p">:</span><span class="s2">"Eurchf Spot"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetIssuer"</span><span class="p">:</span><span class="s2">"Eurchf Spot"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetParentCompany"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetExposureMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetPriceMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets__minfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets__mstatus"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetSearchName"</span><span class="p">:</span><span class="s2">" Eur-Chf X-Rate CHF (Switzerland) - EURCHF "</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_custom"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_type"</span><span class="p">:</span><span class="s2">"ASSET"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_tags"</span><span class="p">:</span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_data"</span><span class="p">:</span><span class="s2">"{}"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_cur"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"CONVERTIBLE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CONVERTIBLE_ts"</span><span class="p">:</span><span class="s2">"2015-10-21T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"EXCH_CODE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"EXCH_CODE_ts"</span><span class="p">:</span><span class="s2">"2015-10-21T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_PRICE"</span><span class="p">:</span><span class="mf">1.0934</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_PRICE_ts"</span><span class="p">:</span><span class="s2">"2016-01-19T11:34:05"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_MID"</span><span class="p">:</span><span class="mf">1.093405</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_MID_ts"</span><span class="p">:</span><span class="s2">"2016-01-19T11:34:05"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"AssetTypo"</span><span class="p">:</span><span class="s2">"FX"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_PRICE_1D"</span><span class="p">:</span><span class="mf">1.0924800000000001</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_CHANGE_1D"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"3367103"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5100406"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">70000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="mf">1.0934</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="mi">76538</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="mi">76538</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commission"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BankOrganizationsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BrokerOrganizationsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"__keep"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"CHF"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_sign"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_multiplier"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curAmount"</span><span class="p">:</span><span class="mi">76538</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_pnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_total"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curPrice"</span><span class="p">:</span><span class="mf">1.0934</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curPriceDate"</span><span class="p">:</span><span class="s2">"2016-01-19T11:34:05"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curChange"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tcaChange"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amountReal"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmountReal"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interestReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_taxReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_baseAmount"</span><span class="p">:</span><span class="mi">76538</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_costs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amountSim"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades___evlCost"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetAmount"</span><span class="p">:</span><span class="mi">76538</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetNotional"</span><span class="p">:</span><span class="mi">76538</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetExposure"</span><span class="p">:</span><span class="mi">76538</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//Preview (buy) 7000 CHF fx (security)</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"3367103"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="s2">"70000"</span><span class="p">}});</span>
+
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Transactions_preview_CHF7000</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_preview_CHF7000.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_preview_CHF7000</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_preview_CHF7000'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>On the platform <code class="prettyprint">Transactions_preview</code> can be used to show the results of an <a href="#autoCalc"><code class="prettyprint">Automatic Calculation</code></a>, with easily variable historic trade dates, quantities, amounts, cost price and exchange rates with the portfolio&rsquo;s base ccy.</p>
+
+<p>As an API it can also provide immediate access to securities info and (historic) price values, using only a <code class="prettyprint">Trades_quota</code> value and the <code class="prettyprint">Trades_AssetsKey</code>, which can be found using the <a href="#assetsListByCharacter"><code class="prettyprint">Assets_list.qwhere</code></a> function to search on a (partial) name.</p>
+
+<p>The example here is a preview of an FX - foreign exchange - transaction to BUY CHF 7000 (Swiss Francs), which is treated as a Security.</p>
+
+<h3 id="transactions-save"><a name="portfolioTransactionsSave"></a>Transactions Save</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-07T17:45:12+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-07"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionType"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"5071079"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-07"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5084467"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5084469"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="mi">4272</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="mi">4272</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="mf">85.44</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">5081901</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//BUY 200 BMW equity</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"5071079"</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span> <span class="s2">"5079857"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
+
+<span class="c1">//OR SELL 50 BMW equity</span>
+<span class="kd">var</span> <span class="nx">Transactions_save_sell_50BMW</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_save_sell_50BMW.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_save_sell_50BMW</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save equity'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>Transactions use the same <code class="prettyprint">Transactions_save</code> function as the <a href="#addEquityPos"><code class="prettyprint">Position Editor</code></a> and the portfolio&rsquo;s <a href="#ordersAdvices"><code class="prettyprint">ORDERS/ADVICES</code></a>. Transactions and positions use <code class="prettyprint">&quot;trade&quot;</code> as the value of the <code class="prettyprint">Trades_status</code> key and a new order uses the <code class="prettyprint">&quot;Trades_status&quot;: &quot;PENDING&quot;</code> parameter. </p>
+
+<p>(???add global transactions)</p>
+
+<p>The <code class="prettyprint">Transactions_save</code> function is used with a <code class="prettyprint">Trades_action</code> key for a <code class="prettyprint">BUY</code> or a <code class="prettyprint">SELL</code> or a <code class="prettyprint">POS</code> (to set a Position) value for either a <code class="prettyprint">SECURITY</code> or <code class="prettyprint">CASH</code> value with the <code class="prettyprint">Trades_group</code> key. The <code class="prettyprint">Trades_status</code> value is set to <code class="prettyprint">FILLED</code> (??? SIMULATED or CANCELLED) for a transaction or <code class="prettyprint">POSITION</code> for the <code class="prettyprint">POS</code> action or <code class="prettyprint">PENDING</code> for an order. </p>
+
+<p><code class="prettyprint">Transactions_save</code> can also be used to <a href="#portfolioTransactionsEdit"><code class="prettyprint">Edit</code></a> an existing transaction or position with an augmented Request payload. </p>
+
+<p>The Response object for <code class="prettyprint">Transactions_save</code> always returns the <code class="prettyprint">Trades_key</code> (ID) for that transaction.</p>
+
+<h3 id="parameters-table"><a name="portfolioTransactionsParams"></a>Parameters table</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Trades_PortfoliosKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Trades_AccountsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>Trades_AssetsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Assets_key (available from <code class="prettyprint">Transactions_preview</code>)</td>
+</tr>
+<tr>
+<td>Trades_quota</td>
+<td>TRUE</td>
+<td>Number</td>
+<td>Quantity traded</td>
+</tr>
+<tr>
+<td>Trades_stage</td>
+<td>TRUE</td>
+<td>String</td>
+<td>trade</td>
+</tr>
+<tr>
+<td>Trades_group</td>
+<td>TRUE</td>
+<td>String</td>
+<td>SECURITY or CASH</td>
+</tr>
+<tr>
+<td>Trades_action</td>
+<td>TRUE</td>
+<td>String</td>
+<td>POS, BUY or SELL</td>
+</tr>
+<tr>
+<td>Trades_status</td>
+<td>TRUE</td>
+<td>String</td>
+<td>POSITION or FILLED</td>
+</tr>
+<tr>
+<td>Trades_currency</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Asset trade currency</td>
+</tr>
+<tr>
+<td>Trades_amount</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Base CCY cost value</td>
+</tr>
+<tr>
+<td>Trades_netAmount</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Cost value plus costs</td>
+</tr>
+<tr>
+<td>Trades_changeCurrency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Base currency</td>
+</tr>
+<tr>
+<td>Trades_class</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Cash BUY info/filter</td>
+</tr>
+<tr>
+<td>Trades_date</td>
+<td>FALSE</td>
+<td>DateTime</td>
+<td>YYYY-MM-DDThh:mm:ss+hh:mm (UTC)</td>
+</tr>
+<tr>
+<td>Trades_settleDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>YYYY-MM-DD Settlement Date</td>
+</tr>
+<tr>
+<td>Trades_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>data</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:validityDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>??? YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:cashUpdate</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Cash Update</td>
+</tr>
+<tr>
+<td>Trades_commissionType</td>
+<td>FALSE</td>
+<td>String</td>
+<td>ABSOLUTE or PERCENT</td>
+</tr>
+<tr>
+<td>customerSaveProcess</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>???Create custom asset</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="cash-buy-sell"><a name="portfolioTransactionsCash"></a>Cash buy/sell</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-06T17:05:05+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-06"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionType"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118685"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5082783"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5082785"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="s2">"500"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="s2">"500"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">5081901</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//CASH BUY €1500;</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://paolo.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5082783"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118685"</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span> <span class="s2">"5082785"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="mi">1500</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"CASH"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="c1">//CASH SELL €500;</span>
+<span class="kd">var</span> <span class="nx">Transactions_save_sell_cash_BaseEuros</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_save_sell_cash_BaseEuros.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_save_sell_cash_BaseEuros</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save_sell_cash_BaseEuros'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">CASH</code> transactions can be in any currency, but are normally in the portfolio&rsquo;s base ccy and reflect the flow of fees and costs associated with transactions or positions, so that <code class="prettyprint">CASH -&gt; SELL</code> represents money coming out of the account and <code class="prettyprint">CASH -&gt; BUY</code> represents cash coming into the account. The <code class="prettyprint">Trades_amount</code> and <code class="prettyprint">Trades_quota</code> values will be the same if the <code class="prettyprint">CASH</code> transaction is in the portfolio&rsquo;s base ccy.</p>
+
+<p>The <code class="prettyprint">Trades_class</code> key has a choice of possible values for <code class="prettyprint">CASH -&gt; SELL</code>: <code class="prettyprint">AdvisorFees, BondInterest, BrokerInterest, CFDCharges, ClientFees, ClientFeeExpense, CommissionTax, CorpActions, DepoAndWithd, Dividends, Interest, OtherFees, PositionTransfer, TransTax</code>. For securities or <code class="prettyprint">CASH -&gt; BUY</code>, its value is <code class="prettyprint">DEFAULT</code>.</p>
+
+<p>Both buying and selling <code class="prettyprint">CASH</code> will update the <code class="prettyprint">Cash/Currency</code> fields on the PORTFOLIO (Position) page. If <code class="prettyprint">CASH -&gt; SELL</code>, or <a href="#portfolioTransactionsCashUpdate"><code class="prettyprint">Cash Update</code></a> on a security purchase, exceeds the available <code class="prettyprint">Cash</code> (or <code class="prettyprint">Currency</code>) balance, including the portfolio&rsquo;s Initial Cash (if any), the new <code class="prettyprint">Cash</code> total will be shown as a negative value. </p>
+
+<h3 id="securities-buy-sell"><a name="portfolioTransactionsSec"></a>Securities buy/sell</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-05T09:43:03+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-05"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionType"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"5071079"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-05"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5079857"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">5081901</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">//BUY 200 BMW equity</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"5071079"</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span> <span class="s2">"5079857"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
+
+<span class="c1">//OR SELL 100 BMW equity</span>
+<span class="kd">var</span> <span class="nx">Transactions_save_sell_100BMW</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_save_sell_100BMW.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_save_sell_100BMW</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save equity'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>For an equity, the <code class="prettyprint">Trades_quota</code> is the number of shares and the <code class="prettyprint">Trades_amount</code> is the total cost price (<code class="prettyprint">Trades_quota</code> * <code class="prettyprint">Trades_price</code>) of the transaction. </p>
+
+<p>Foreign exchange (<code class="prettyprint">FX</code>) in any currency uses an appropriate derivative (eg EURUSD) and that transaction is treated as a <code class="prettyprint">SECURITY</code>. For <code class="prettyprint">FX</code>, the <code class="prettyprint">Trades_quota</code> is the total amount of the <code class="prettyprint">Trades_changeCurrency</code> (usually the portfolio&rsquo;s base ccy) used in the initial transaction and the <code class="prettyprint">Trades_amount</code> is the <code class="prettyprint">Trades_quota</code> * the <code class="prettyprint">Trades_price</code> (the exchange rate at the time of the transaction).</p>
+
+<p>Cash Update is automatic for <code class="prettyprint">CASH</code> transactions but is optional for securities - including <code class="prettyprint">FX</code> transactions. Its default value is false and it is activated by a boolean value for the <code class="prettyprint">updateCash</code> key in the <code class="prettyprint">Trades_data</code> value object.</p>
+
+<h3 id="cash-update"><a name="portfolioTransactionsCashUpdate"></a>Cash Update</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"cfd"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"__keep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-19"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionType"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118614"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-05"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOOG US EQUITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BankOrganizationsKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"120976"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BrokerOrganizationsKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_TradersKey"</span><span class="p">:</span><span class="w"> </span><span class="mi">400180</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_aID"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currencyDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-20T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5102280"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commission"</span><span class="p">:</span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tax"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_psign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"SECURITY"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"Trades_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">5103900</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span> <span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span> <span class="s2">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span> <span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="s2">"Trades_commissionType"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="s2">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118614"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-05"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"FILLED"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5079857"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"Trades_amount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="s2">"Trades_netAmount"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="s2">"Trades_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="s2">"Trades_change"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="s2">"Trades_commission"</span><span class="p">:</span><span class="s2">"150"</span><span class="p">,</span><span class="s2">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Trades_psign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s2">"Trades_data"</span><span class="p">:{</span><span class="s2">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-19"</span><span class="p">,</span><span class="s2">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="p">}}});</span>
+
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Transactions_save_10GOOG_updateCash</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_save_10GOOG_updateCash.json'</span><span class="p">));</span>
+<span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://paolo.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_save_10GOOG_updateCash</span><span class="p">});</span>
+
+<span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save transactions 10 GOOG updateCash'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">updateCash</code> can be set to <code class="prettyprint">true</code> inside the <code class="prettyprint">Trades_data</code> key&rsquo;s object value to reflect the effect of a security (including FX) transaction on the <code class="prettyprint">Cash</code> (or <code class="prettyprint">Currency</code>) and exposure positions of the portfolio. The change in the <code class="prettyprint">Cash\Currency</code> position will be automatically calculated (along with <code class="prettyprint">Trades_amount</code>, <code class="prettyprint">Trades_price</code> and <code class="prettyprint">Trades_change</code>, if they are not specified, and a different <code class="prettyprint">Trades_netAmount</code> if <code class="prettyprint">Trades_commission</code> and/or <code class="prettyprint">Trades_tax</code> is specified.)</p>
+
+<p>With Cash Update on, each new security transaction entry will create a matching child <code class="prettyprint">ccy SPOT</code> <code class="prettyprint">Transaction_list</code> entry with a <code class="prettyprint">CASH-UPDATE</code> Status, where the <code class="prettyprint">ccy SPOT</code> has the same <code class="prettyprint">Trades_currency</code> as the transaction; its <code class="prettyprint">Net Amount</code> and <code class="prettyprint">Gross Amount</code> cells are set to 0 and the <code class="prettyprint">Quantity</code> is the same as the transaction&rsquo;s <code class="prettyprint">Net Amount</code>. If the transaction is deleted, its child will also be deleted (but not vice-versa).</p>
+
+<p>On the platform&rsquo;s <code class="prettyprint">PORTFOLIO</code> Position tab, the <code class="prettyprint">SPOT</code> value will be added to the <code class="prettyprint">Securities</code> panel in the <code class="prettyprint">Currency</code> section (or composited with any existing entries for that ccy), and its value in the base ccy will be subtracted from the total <code class="prettyprint">Cash</code> position and the <code class="prettyprint">Portfolio Breakdown</code> <code class="prettyprint">Currency</code> value and weight, all derived from the <code class="prettyprint">Report_status</code> response.</p>
+
+<p>If the <code class="prettyprint">updateCash: true</code> key: value is omitted or set to <code class="prettyprint">false</code>, the <code class="prettyprint">Cash</code> (or <code class="prettyprint">Currency</code>) position will only change with a new <code class="prettyprint">CASH</code> transaction or position.</p>
+
+<h3 id="edit"><a name="portfolioTransactionsEdit"></a>Edit</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118614"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="s2">"5103900"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5079857"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118614"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="s2">"5103900"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5079857"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_keys"</span><span class="p">:</span><span class="mi">5103900</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118614"</span><span class="p">,</span><span class="s2">"Trades_key"</span><span class="p">:</span><span class="s2">"5103900"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5079855"</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5079857"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="s2">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Trades_data"</span><span class="p">:{</span><span class="s2">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="p">}}});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_save 12 GOOG  update cash'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>To edit a transaction, it is necessary to include the required parameters for <code class="prettyprint">Transactions_save</code>, the specific parameters you want to change, the <code class="prettyprint">Trades_AssetsKey</code> which identifies the asset, and the <code class="prettyprint">Trades_key</code> which identifies the transaction and is returned when the asset was added or last changed. </p>
+
+<p>The example here uses <code class="prettyprint">Trades_quota</code> to increase a [Google] holding from 10 to 12 shares and updates the <code class="prettyprint">updateCash</code> calculations for the new values (because <code class="prettyprint">updateCash</code> is off by default). Omitting the <code class="prettyprint">Trades_date</code> (or setting it to null) means that the current dateTime will be used by default.</p>
+
+<h3 id="delete"><a name="portfolioTransactionsDelete"></a>Delete</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/del</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"qwhere"</span><span class="p">:</span><span class="w"> </span><span class="s2">" AND \"Trades\".\"key\" in ('5085040', '5085024')"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_keys"</span><span class="p">:[</span><span class="s2">"5085040"</span><span class="p">,</span><span class="s2">"5085024"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">,</span> <span class="s2">"qwhere"</span><span class="p">:</span> <span class="s2">" AND \"Trades\".\"key\" in ('5085040', '5085024')"</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Trans_del</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Trans_del.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/del'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Trans_del</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_del 2 transactions'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Transactions_delete</code> allows one or more transactions to be deleted using the <code class="prettyprint">Trades_key</code> array. The PORTFOLIO&rsquo;s position (including other transactions with the same resource) are then automatically updated.</p>
+
+<p>Once a transaction has been deleted, it cannot be retrieved.</p>
 
 <h2 id="orders-advices-portfolio"><a name="ordersAdvices"></a>ORDERS/ADVICES (portfolio)</h2>
 
@@ -3999,16 +4596,16 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".\"key\" = '"</span><span class="mi">0000000</span><span class="s2">"') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" &gt;= '2014-11-26' AND \"Trades\".\"date\" &lt;= '2015-12-04')"</span><span class="p">}});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"qwhere"</span><span class="p">:</span><span class="s2">" AND (\"Portfolios\".\"key\" = '"</span><span class="mi">0000000</span><span class="s2">"') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" &gt;= '2014-11-26' AND \"Trades\".\"date\" &lt;= '2015-12-04')"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">portfolioOrders</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/portfolioOrders.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://fincluster.com/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">portfolioOrders</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/list'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">portfolioOrders</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_list portfolio ORDERS/ADVICES'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
 </code></pre>
 
-<p>The <code class="prettyprint">Transactions_list</code> function will return a portfolio&rsquo;s Orders if the <code class="prettyprint">qwhere</code> parameter is set to <code class="prettyprint">Trades.stage = &#39;order&#39;</code> and its <code class="prettyprint">Trades.status</code> is order-related (ie: <code class="prettyprint">PENDING</code>, <code class="prettyprint">ORDER-FILLED</code>, <code class="prettyprint">ORDER-CANCELED</code>, <code class="prettyprint">COMMITTED</code>). The Response returned is an object whose <code class="prettyprint">rows</code> key holds an array of Orders objects. If the rows parameter is omitted, all Orders will be shown.  </p>
+<p>The <code class="prettyprint">Transactions_list</code> function will return a portfolio&rsquo;s ORDERS if the <code class="prettyprint">qwhere</code> parameter is set to <code class="prettyprint">Trades.stage = &#39;order&#39;</code> and its <code class="prettyprint">Trades.status</code> is order-related (ie: <code class="prettyprint">PENDING</code>, <code class="prettyprint">ORDER-FILLED</code>, <code class="prettyprint">ORDER-CANCELED</code>, <code class="prettyprint">COMMITTED</code>). The Response returned is an object whose <code class="prettyprint">rows</code> key holds an array of Orders objects. If the rows parameter is omitted, all Orders will be shown.  </p>
 
 <table><thead>
 <tr>
@@ -5288,7 +5885,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <h3 id="find-account-by-chars"><a name="findAccount"></a>Find Account by chars</h3>
 
 <blockquote>
-<p>https://paolo.fincluster.com:8081/api/CORE/Resources/list</p>
+<p>https://dev.fincluster.com:8081/api/CORE/Resources/list</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -5381,7 +5978,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <h3 id="find-account-by-key"><a name="findAccountByKey"></a>Find Account by key</h3>
 
 <blockquote>
-<p>https://paolo.fincluster.com:8081/api/CORE/Resources/list</p>
+<p>https://dev.fincluster.com:8081/api/CORE/Resources/list</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -5475,7 +6072,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <h3 id="save-account-new"><a name="saveAccounts"></a>Save Account - New</h3>
 
 <blockquote>
-<p>https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts</p>
+<p>https://dev.fincluster.com:8081/api/CORE/Portfolios/saveAccounts</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -5507,7 +6104,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5078292"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
 <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="s2">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="s2">"Accounts_iban"</span><span class="p">:</span><span class="s2">"000111"</span><span class="p">,</span><span class="s2">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Portfolios_saveAccounts_ACCOUNTS</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_saveAccounts_ACCOUNTS.json'</span><span class="p">));</span>
@@ -5654,7 +6251,7 @@ The sort order here will be ascending by the IBAN name. </p>
 <h3 id="save-account-edit"><a name="saveAccountsEdit"></a>Save Account - Edit</h3>
 
 <blockquote>
-<p>https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts</p>
+<p>https://dev.fincluster.com:8081/api/CORE/Portfolios/saveAccounts</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">//request</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -5687,7 +6284,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5078292"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://paolo.fincluster.com:8081/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Portfolios/saveAccounts'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
 <span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Accounts_key"</span><span class="p">:</span><span class="s2">"5078292"</span><span class="p">,</span><span class="s2">"Accounts_PortfoliosKey"</span><span class="p">:</span><span class="s2">"0000000"</span><span class="p">,</span><span class="s2">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="s2">"2661301"</span><span class="p">,</span><span class="s2">"Accounts_iban"</span><span class="p">:</span><span class="s2">"000111000"</span><span class="p">,</span><span class="s2">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">}});</span>
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Portfolios_saveAccounts_ACCOUNTS</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Portfolios_saveAccounts_ACCOUNTS.json'</span><span class="p">));</span>
@@ -6031,6 +6628,8 @@ The same <code class="prettyprint">Accounts_key</code> will be returned after a 
 <td>Page displayed on the platform</td>
 </tr>
 </tbody></table>
+
+<h2 id="search-partial-name"><a name="secSearchName"></a>Search (partial) name</h2>
 
 <h1 id="import"><a name="import"></a>Import</h1>
 

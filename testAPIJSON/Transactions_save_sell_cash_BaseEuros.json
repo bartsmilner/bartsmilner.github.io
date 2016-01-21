@@ -1,0 +1,23 @@
+{
+	"sid":null,
+	"Trades_date":null,
+	"Trades_data":{
+		"validityDate":"2016-01-07"
+	},
+	"Trades_stage":"trade",
+	"Trades_class":"DEFAULT",
+	"Trades_group":"CASH",
+	"Trades_action":"SELL",
+	"Trades_commissionType":"ABSOLUTE",
+	"Trades_changeCurrency":"EUR",
+	"Trades_AssetsKey":"118685",
+	"Trades_currency":"EUR",
+	"Trades_settleDate":"2016-01-07",
+	"Trades_status":"FILLED",
+	"Trades_PortfoliosKey":null,
+	"Trades_AccountsKey":null,
+	"Trades_amount":500,
+	"customerSaveProcess":1,
+	"Trades_quota":500,
+	"Companies_key":3
+}

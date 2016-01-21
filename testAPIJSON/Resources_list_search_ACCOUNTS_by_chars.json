@@ -1,0 +1,8 @@
+{
+	"sid": null,
+	"qwhere":" AND \"Resources\".\"type\" in ('ORGANIZATION') AND (\"Resources\".\"name\" ilike '%ba%')",
+	"searchString":"ba",
+	"qorder":"\"Resources\".\"name\" asc",
+	"Companies_key":3,
+	"rows":25
+}

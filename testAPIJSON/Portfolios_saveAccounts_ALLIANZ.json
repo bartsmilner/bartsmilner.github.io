@@ -1,0 +1,23 @@
+{
+	"Accounts_PortfoliosKey":"5077351",
+	"Accounts_OrganizationsKey":"120976",
+	"organization":{
+		"Resources_key":"120976",
+		"Resources_name":"Allianz Bank",
+		"Resources_type":"ORGANIZATION",
+		"Resources_CompaniesKey":3,
+		"Resources_data":{
+			"key":120976,
+			"name":"Allianz Bank",
+			"type":"BANK",
+			"notes":null,
+			"CompaniesKey":3
+		},
+		"Resources_tags":[],
+		"Share_perm":10
+	},
+	"Accounts_iban":"777777",
+	"Accounts_currency":"EUR",
+	"Accounts_isDefault":1,
+	"Companies_key":3
+}

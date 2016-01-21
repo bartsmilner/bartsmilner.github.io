@@ -1,0 +1,25 @@
+{
+	"sid": null,
+	"Accounts_key": null,
+	"Accounts_PortfoliosKey": null,
+	"Accounts_OrganizationsKey":"2661301",
+	"organization":{
+		"Resources_key":"2661301",
+		"Resources_name":"Banca Fideuram",
+		"Resources_type":"ORGANIZATION",
+		"Resources_CompaniesKey":3,
+		"Resources_data":{
+			"key":2661301,
+			"name":"Banca Fideuram",
+			"type":"BANK",
+			"notes":null,
+			"CompaniesKey":3
+		},
+		"Resources_tags":[],
+		"Share_perm":10
+	},
+	"Accounts_iban":"000112999",
+	"Accounts_currency":"EUR",
+	"Accounts_isDefault":0,
+	"Companies_key":3
+}
