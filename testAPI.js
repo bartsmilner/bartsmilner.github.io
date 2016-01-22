@@ -62,6 +62,8 @@ var Auth_get = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Auth_get.jso
   IMPORT_PORTFOLIO_TRANSACTIONS = fs.readFileSync(__dirname + '/importCSV/IMPORT_PORTFOLIO_TRANSACTIONS_3994495.csv','utf8'),
   Transactions_preview_CHF7000 = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_preview_CHF7000.json')),
   Transactions_save_10GOOG_updateCash = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_save_10GOOG_updateCash.json')),
+  portfolioOrdersPreview = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/portfolioOrdersPreview.json')),
+  Transactions_save_ORDER_aapl = JSON.parse(fs.readFileSync(__dirname + '/testAPIJSON/Transactions_save_ORDER_aapl.json')),
   res, resObj, auth, newTestID, oldTestID = null, oldTestID1 = null, histTestID = null, activeAccount = null;
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';//to prevent Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE;
@@ -422,16 +424,94 @@ res = request('POST', 'https://paolo.fincluster.com:8081/api/NS-FINCLUSTER/Impor
 resObj = JSON.parse(res.getBody('utf8'));
 console.log('\nImport_run cash position all params', resObj);
 
-//function Transactions_list ORDERS/ADVICES;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/list', {'json':{"sid":auth,"qwhere":" AND (\"Portfolios\".\"key\" = '" + histTestID + "') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')"}});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\n Transactions_list required params',resObj);
 
-portfolioOrders.sid = auth;
-portfolioOrders.qwhere = " AND (\"Portfolios\".\"key\" = '" + histTestID + "') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')";
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/list', {'json': portfolioOrders});
+//function Transactions_save: equity BUY 200 BMW;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"5071079","Trades_AccountsKey": activeAccount,"Trades_quota":200,"Trades_stage":"trade","Trades_group":"SECURITY","Trades_action":"BUY","Trades_status":"FILLED","Trades_currency":"EUR"}});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_list all params', resObj);
+console.log('\nTransactions_save_buy_200BMW required params',resObj);
+var delTest1 = resObj.Trades_key;
+//function Transactions_save: equity SELL 50 BMW;
+Transactions_save_sell_50BMW.sid = auth;
+Transactions_save_sell_50BMW.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Transactions_save_sell_50BMW.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_sell_50BMW});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save_sell_50BMW all params', resObj);
+
+
+
+//Check Import Portfolio Transactions sample headers;
+var IMPORT_TRANSACTIONS_SEC_CSV_headers_Base64 = new Buffer(IMPORT_TRANSACTIONS_SEC_CSV_headers).toString('base64');
+//console.log('\nIMPORT_TRANSACTIONS_SEC_CSV_headers_Base64', IMPORT_TRANSACTIONS_SEC_CSV_headers_Base64);
+
+res = request('POST', 'https://paolo.fincluster.com:8081/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":IMPORT_TRANSACTIONS_SEC_CSV_headers_Base64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-TRANSACTIONS_CSV","fileName":"sample_trades.csv","delayed":1,"Companies_key":3}});
+
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nImport_run transactions sample headers inc optionals with req params',resObj);
+
+//function Transactions_save: cash BUY €1500;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"118685","Trades_AccountsKey": activeAccount,"Trades_quota":1500,"Trades_stage":"trade","Trades_group":"CASH","Trades_action":"BUY","Trades_status":"FILLED","Trades_currency":"EUR"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save_buy_€1500 required params',resObj);
+//function Transactions_save: cash SELL €500;
+Transactions_save_sell_cash_BaseEuros.sid = auth;
+Transactions_save_sell_cash_BaseEuros.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Transactions_save_sell_cash_BaseEuros.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_sell_cash_BaseEuros});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save_sell_cash_BaseEuros 500 all params', resObj);
+var delTest2 = resObj.Trades_key;
+
+//Check Import Portfolio Transactions;
+IMPORT_PORTFOLIO_TRANSACTIONS = IMPORT_PORTFOLIO_TRANSACTIONS.split('3994495').join(newTestID.Portfolios_key);
+
+var IMPORT_PORTFOLIO_TRANSACTIONS_Base64 = new Buffer(IMPORT_PORTFOLIO_TRANSACTIONS).toString('base64');
+//console.log('\nIIMPORT_PORTFOLIO_TRANSACTIONS_Base64', IMPORT_PORTFOLIO_TRANSACTIONS_Base64);
+
+res = request('POST', 'https://paolo.fincluster.com:8081/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":IMPORT_PORTFOLIO_TRANSACTIONS_Base64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-TRANSACTIONS_CSV","fileName":"IMPORT_PORTFOLIO_TRANSACTIONS.csv","delayed":1,"Companies_key":3}});
+
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nIMPORT_PORTFOLIO_TRANSACTIONS req params',resObj);
+
+//delete a security and a cash transaction;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/del', {'json': {"sid":auth, "qwhere": " AND \"Trades\".\"key\" in (" + delTest1 + "," + delTest2 + ")"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_del 2 transactions required params',resObj);
+//Trans_del.json - not included here, but used in index.md
+
+//function Transaction_preview 7000 CHF base Euro
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/preview', {'json': {"sid":auth,"Trades_AssetsKey":"3367103","Trades_quota":"70000"}});
+
+Transactions_preview_CHF7000.sid = auth;
+Transactions_preview_CHF7000.Portfolios_keys = newTestID.Portfolios_key;
+Transactions_preview_CHF7000.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/preview', {'json': Transactions_preview_CHF7000});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_preview transactions 7000 CHF with req params',resObj);
+//console.log(JSON.stringify(resObj));
+
+//Add 10 GOOG Transactions_save;//not in FINCLUSTER API reference;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_data":{"validityDate":"2016-01-19","updateCash":true},"Trades_stage":"trade","Trades_class":"DEFAULT","Trades_group":"SECURITY","Trades_action":"BUY","Trades_commissionType":"ABSOLUTE","Trades_changeCurrency":"EUR","Trades_AssetsKey":"118614","Trades_currency":"USD","Trades_settleDate":"2016-01-05","Trades_status":"FILLED","Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":10,"Trades_amount":null,"Trades_netAmount":null,"Trades_price":null,"Trades_change":null,"Trades_commission":"150","customerSaveProcess":1,"Trades_psign":1,"Companies_key":3}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save 16-01-05 10 GOOG all params',resObj);
+var tradesKey = resObj.Trades_key;
+
+Transactions_save_10GOOG_updateCash.sid = auth;
+Transactions_save_10GOOG_updateCash.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Transactions_save_10GOOG_updateCash.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_10GOOG_updateCash});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save transactions 10 GOOG updateCash with all params',resObj);
+
+//Edit -> 12 GOOG Transactions_save;
+/*res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_AssetsKey":"118614","Trades_currency":"USD","Trades_key":tradesKey,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":12,"Trades_group":"SECURITY"}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save edit -> 12 GOOG req params',resObj);*/
+
+//updateCash -> true; update to 12 GOOG and updateCash with Transactions_save;//not in FINCLUSTER API reference;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_data":{"updateCash":true},"Trades_stage":"trade","Trades_group":"SECURITY","Trades_currency":"USD","Trades_AssetsKey":"118614","Trades_key":tradesKey,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":12,"customerSaveProcess":1}});
+resObj = JSON.parse(res.getBody('utf8'));
+console.log('\nTransactions_save 12 GOOG  update cash req params',resObj);
 
 //function Resources_save AGENDA
 //newTestID.Portfolios_key is not parsed without [0];
@@ -614,95 +694,49 @@ console.log('\nResources_list CRM - all',resObj);
 console.log('\nResources_list CRM - rows[0].Resources_data',resObj.rows[0].Resources_data);
 console.log('\nResources_list CRM - rows[0].Resources_tags',resObj.rows[0].Resources_tags);
 
-//function Transactions_save: equity BUY 200 BMW;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"5071079","Trades_AccountsKey": activeAccount,"Trades_quota":200,"Trades_stage":"trade","Trades_group":"SECURITY","Trades_action":"BUY","Trades_status":"FILLED","Trades_currency":"EUR"}});
+
+//function Transactions_list ORDERS/ADVICES;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/list', {'json':{"sid":auth,"qwhere":" AND (\"Portfolios\".\"key\" = '" + histTestID + "') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')"}});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save_buy_200BMW required params',resObj);
-var delTest1 = resObj.Trades_key;
-//function Transactions_save: equity SELL 50 BMW;
-Transactions_save_sell_50BMW.sid = auth;
-Transactions_save_sell_50BMW.Trades_PortfoliosKey = newTestID.Portfolios_key;
-Transactions_save_sell_50BMW.Trades_AccountsKey = activeAccount;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_sell_50BMW});
+console.log('\n Transactions_list ORDERS required params',resObj);
+
+portfolioOrders.sid = auth;
+portfolioOrders.qwhere = " AND (\"Portfolios\".\"key\" = '" + histTestID + "') AND (\"Trades\".\"stage\" = 'order') AND (\"Trades\".\"status\" in ('PENDING', 'ORDER-FILLED', 'ORDER-CANCELED', 'COMMITTED')) AND (\"Trades\".\"date\" >= '2014-11-26' AND \"Trades\".\"date\" <= '2015-12-04')";
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/list', {'json': portfolioOrders});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save_sell_50BMW all params', resObj);
+console.log('\nTransactions_list ORDERS all params', resObj);
 
-
-
-//Check Import Portfolio Transactions sample headers;
-var IMPORT_TRANSACTIONS_SEC_CSV_headers_Base64 = new Buffer(IMPORT_TRANSACTIONS_SEC_CSV_headers).toString('base64');
-//console.log('\nIMPORT_TRANSACTIONS_SEC_CSV_headers_Base64', IMPORT_TRANSACTIONS_SEC_CSV_headers_Base64);
-
-res = request('POST', 'https://paolo.fincluster.com:8081/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":IMPORT_TRANSACTIONS_SEC_CSV_headers_Base64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-TRANSACTIONS_CSV","fileName":"sample_trades.csv","delayed":1,"Companies_key":3}});
+//function Report_position ORDERS/ADVICES Allianz Se-Reg IOHist;
+//accountId and portfolioId are hard coded, update if IOHist is lost plus Orders Advices;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Report/position', {'json':{"sid":auth,"pvtags":["SECURITY|ALV GY EQUITY|DEFAULT|5074080"],"Portfolios_keys": ["5074079"],"currency":"EUR"}});
 
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nImport_run transactions sample headers inc optionals with req params',resObj);
+console.log('\n Report_position ORDERS ALV GY EQUITY required params',resObj);
 
-//function Transactions_save: cash BUY €1500;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AssetsKey":"118685","Trades_AccountsKey": activeAccount,"Trades_quota":1500,"Trades_stage":"trade","Trades_group":"CASH","Trades_action":"BUY","Trades_status":"FILLED","Trades_currency":"EUR"}});
+//Transactions_preview ORDER 100 aapl
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/preview', {'json':
+{"sid":auth,"Trades_AssetsKey":"118613","Trades_quota":100}});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save_buy_€1500 required params',resObj);
-//function Transactions_save: cash SELL €500;
-Transactions_save_sell_cash_BaseEuros.sid = auth;
-Transactions_save_sell_cash_BaseEuros.Trades_PortfoliosKey = newTestID.Portfolios_key;
-Transactions_save_sell_cash_BaseEuros.Trades_AccountsKey = activeAccount;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_sell_cash_BaseEuros});
+console.log('\nTransactions_preview ORDER 100 Apple - required params',resObj);
+
+portfolioOrdersPreview.sid = auth;
+portfolioOrdersPreview.Trades_PortfoliosKey = newTestID.Portfolios_key;
+portfolioOrdersPreview.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/preview', {'json': portfolioOrdersPreview});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save_sell_cash_BaseEuros 500 all params', resObj);
-var delTest2 = resObj.Trades_key;
+console.log('\nTransactions_preview ORDER 100 Apple - all params', resObj);
 
-//Check Import Portfolio Transactions;
-IMPORT_PORTFOLIO_TRANSACTIONS = IMPORT_PORTFOLIO_TRANSACTIONS.split('3994495').join(newTestID.Portfolios_key);
-
-var IMPORT_PORTFOLIO_TRANSACTIONS_Base64 = new Buffer(IMPORT_PORTFOLIO_TRANSACTIONS).toString('base64');
-//console.log('\nIIMPORT_PORTFOLIO_TRANSACTIONS_Base64', IMPORT_PORTFOLIO_TRANSACTIONS_Base64);
-
-res = request('POST', 'https://paolo.fincluster.com:8081/api/NS-FINCLUSTER/Import/run', {'json': {"sid":auth,"Portfolios_keys":newTestID.Portfolios_key,"content":IMPORT_PORTFOLIO_TRANSACTIONS_Base64,"delimiter":",","fmtdate":"YYYY-MM-DD","fmtnum":"std","schema":"FINCLUSTER-TRANSACTIONS_CSV","fileName":"IMPORT_PORTFOLIO_TRANSACTIONS.csv","delayed":1,"Companies_key":3}});
-
+//Transactions_save ORDER 100 BOSS
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json':
+{"sid":auth,"Trades_stage":"order","Trades_group":"SECURITY","Trades_action":"BUY","Trades_priceMode":"market","Trades_AssetsKey":"5066593","Trades_currency":"EUR","Trades_status":"PENDING","Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":100}});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nIMPORT_PORTFOLIO_TRANSACTIONS req params',resObj);
+console.log('\nTransactions_save ORDER 100 BOSS',resObj);
+//100 APPLE ORDER (BUY)
 
-//delete a security and a cash transaction;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/del', {'json': {"sid":auth, "qwhere": " AND \"Trades\".\"key\" in (" + delTest1 + "," + delTest2 + ")"}});
+Transactions_save_ORDER_aapl.sid = auth;
+Transactions_save_ORDER_aapl.Trades_PortfoliosKey = newTestID.Portfolios_key;
+Transactions_save_ORDER_aapl.Trades_AccountsKey = activeAccount;
+res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_ORDER_aapl});
 resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_del 2 transactions required params',resObj);
-//Trans_del.json - not included here, but used in index.md
-
-//function Transaction_preview 7000 CHF base Euro
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/preview', {'json': {"sid":auth,"Trades_AssetsKey":"3367103","Trades_quota":"70000"}});
-
-Transactions_preview_CHF7000.sid = auth;
-Transactions_preview_CHF7000.Portfolios_keys = newTestID.Portfolios_key;
-Transactions_preview_CHF7000.Trades_AccountsKey = activeAccount;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/preview', {'json': Transactions_preview_CHF7000});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_preview transactions 7000 CHF with req params',resObj);
-//console.log(JSON.stringify(resObj));
-
-//Add 10 GOOG Transactions_save;//not in FINCLUSTER API reference;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_data":{"validityDate":"2016-01-19","updateCash":true},"Trades_stage":"trade","Trades_class":"DEFAULT","Trades_group":"SECURITY","Trades_action":"BUY","Trades_commissionType":"ABSOLUTE","Trades_changeCurrency":"EUR","Trades_AssetsKey":"118614","Trades_currency":"USD","Trades_settleDate":"2016-01-05","Trades_status":"FILLED","Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":10,"Trades_amount":null,"Trades_netAmount":null,"Trades_price":null,"Trades_change":null,"Trades_commission":"150","customerSaveProcess":1,"Trades_psign":1,"Companies_key":3}});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save 16-01-05 10 GOOG all params',resObj);
-var tradesKey = resObj.Trades_key;
-
-Transactions_save_10GOOG_updateCash.sid = auth;
-Transactions_save_10GOOG_updateCash.Trades_PortfoliosKey = newTestID.Portfolios_key;
-Transactions_save_10GOOG_updateCash.Trades_AccountsKey = activeAccount;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': Transactions_save_10GOOG_updateCash});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save transactions 10 GOOG updateCash with all params',resObj);
-
-//Edit -> 12 GOOG Transactions_save;
-/*res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_AssetsKey":"118614","Trades_currency":"USD","Trades_key":tradesKey,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":12,"Trades_group":"SECURITY"}});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save edit -> 12 GOOG req params',resObj);*/
-
-//updateCash -> true; update to 12 GOOG and updateCash with Transactions_save;//not in FINCLUSTER API reference;
-res = request('POST', 'https://paolo.fincluster.com:8081/api/CORE/Transactions/save', {'json': {"sid":auth,"Trades_data":{"updateCash":true},"Trades_stage":"trade","Trades_group":"SECURITY","Trades_currency":"USD","Trades_AssetsKey":"118614","Trades_key":tradesKey,"Trades_PortfoliosKey":newTestID.Portfolios_key,"Trades_AccountsKey":activeAccount,"Trades_quota":12,"customerSaveProcess":1}});
-resObj = JSON.parse(res.getBody('utf8'));
-console.log('\nTransactions_save 12 GOOG  update cash req params',resObj);
-
-
-
-
+console.log('\nTransactions_preview ORDER 100 Apple - all params', resObj);
 

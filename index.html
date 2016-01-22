@@ -428,6 +428,8 @@ You must replace <code>Your_API_key</code> with your personal API key.
 </tr>
 </tbody></table>
 
+<h1 id="portfolios"><a name="Portfolios"></a>Portfolios</h1>
+
 <h2 id="list-portfolios"><a name="listPortfolios"></a>List Portfolios</h2>
 
 <blockquote>
@@ -884,7 +886,7 @@ parameter, used by the <a href="#positionEditor"><code class="prettyprint">Posit
 
 <p><strong><a href="#reportStatus"><code class="prettyprint">Report_status</code></a></strong> is used to get all the available information for a specific portfolio.</p>
 
-<h1 id="portfolio">Portfolio</h1>
+<h1 id="portfolio"><a name="portfolio"></a>PORTFOLIO</h1>
 
 <h2 id="new-portfolio-save"><a name="portfoliosSave"></a>New Portfolio: save</h2>
 
@@ -3950,8 +3952,7 @@ The sort order here will be ascending by the IBAN name. </p>
   </span><span class="nt">"Portfolios_keys"</span><span class="p">:</span><span class="s2">"5003360"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-14T12:50:31+00:00"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-14"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updateCash"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-14"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
@@ -4061,11 +4062,11 @@ The sort order here will be ascending by the IBAN name. </p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight javascript"><code><span class="c1">//Preview (buy) 7000 CHF fx (security)</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"3367103"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="s2">"70000"</span><span class="p">}});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8081/api/CORE/Transactions/preview'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"3367103"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="s2">"70000"</span><span class="p">}});</span>
 
 <span class="c1">//OR</span>
 <span class="kd">var</span> <span class="nx">Transactions_preview_CHF7000</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_preview_CHF7000.json'</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_preview_CHF7000</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/preview'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_preview_CHF7000</span><span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_preview_CHF7000'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
@@ -4076,6 +4077,124 @@ The sort order here will be ascending by the IBAN name. </p>
 <p>As an API it can also provide immediate access to securities info and (historic) price values, using only a <code class="prettyprint">Trades_quota</code> value and the <code class="prettyprint">Trades_AssetsKey</code>, which can be found using the <a href="#assetsListByCharacter"><code class="prettyprint">Assets_list.qwhere</code></a> function to search on a (partial) name.</p>
 
 <p>The example here is a preview of an FX - foreign exchange - transaction to BUY CHF 7000 (Swiss Francs), which is treated as a Security.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Trades_AssetsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Asset ID</td>
+</tr>
+<tr>
+<td>Trades_quota</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td>Portfolios_keys</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Trades_date</td>
+<td>FALSE</td>
+<td>dateTime</td>
+<td>YYYY-MM-DDThh:mm:ss+hh:mm (UTC)</td>
+</tr>
+<tr>
+<td>Trades_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Additional info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:validityDate</td>
+<td>FALSE</td>
+<td>date</td>
+<td>valid until</td>
+</tr>
+<tr>
+<td>Trades_stage</td>
+<td>FALSE</td>
+<td>String</td>
+<td>trade</td>
+</tr>
+<tr>
+<td>Trades_class</td>
+<td>FALSE</td>
+<td>String</td>
+<td>DEFAULT or ???</td>
+</tr>
+<tr>
+<td>Trades_group</td>
+<td>FALSE</td>
+<td>String</td>
+<td>SECURITY or CASH</td>
+</tr>
+<tr>
+<td>Trades_action</td>
+<td>FALSE</td>
+<td>String</td>
+<td>BUY or SELL or POS</td>
+</tr>
+<tr>
+<td>Trades_commissionType</td>
+<td>FALSE</td>
+<td>String</td>
+<td>ABSOLUTE or PERCENT</td>
+</tr>
+<tr>
+<td>Trades_changeCurrency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Base ccy</td>
+</tr>
+<tr>
+<td>Trades_currency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>ccy</td>
+</tr>
+<tr>
+<td>Trades_settleDate</td>
+<td>FALSE</td>
+<td>String</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Trades_status</td>
+<td>FALSE</td>
+<td>String</td>
+<td>FILLED</td>
+</tr>
+<tr>
+<td>Trades_AccountsKey</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
 
 <h3 id="transactions-save"><a name="portfolioTransactionsSave"></a>Transactions Save</h3>
 
@@ -4532,7 +4651,9 @@ The sort order here will be ascending by the IBAN name. </p>
 
 <p>Once a transaction has been deleted, it cannot be retrieved.</p>
 
-<h2 id="orders-advices-portfolio"><a name="ordersAdvices"></a>ORDERS/ADVICES (portfolio)</h2>
+<h2 id="orders-advices"><a name="ordersList"></a>ORDERS/ADVICES</h2>
+
+<h3 id="list"><a name="orderList"></a>List</h3>
 
 <blockquote>
 <p>https://dev.fincluster.com:8080/api/CORE/Transactions/list</p>
@@ -4656,6 +4777,775 @@ The sort order here will be ascending by the IBAN name. </p>
 <td>FALSE</td>
 <td>Number</td>
 <td>Page displayed on platform</td>
+</tr>
+</tbody></table>
+
+<h3 id="position"><a name="orderPosition"></a>Position</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Report/position</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"pvtags"</span><span class="p">:[</span><span class="s2">"SECURITY|ALV GY EQUITY|DEFAULT|5074080"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"5074079"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"entries"</span><span class="p">:[{</span><span class="w">
+    </span><span class="nt">"asset"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"Assets_key"</span><span class="p">:</span><span class="mi">5066451</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetID"</span><span class="p">:</span><span class="s2">"ALV GY EQUITY"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetIsin"</span><span class="p">:</span><span class="s2">"DE0008404005"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetFeederCode"</span><span class="p">:</span><span class="s2">"ALV GY Equity"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetName"</span><span class="p">:</span><span class="s2">"Allianz Se EUR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetTypo"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetIndustrySector"</span><span class="p">:</span><span class="s2">"Financial"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetExpirationDate"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetCountry"</span><span class="p">:</span><span class="s2">"DE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetClassFocus"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_feeder"</span><span class="p">:</span><span class="s2">"BBG"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetSedol"</span><span class="p">:</span><span class="s2">"5231485"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetTicker"</span><span class="p">:</span><span class="s2">"ALV"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetCountryName"</span><span class="p">:</span><span class="s2">"germany"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetSectorName"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_name"</span><span class="p">:</span><span class="s2">"Allianz Se EUR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetCategory"</span><span class="p">:</span><span class="s2">"Financial"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetShortName"</span><span class="p">:</span><span class="s2">"Allianz Se-Reg EUR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetCompany"</span><span class="p">:</span><span class="s2">"Allianz Se"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetIssuer"</span><span class="p">:</span><span class="s2">"Allianz SE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetParentCompany"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetExposureMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetPriceMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets__minfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets__mstatus"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_AssetSearchName"</span><span class="p">:</span><span class="s2">"DE0008404005 Allianz Se-Reg EUR (Xetra) | ALV [Equity]"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_custom"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_type"</span><span class="p">:</span><span class="s2">"ASSET"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_tags"</span><span class="p">:</span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_data"</span><span class="p">:</span><span class="s2">"{
+        \"bbg_uid\": \"EQ0011564900001000\",
+        \"description\": \"ALV\"
+      }"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Assets_cur"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"CONVERTIBLE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"CONVERTIBLE_ts"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"EXCH_CODE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"EXCH_CODE_ts"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LAST_PRICE"</span><span class="p">:</span><span class="mf">169.7</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LAST_PRICE_ts"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"PX_MID"</span><span class="p">:</span><span class="mf">169.525</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"PX_MID_ts"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AssetTypo"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LAST_PRICE_1D"</span><span class="p">:</span><span class="mf">169.7</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LAST_CHANGE_1D"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"account"</span><span class="p">:{</span><span class="nt">"Accounts_key"</span><span class="p">:</span><span class="mi">5074080</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Accounts_OrganizationsKey"</span><span class="p">:</span><span class="mi">3366290</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Accounts_iban"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Accounts_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Accounts_bank"</span><span class="p">:</span><span class="s2">"GENERIC"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"portfolio"</span><span class="p">:{</span><span class="nt">"Portfolios_key"</span><span class="p">:</span><span class="mi">5074079</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_name"</span><span class="p">:</span><span class="s2">"001testMochaIOHist"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_dossier"</span><span class="p">:</span><span class="s2">"FC5074079"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Portfolios_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"bank"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"Resources_key"</span><span class="p">:</span><span class="mi">3366290</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Resources_name"</span><span class="p">:</span><span class="s2">"GENERIC"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_pvtag"</span><span class="p">:</span><span class="s2">"SECURITY|ALV GY EQUITY|DEFAULT|5074080"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="s2">"SECURITY|ALV GY EQUITY|DEFAULT|5074080"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"SECURITY|ALV GY EQUITY|DEFAULT|5074080"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cfd"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlu"</span><span class="p">:</span><span class="mf">9192.224700000006</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnluBs"</span><span class="p">:</span><span class="mf">9192.224700000006</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnluNC"</span><span class="p">:</span><span class="mf">9192.224700000006</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlu"</span><span class="p">:</span><span class="mf">9237.800000000003</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnluBs"</span><span class="p">:</span><span class="mf">9237.800000000003</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnluNC"</span><span class="p">:</span><span class="mf">9237.800000000003</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfu"</span><span class="p">:</span><span class="mf">0.20149163380913926</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfuBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfuNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_perfu"</span><span class="p">:</span><span class="mf">0.20269312544294826</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_perfuBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_perfuNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netAmount1dNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netAmount1dBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netAmount1d"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlr1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlr1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlu1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlu1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfr1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfr1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfu1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerfu1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnlrBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlr"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnlrBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPnl1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnl1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_pnl1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerf1d"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_netPerf1dBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"calc_avgChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"quota_otc"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"__keep"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"position"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"POSITION"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_errors"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"Trades_type"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tags"</span><span class="p">:[</span><span class="s2">"SECURITY"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curPriceDate"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curChangeDate"</span><span class="p">:</span><span class="s2">"2015-04-12T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"5066451"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_avgChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_avgVizChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_avgCurChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_avgCurVizChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_sign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">323</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="mf">141.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curPrice"</span><span class="p">:</span><span class="mf">169.7</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netPrice"</span><span class="p">:</span><span class="mf">141.2411</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetPrice"</span><span class="p">:</span><span class="mf">169.7</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_accIntVal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_delta"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_undlPrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quotaCost"</span><span class="p">:</span><span class="mf">0.1411</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionNC"</span><span class="p">:</span><span class="mf">45.5753</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionBs"</span><span class="p">:</span><span class="mf">45.5753</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commission"</span><span class="p">:</span><span class="mf">45.5753</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curCommissionNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curCommissionBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curCommission"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interestNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interestBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curInterestNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curInterestBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_taxNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_taxBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curTaxNC"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curTaxBs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curTax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amountNC"</span><span class="p">:</span><span class="mf">45575.299999999996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amountBs"</span><span class="p">:</span><span class="mf">45575.299999999996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="mf">45575.299999999996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmountNC"</span><span class="p">:</span><span class="mf">45620.87529999999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmountBs"</span><span class="p">:</span><span class="mf">45620.87529999999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="mf">45620.87529999999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_notionalNC"</span><span class="p">:</span><span class="mf">45575.299999999996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_notionalBs"</span><span class="p">:</span><span class="mf">45575.299999999996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_notional"</span><span class="p">:</span><span class="mf">45575.299999999996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netNotionalNC"</span><span class="p">:</span><span class="mf">45620.87529999999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netNotionalBs"</span><span class="p">:</span><span class="mf">45620.87529999999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netNotional"</span><span class="p">:</span><span class="mf">45620.87529999999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curAmountNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curAmountBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curAmount"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetAmountNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetAmountBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetAmount"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNotionalNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNotionalBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNotional"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetNotionalNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetNotionalBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetNotional"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curExposureNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curExposureBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curExposure"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetExposureNC"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetExposureBs"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetExposure"</span><span class="p">:</span><span class="mf">54813.1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5074080"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5074079"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BankOrganizationsKey"</span><span class="p">:</span><span class="s2">"3366290"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BrokerOrganizationsKey"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"conf"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"pview"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"parts"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"SECURITY"</span><span class="p">:{},</span><span class="w">
+        </span><span class="nt">"CASH"</span><span class="p">:{}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"calc"</span><span class="p">:{}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Report/position'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"pvtags"</span><span class="p">:[</span><span class="s2">"SECURITY|ALV GY EQUITY|DEFAULT|5074080"</span><span class="p">],</span><span class="s2">"Portfolios_keys"</span><span class="p">:[</span><span class="s2">"5074079"</span><span class="p">],</span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="s2">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">}});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nReport_position portfolio ORDERS/ADVICES ALV GY EQUITY'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p>Before adding a new order, <code class="prettyprint">Report_position</code> can check to see whether that asset is already included in the portfolio&rsquo;s transactions, by querying the <code class="prettyprint">pvtags</code> key for that asset.</p>
+
+<p>The example here shows an existing asset, which the platform indicates with the message: &ldquo;You have 323 lots in portfolio for this asset&rdquo;, which matches the number returned as <code class="prettyprint">entries.asset.Trades_quota</code>.</p>
+
+<p>If there is no existing asset, the keys for the returned Response will be empty, starting with an empty array value for the <code class="prettyprint">entries</code> key: <code class="prettyprint">{&quot;entries&quot;:[],&quot;conf&quot;:{&quot;pview&quot;:{&quot;parts&quot;:{&quot;SECURITY&quot;:{},&quot;CASH&quot;:{}}},&quot;calc&quot;:{}}}</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>pvtags</td>
+<td>TRUE</td>
+<td>Array - String value</td>
+<td>Asset Type, class, name, ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>TRUE</td>
+<td>String</td>
+<td>ccy</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="preview"><a name="orderPreview"></a>Preview</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/preview</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-22T12:42:07+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_priceMode"</span><span class="p">:</span><span class="s2">"market"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5106925"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5106927"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_psign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"asset"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"Assets_key"</span><span class="p">:</span><span class="mi">118613</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetID"</span><span class="p">:</span><span class="s2">"AAPL US EQUITY"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetIsin"</span><span class="p">:</span><span class="s2">"US0378331005"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetFeederCode"</span><span class="p">:</span><span class="s2">"AAPL US EQUITY"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetName"</span><span class="p">:</span><span class="s2">"APPLE INC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetTypo"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCurrency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetIndustrySector"</span><span class="p">:</span><span class="s2">"Technology"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetExpirationDate"</span><span class="p">:</span><span class="s2">"2050-12-31T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCountry"</span><span class="p">:</span><span class="s2">"UNKNOWN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetClassFocus"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_feeder"</span><span class="p">:</span><span class="s2">"BBG"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetSedol"</span><span class="p">:</span><span class="s2">"2046251"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetTicker"</span><span class="p">:</span><span class="s2">"AAPL US"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCountryName"</span><span class="p">:</span><span class="s2">"united states"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetSectorName"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_name"</span><span class="p">:</span><span class="s2">"APPLE INC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCategory"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetShortName"</span><span class="p">:</span><span class="s2">"APPLE INC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetCompany"</span><span class="p">:</span><span class="s2">"APPLE INC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetIssuer"</span><span class="p">:</span><span class="s2">"APPLE INC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetParentCompany"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetExposureMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetPriceMultiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets__minfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets__mstatus"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_AssetSearchName"</span><span class="p">:</span><span class="s2">"APPLE INC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_custom"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_type"</span><span class="p">:</span><span class="s2">"ASSET"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_tags"</span><span class="p">:</span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_data"</span><span class="p">:</span><span class="s2">"{
+      \"__keep\": 1
+    }"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Assets_cur"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"CONVERTIBLE"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CONVERTIBLE_ts"</span><span class="p">:</span><span class="s2">"2015-10-21T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CUR_MKT_CAP"</span><span class="p">:</span><span class="mf">727733309599.9999</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"CUR_MKT_CAP_ts"</span><span class="p">:</span><span class="s2">"2015-05-12T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"EXCH_CODE"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"EXCH_CODE_ts"</span><span class="p">:</span><span class="s2">"2015-08-28T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_PRICE"</span><span class="p">:</span><span class="mf">96.3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_PRICE_ts"</span><span class="p">:</span><span class="s2">"2016-01-22T00:10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_UPDATE"</span><span class="p">:</span><span class="s2">"2016-01-22T00:10:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_UPDATE_ts"</span><span class="p">:</span><span class="s2">"2016-01-22T00:10:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_ASK"</span><span class="p">:</span><span class="mf">94.71</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_ASK_ts"</span><span class="p">:</span><span class="s2">"2014-07-23T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_BID"</span><span class="p">:</span><span class="mf">94.7</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_BID_ts"</span><span class="p">:</span><span class="s2">"2014-07-23T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_HIGH"</span><span class="p">:</span><span class="mf">94.89</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_HIGH_ts"</span><span class="p">:</span><span class="s2">"2014-07-23T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_LOW"</span><span class="p">:</span><span class="mf">94.12</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_LOW_ts"</span><span class="p">:</span><span class="s2">"2014-07-23T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_MID"</span><span class="p">:</span><span class="mf">96.27</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_MID_ts"</span><span class="p">:</span><span class="s2">"2016-01-22T11:56:03"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_OPEN"</span><span class="p">:</span><span class="mf">94.68</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"PX_OPEN_ts"</span><span class="p">:</span><span class="s2">"2014-07-23T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"AssetTypo"</span><span class="p">:</span><span class="s2">"Equity"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_PRICE_1D"</span><span class="p">:</span><span class="mf">97.62</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"LAST_CHANGE_1D"</span><span class="p">:</span><span class="mf">1.0947</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-22T12:42:07+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"__keep"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_priceMode"</span><span class="p">:</span><span class="s2">"market"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5106925"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5106927"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_psign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="mf">96.3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="mf">1.0947</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commission"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BankOrganizationsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_BrokerOrganizationsKey"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_CompaniesKey"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currencyReal"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrencyReal"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_priceDate"</span><span class="p">:</span><span class="s2">"2016-01-22T12:42:07+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_sign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_multiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curAmount"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_pnlu"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_total"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curInterest"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curPrice"</span><span class="p">:</span><span class="mf">96.3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curPriceDate"</span><span class="p">:</span><span class="s2">"2016-01-22T00:10:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curChange"</span><span class="p">:</span><span class="mf">1.0947</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curChangeDate"</span><span class="p">:</span><span class="s2">"2016-01-22T12:42:07+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_tcaChange"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amountReal"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmountReal"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_commissionReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_interestReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_taxReal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_baseAmount"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_costs"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amountSim"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades___evlCost"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetAmount"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetNotional"</span><span class="p">:</span><span class="mi">9630</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_curNetExposure"</span><span class="p">:</span><span class="mi">9630</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/preview'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:{</span><span class="s2">"sid"</span><span class="p">:</span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="s2">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-22T12:42:07+00:00"</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="s2">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="s2">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="s2">"Trades_priceMode"</span><span class="p">:</span><span class="s2">"market"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="s2">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5106925"</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5106927"</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="s2">"Trades_psign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s2">"Trades_data"</span><span class="p">:{</span><span class="s2">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="p">}}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">portfolioOrdersPreview</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/portfolioOrdersPreview.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com/api/CORE/Transactions/preview'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">portfolioOrdersPreview</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_list portfolio ORDERS/ADVICES'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Transactions_preview</code> for orders provides asset info, particularly for price values, and works in the same way as the <a href="#portfolioTransactionsPreview"><code class="prettyprint">Transactions preview</code></a> for transactions, but uses different request parameters.</p>
+
+<p>The <code class="prettyprint">Trades_stage</code> key with the value <code class="prettyprint">order</code>, <code class="prettyprint">Trades_priceMode</code> with <code class="prettyprint">market</code> or <code class="prettyprint">limit</code> and <code class="prettyprint">Trades_status</code> usually with the value <code class="prettyprint">PENDING</code> are all specific to Transactions_preview for orders.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Val&nbsp;Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Trades_AssetsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Asset ID</td>
+</tr>
+<tr>
+<td>Trades_quota</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td>Portfolios_keys</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Trades_date</td>
+<td>FALSE</td>
+<td>dateTime</td>
+<td>YYYY-MM-DDThh:mm:ss+hh:mm (UTC)</td>
+</tr>
+<tr>
+<td>Trades_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>Additional info</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:validityDate</td>
+<td>FALSE</td>
+<td>date</td>
+<td>valid until</td>
+</tr>
+<tr>
+<td>Trades_stage</td>
+<td>FALSE</td>
+<td>String</td>
+<td>order</td>
+</tr>
+<tr>
+<td>Trades_class</td>
+<td>FALSE</td>
+<td>String</td>
+<td>DEFAULT or ???</td>
+</tr>
+<tr>
+<td>Trades_group</td>
+<td>FALSE</td>
+<td>String</td>
+<td>SECURITY or CASH</td>
+</tr>
+<tr>
+<td>Trades_action</td>
+<td>FALSE</td>
+<td>String</td>
+<td>BUY or SELL or POS</td>
+</tr>
+<tr>
+<td>Trades_commissionType</td>
+<td>FALSE</td>
+<td>String</td>
+<td>ABSOLUTE or PERCENT</td>
+</tr>
+<tr>
+<td>Trades_changeCurrency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Base ccy</td>
+</tr>
+<tr>
+<td>Trades_currency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>ccy</td>
+</tr>
+<tr>
+<td>Trades_settleDate</td>
+<td>FALSE</td>
+<td>String</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Trades_status</td>
+<td>FALSE</td>
+<td>String</td>
+<td>PENDING</td>
+</tr>
+<tr>
+<td>Trades_AccountsKey</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>Trades_psign</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>??? 0 or 1</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="add-new"><a name="orderSave"></a>Add (new)</h3>
+
+<blockquote>
+<p>https://dev.fincluster.com:8080/api/CORE/Transactions/save</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">//request</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your_API_key"</span><span class="p">,</span><span class="err">,</span><span class="w">
+  </span><span class="nt">"Trades_date"</span><span class="p">:</span><span class="s2">"2016-01-22T18:32:50+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"validityDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Trades_stage"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_class"</span><span class="p">:</span><span class="s2">"DEFAULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_changeCurrency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_priceMode"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"118613"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_settleDate"</span><span class="p">:</span><span class="s2">"2016-01-22"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_status"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="s2">"5106925"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_AccountsKey"</span><span class="p">:</span><span class="s2">"5106927"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_quota"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_amount"</span><span class="p">:</span><span class="mi">10018</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_netAmount"</span><span class="p">:</span><span class="mi">10018</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_price"</span><span class="p">:</span><span class="mf">100.18</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_change"</span><span class="p">:</span><span class="mf">1.0947</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customerSaveProcess"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Trades_psign"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Companies_key"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"Trades_key"</span><span class="p">:</span><span class="mi">5107768</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span>
+<span class="p">{</span><span class="s2">"sid"</span><span class="p">:</span><span class="nx">auth</span><span class="p">,</span><span class="s2">"Trades_stage"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="s2">"Trades_group"</span><span class="p">:</span><span class="s2">"SECURITY"</span><span class="p">,</span><span class="s2">"Trades_action"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="s2">"Trades_priceMode"</span><span class="p">:</span><span class="s2">"market"</span><span class="p">,</span><span class="s2">"Trades_AssetsKey"</span><span class="p">:</span><span class="s2">"5066593"</span><span class="p">,</span><span class="s2">"Trades_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="s2">"Trades_status"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="p">,</span><span class="s2">"Trades_PortfoliosKey"</span><span class="p">:</span><span class="nx">newTestID</span><span class="p">.</span><span class="nx">Portfolios_key</span><span class="p">,</span><span class="s2">"Trades_AccountsKey"</span><span class="p">:</span><span class="nx">activeAccount</span><span class="p">,</span><span class="s2">"Trades_quota"</span><span class="p">:</span><span class="mi">100</span><span class="p">}});</span>
+<span class="c1">//OR</span>
+<span class="kd">var</span> <span class="nx">Transactions_save_ORDER_aapl</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/testAPIJSON/Transactions_save_ORDER_aapl.json'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'https://dev.fincluster.com:8080/api/CORE/Transactions/save'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'json'</span><span class="p">:</span> <span class="nx">Transactions_save_ORDER_aapl</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">resObj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">getBody</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'\nTransactions_preview ORDER'</span><span class="p">,</span><span class="nx">resObj</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">Transactions_save</code> is used to add a new order to a portfolio. Unlike an actual transaction, the <code class="prettyprint">Trades_stage</code> key takes a value of <code class="prettyprint">order</code> (rather than <code class="prettyprint">trade</code>) and the <code class="prettyprint">Trades_status</code> key has a value of <code class="prettyprint">PENDING</code> for a new order, or <code class="prettyprint">COMMITTED</code> for an order that has been sent, or <code class="prettyprint">ORDER-FILLED</code> if the order sent has been completed by the counterparty and its value appears in the PORTFOLIO position. </p>
+
+<p>Setting the <code class="prettyprint">Trades_quota</code> value and the <code class="prettyprint">Trades_priceMode</code> key to a value of <code class="prettyprint">market</code> creates an order with no boundaries. Both the Gross Amount and the Price are shown as 0.00 on the platform and only the quantity is recorded.</p>
+
+<p>If the <code class="prettyprint">Trades_amount</code> key&rsquo;s value is set and the <code class="prettyprint">Trades_priceMode</code> value is <code class="prettyprint">market</code>, the <code class="prettyprint">Trades_netAmount</code> and the calculated <code class="prettyprint">Trades_price</code> values are shown in the <code class="prettyprint">Transactions_list</code> response with the <code class="prettyprint">Trades_amount</code> set to 0. (???)</p>
+
+<p>If the <code class="prettyprint">Trades_price</code> key is given a value, the <code class="prettyprint">Trades_priceMode</code> value becomes <code class="prettyprint">limit</code> which indicates that the order should only be fulfilled if any BUY is less than or equal to the <code class="prettyprint">Trades_price</code> and any SELL must be greater than or equal to that price.</p>
+
+<p>The <code class="prettyprint">Trades_date</code> can also be set, or if omitted, will default to the current dateTime, as will the <code class="prettyprint">Trades_data: validityDate</code> and the <code class="prettyprint">Trades_settleDate</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sid</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Your API key</td>
+</tr>
+<tr>
+<td>Trades_PortfoliosKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Portfolio ID</td>
+</tr>
+<tr>
+<td>Trades_AccountsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>Trades_AssetsKey</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Assets_key (available from <code class="prettyprint">Transactions_preview</code>)</td>
+</tr>
+<tr>
+<td>Trades_quota</td>
+<td>TRUE</td>
+<td>Number</td>
+<td>Quantity traded</td>
+</tr>
+<tr>
+<td>Trades_stage</td>
+<td>TRUE</td>
+<td>String</td>
+<td>order</td>
+</tr>
+<tr>
+<td>Trades_group</td>
+<td>TRUE</td>
+<td>String</td>
+<td>SECURITY or CASH</td>
+</tr>
+<tr>
+<td>Trades_action</td>
+<td>TRUE</td>
+<td>String</td>
+<td>POS, BUY or SELL</td>
+</tr>
+<tr>
+<td>Trades_status</td>
+<td>TRUE</td>
+<td>String</td>
+<td>PENDING</td>
+</tr>
+<tr>
+<td>Trades_currency</td>
+<td>TRUE</td>
+<td>String</td>
+<td>Asset trade currency</td>
+</tr>
+<tr>
+<td>Trades_priceMode</td>
+<td>TRUE</td>
+<td>String</td>
+<td>limit or market</td>
+</tr>
+<tr>
+<td>Trades_amount</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Base CCY cost value</td>
+</tr>
+<tr>
+<td>Trades_netAmount</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Cost value plus costs</td>
+</tr>
+<tr>
+<td>Trades_changeCurrency</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Base currency</td>
+</tr>
+<tr>
+<td>Trades_class</td>
+<td>FALSE</td>
+<td>String</td>
+<td>Cash BUY info/filter</td>
+</tr>
+<tr>
+<td>Trades_date</td>
+<td>FALSE</td>
+<td>DateTime</td>
+<td>YYYY-MM-DDThh:mm:ss+hh:mm (UTC)</td>
+</tr>
+<tr>
+<td>Trades_settleDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>YYYY-MM-DD Settlement Date</td>
+</tr>
+<tr>
+<td>Trades_data</td>
+<td>FALSE</td>
+<td>Object</td>
+<td>data</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:validityDate</td>
+<td>FALSE</td>
+<td>Date</td>
+<td>??? YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;:cashUpdate</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>Cash Update</td>
+</tr>
+<tr>
+<td>Trades_commissionType</td>
+<td>FALSE</td>
+<td>String</td>
+<td>ABSOLUTE or PERCENT</td>
+</tr>
+<tr>
+<td>customerSaveProcess</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>1 or 0</td>
+</tr>
+<tr>
+<td>Trades_psign</td>
+<td>FALSE</td>
+<td>Boolean</td>
+<td>1 or 0</td>
+</tr>
+<tr>
+<td>Companies_key</td>
+<td>FALSE</td>
+<td>Number</td>
+<td>Company ID</td>
 </tr>
 </tbody></table>
 

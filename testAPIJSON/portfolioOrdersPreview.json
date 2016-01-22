@@ -1,0 +1,22 @@
+{
+	"sid":null,
+	"Trades_date":"2016-01-22T12:42:07+00:00",
+	"Trades_data":{
+		"validityDate":"2016-01-22"
+	},
+	"Trades_stage":"order",
+	"Trades_class":"DEFAULT",
+	"Trades_group":"SECURITY",
+	"Trades_action":"BUY",
+	"Trades_changeCurrency":"EUR",
+	"Trades_priceMode":"market",
+	"Trades_AssetsKey":"118613",
+	"Trades_currency":"USD",
+	"Trades_settleDate":"2016-01-22",
+	"Trades_status":"PENDING",
+	"Trades_PortfoliosKey":null,
+	"Trades_AccountsKey":null,
+	"Trades_quota":100,
+	"Trades_psign":1,
+	"Companies_key":3
+}
